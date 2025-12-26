@@ -17,7 +17,7 @@ After the build completes, compiled data-plane artifacts will be available in th
 
 ### Run the Switch
 To launch the switch with AGILE:
-``bash
+```bash
 ./run.sh
 ```
 

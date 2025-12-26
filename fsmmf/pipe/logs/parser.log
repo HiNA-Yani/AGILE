@@ -1,0 +1,858 @@
+SplitGreedyParserStates(ingress::start_1)
+state_pkt_too_short_verify(ingress::start_1): ok
+SplitGreedyParserStates(ingress::EthIpParser_parse_tcp)
+state_pkt_too_short_verify(ingress::EthIpParser_parse_tcp): ok
+SplitGreedyParserStates(ingress::EthIpParser_parse_udp)
+state_pkt_too_short_verify(ingress::EthIpParser_parse_udp): ok
+SplitGreedyParserStates(ingress::EthIpParser_parse_ip)
+state_pkt_too_short_verify(ingress::EthIpParser_parse_ip): ok
+SplitGreedyParserStates(ingress::start)
+state_pkt_too_short_verify(ingress::start): ok
+SplitGreedyParserStates(ingress::$entry_point)
+state_pkt_too_short_verify(ingress::$entry_point): ok
+SplitGreedyParserStates(egress::min_parse_depth_accept_loop.$it2)
+state_pkt_too_short_verify(egress::min_parse_depth_accept_loop.$it2): ok
+SplitGreedyParserStates(egress::min_parse_depth_accept_loop.$it1)
+state_pkt_too_short_verify(egress::min_parse_depth_accept_loop.$it1): ok
+SplitGreedyParserStates(egress::min_parse_depth_accept_loop)
+state_pkt_too_short_verify(egress::min_parse_depth_accept_loop): ok
+SplitGreedyParserStates(egress::min_parse_depth_accept_initial)
+state_pkt_too_short_verify(egress::min_parse_depth_accept_initial): ok
+SplitGreedyParserStates(egress::start_3)
+state_pkt_too_short_verify(egress::start_3): ok
+SplitGreedyParserStates(egress::EthIpParser_parse_tcp_0)
+state_pkt_too_short_verify(egress::EthIpParser_parse_tcp_0): ok
+SplitGreedyParserStates(egress::EthIpParser_parse_udp_0)
+state_pkt_too_short_verify(egress::EthIpParser_parse_udp_0): ok
+SplitGreedyParserStates(egress::EthIpParser_parse_ip_0)
+state_pkt_too_short_verify(egress::EthIpParser_parse_ip_0): ok
+SplitGreedyParserStates(egress::start)
+state_pkt_too_short_verify(egress::start): ok
+SplitGreedyParserStates(egress::$entry_point)
+state_pkt_too_short_verify(egress::$entry_point): ok
+rewrite extract inbuf bit[16..63] to ingress::ig_intr_md.ingress_mac_tstamp; as:
+  PHV: extract inbuf bit[32..63] to PHV-allocated ingress::ig_intr_md.ingress_mac_tstamp[31:0];
+  PHV: extract inbuf bit[16..31] to PHV-allocated ingress::ig_intr_md.ingress_mac_tstamp[47:32];
+rewrite extract inbuf bit[128..175] to ingress::hdr.ethernet.dst_addr; as:
+  PHV: extract inbuf bit[144..175] to PHV-allocated ingress::hdr.ethernet.dst_addr[31:0];
+  PHV: extract inbuf bit[128..143] to PHV-allocated ingress::hdr.ethernet.dst_addr[47:32];
+rewrite extract inbuf bit[176..223] to ingress::hdr.ethernet.src_addr; as:
+  PHV: extract inbuf bit[192..223] to PHV-allocated ingress::hdr.ethernet.src_addr[31:0];
+  PHV: extract inbuf bit[184..191] to PHV-allocated ingress::hdr.ethernet.src_addr[39:32];
+  PHV: extract inbuf bit[176..183] to PHV-allocated ingress::hdr.ethernet.src_addr[47:40];
+rewrite extract inbuf bit[224..239] to ingress::hdr.ethernet.ether_type; as:
+  PHV: extract inbuf bit[224..239] to PHV-allocated ingress::hdr.ethernet.ether_type;
+rewrite extract constant 1 to ingress::hdr.ethernet.$valid; as:
+  PHV: extract constant 1 to PHV-allocated ingress::hdr.ethernet.$valid;
+rewrite extract inbuf bit[0..3] to ingress::hdr.ip.version; as:
+  PHV: extract inbuf bit[0..3] to PHV-allocated ingress::hdr.ip.version;
+rewrite extract inbuf bit[4..7] to ingress::hdr.ip.ihl; as:
+  PHV: extract inbuf bit[4..7] to PHV-allocated ingress::hdr.ip.ihl;
+rewrite extract inbuf bit[8..13] to ingress::hdr.ip.dscp; as:
+  PHV: extract inbuf bit[8..13] to PHV-allocated ingress::hdr.ip.dscp;
+rewrite extract inbuf bit[14..15] to ingress::hdr.ip.ecn; as:
+  PHV: extract inbuf bit[14..15] to PHV-allocated ingress::hdr.ip.ecn;
+rewrite extract inbuf bit[16..31] to ingress::hdr.ip.total_len; as:
+  PHV: extract inbuf bit[16..31] to PHV-allocated ingress::hdr.ip.total_len;
+rewrite extract inbuf bit[32..47] to ingress::hdr.ip.identification; as:
+  PHV: extract inbuf bit[32..47] to PHV-allocated ingress::hdr.ip.identification;
+rewrite extract inbuf bit[48..50] to ingress::hdr.ip.flags; as:
+  PHV: extract inbuf bit[48..50] to PHV-allocated ingress::hdr.ip.flags;
+rewrite extract inbuf bit[51..63] to ingress::hdr.ip.frag_offset; as:
+  PHV: extract inbuf bit[51..63] to PHV-allocated ingress::hdr.ip.frag_offset;
+rewrite extract inbuf bit[64..71] to ingress::hdr.ip.ttl; as:
+  PHV: extract inbuf bit[64..71] to PHV-allocated ingress::hdr.ip.ttl;
+rewrite extract inbuf bit[72..79] to ingress::hdr.ip.protocol; as:
+  PHV: extract inbuf bit[72..79] to PHV-allocated ingress::hdr.ip.protocol;
+rewrite extract inbuf bit[80..95] to ingress::hdr.ip.hdr_checksum; as:
+  PHV: extract inbuf bit[80..95] to PHV-allocated ingress::hdr.ip.hdr_checksum;
+rewrite extract inbuf bit[96..127] to ingress::hdr.ip.src_addr; as:
+  PHV: extract inbuf bit[96..127] to PHV-allocated ingress::hdr.ip.src_addr;
+rewrite extract inbuf bit[128..159] to ingress::hdr.ip.dst_addr; as:
+  PHV: extract inbuf bit[128..159] to PHV-allocated ingress::hdr.ip.dst_addr;
+rewrite extract constant 1 to ingress::hdr.ip.$valid; as:
+  PHV: extract constant 1 to PHV-allocated ingress::hdr.ip.$valid;
+rewrite extract inbuf bit[0..15] to ingress::hdr.tcp.src_port; as:
+  PHV: extract inbuf bit[0..15] to PHV-allocated ingress::hdr.tcp.src_port;
+rewrite extract inbuf bit[16..31] to ingress::hdr.tcp.dst_port; as:
+  PHV: extract inbuf bit[16..31] to PHV-allocated ingress::hdr.tcp.dst_port;
+rewrite extract inbuf bit[32..63] to ingress::hdr.tcp.seq_no; as:
+  PHV: extract inbuf bit[48..63] to PHV-allocated ingress::hdr.tcp.seq_no[15:0];
+  PHV: extract inbuf bit[32..47] to PHV-allocated ingress::hdr.tcp.seq_no[31:16];
+rewrite extract inbuf bit[64..95] to ingress::hdr.tcp.ack_no; as:
+  PHV: extract inbuf bit[80..95] to PHV-allocated ingress::hdr.tcp.ack_no[15:0];
+  PHV: extract inbuf bit[64..79] to PHV-allocated ingress::hdr.tcp.ack_no[31:16];
+rewrite extract inbuf bit[96..99] to ingress::hdr.tcp.data_offset; as:
+  PHV: extract inbuf bit[96..99] to PHV-allocated ingress::hdr.tcp.data_offset;
+rewrite extract inbuf bit[100..103] to ingress::hdr.tcp.res; as:
+  PHV: extract inbuf bit[100..103] to PHV-allocated ingress::hdr.tcp.res;
+rewrite extract inbuf bit[104..111] to ingress::hdr.tcp.flags; as:
+  PHV: extract inbuf bit[104..111] to PHV-allocated ingress::hdr.tcp.flags;
+rewrite extract inbuf bit[112..127] to ingress::hdr.tcp.window; as:
+  PHV: extract inbuf bit[112..127] to PHV-allocated ingress::hdr.tcp.window;
+rewrite extract inbuf bit[128..143] to ingress::hdr.tcp.checksum; as:
+  PHV: extract inbuf bit[128..143] to PHV-allocated ingress::hdr.tcp.checksum;
+rewrite extract inbuf bit[144..159] to ingress::hdr.tcp.urgent_ptr; as:
+  PHV: extract inbuf bit[144..159] to PHV-allocated ingress::hdr.tcp.urgent_ptr;
+rewrite extract constant 1 to ingress::hdr.tcp.$valid; as:
+  PHV: extract constant 1 to PHV-allocated ingress::hdr.tcp.$valid;
+rewrite extract inbuf bit[0..15] to ingress::hdr.udp.src_port; as:
+  PHV: extract inbuf bit[0..15] to PHV-allocated ingress::hdr.udp.src_port;
+rewrite extract inbuf bit[16..31] to ingress::hdr.udp.dst_port; as:
+  PHV: extract inbuf bit[16..31] to PHV-allocated ingress::hdr.udp.dst_port;
+rewrite extract inbuf bit[32..47] to ingress::hdr.udp.hdr_lenght; as:
+  PHV: extract inbuf bit[32..47] to PHV-allocated ingress::hdr.udp.hdr_lenght;
+rewrite extract inbuf bit[48..63] to ingress::hdr.udp.checksum; as:
+  PHV: extract inbuf bit[48..63] to PHV-allocated ingress::hdr.udp.checksum;
+rewrite extract constant 1 to ingress::hdr.udp.$valid; as:
+  PHV: extract constant 1 to PHV-allocated ingress::hdr.udp.$valid;
+rewrite extract inbuf bit[7..15] to egress::eg_intr_md.egress_port; as:
+  PHV: extract inbuf bit[7..15] to PHV-allocated egress::eg_intr_md.egress_port;
+rewrite extract constant 0 to egress::hdr.min_parse_depth_padding_0[1].$valid; as:
+rewrite extract inbuf bit[216..263] to egress::hdr.ethernet.dst_addr; as:
+  PHV: extract inbuf bit[248..263] to PHV-allocated egress::hdr.ethernet.dst_addr[15:0];
+  PHV: extract inbuf bit[232..247] to PHV-allocated egress::hdr.ethernet.dst_addr[31:16];
+  PHV: extract inbuf bit[216..231] to PHV-allocated egress::hdr.ethernet.dst_addr[47:32];
+rewrite extract inbuf bit[264..311] to egress::hdr.ethernet.src_addr; as:
+  PHV: extract inbuf bit[296..311] to PHV-allocated egress::hdr.ethernet.src_addr[15:0];
+  PHV: extract inbuf bit[280..295] to PHV-allocated egress::hdr.ethernet.src_addr[31:16];
+  PHV: extract inbuf bit[264..279] to PHV-allocated egress::hdr.ethernet.src_addr[47:32];
+rewrite extract inbuf bit[312..327] to egress::hdr.ethernet.ether_type; as:
+  PHV: extract inbuf bit[312..327] to PHV-allocated egress::hdr.ethernet.ether_type;
+rewrite extract constant 1 to egress::hdr.ethernet.$valid; as:
+  PHV: extract constant 1 to PHV-allocated egress::hdr.ethernet.$valid;
+rewrite extract inbuf bit[0..3] to egress::hdr.ip.version; as:
+  PHV: extract inbuf bit[0..3] to PHV-allocated egress::hdr.ip.version;
+rewrite extract inbuf bit[4..7] to egress::hdr.ip.ihl; as:
+  PHV: extract inbuf bit[4..7] to PHV-allocated egress::hdr.ip.ihl;
+rewrite extract inbuf bit[8..13] to egress::hdr.ip.dscp; as:
+  PHV: extract inbuf bit[8..13] to PHV-allocated egress::hdr.ip.dscp;
+rewrite extract inbuf bit[14..15] to egress::hdr.ip.ecn; as:
+  PHV: extract inbuf bit[14..15] to PHV-allocated egress::hdr.ip.ecn;
+rewrite extract inbuf bit[16..31] to egress::hdr.ip.total_len; as:
+  PHV: extract inbuf bit[16..31] to PHV-allocated egress::hdr.ip.total_len;
+rewrite extract inbuf bit[32..47] to egress::hdr.ip.identification; as:
+  PHV: extract inbuf bit[32..47] to PHV-allocated egress::hdr.ip.identification;
+rewrite extract inbuf bit[48..50] to egress::hdr.ip.flags; as:
+  PHV: extract inbuf bit[48..50] to PHV-allocated egress::hdr.ip.flags;
+rewrite extract inbuf bit[51..63] to egress::hdr.ip.frag_offset; as:
+  PHV: extract inbuf bit[51..63] to PHV-allocated egress::hdr.ip.frag_offset;
+rewrite extract inbuf bit[64..71] to egress::hdr.ip.ttl; as:
+  PHV: extract inbuf bit[64..71] to PHV-allocated egress::hdr.ip.ttl;
+rewrite extract inbuf bit[72..79] to egress::hdr.ip.protocol; as:
+  PHV: extract inbuf bit[72..79] to PHV-allocated egress::hdr.ip.protocol;
+rewrite extract inbuf bit[80..95] to egress::hdr.ip.hdr_checksum; as:
+  PHV: extract inbuf bit[80..95] to PHV-allocated egress::hdr.ip.hdr_checksum;
+rewrite extract inbuf bit[96..127] to egress::hdr.ip.src_addr; as:
+  PHV: extract inbuf bit[96..127] to PHV-allocated egress::hdr.ip.src_addr;
+rewrite extract inbuf bit[128..159] to egress::hdr.ip.dst_addr; as:
+  PHV: extract inbuf bit[152..159] to PHV-allocated egress::hdr.ip.dst_addr[7:0];
+  PHV: extract inbuf bit[144..151] to PHV-allocated egress::hdr.ip.dst_addr[15:8];
+  PHV: extract inbuf bit[136..143] to PHV-allocated egress::hdr.ip.dst_addr[23:16];
+  PHV: extract inbuf bit[128..135] to PHV-allocated egress::hdr.ip.dst_addr[31:24];
+rewrite extract constant 1 to egress::hdr.ip.$valid; as:
+  PHV: extract constant 1 to PHV-allocated egress::hdr.ip.$valid;
+rewrite extract inbuf bit[0..15] to egress::hdr.tcp.src_port; as:
+  PHV: extract inbuf bit[0..15] to PHV-allocated egress::hdr.tcp.src_port;
+rewrite extract inbuf bit[16..31] to egress::hdr.tcp.dst_port; as:
+  PHV: extract inbuf bit[16..31] to PHV-allocated egress::hdr.tcp.dst_port;
+rewrite extract inbuf bit[32..63] to egress::hdr.tcp.seq_no; as:
+  PHV: extract inbuf bit[32..63] to PHV-allocated egress::hdr.tcp.seq_no;
+rewrite extract inbuf bit[64..95] to egress::hdr.tcp.ack_no; as:
+  PHV: extract inbuf bit[64..95] to PHV-allocated egress::hdr.tcp.ack_no;
+rewrite extract inbuf bit[96..99] to egress::hdr.tcp.data_offset; as:
+  PHV: extract inbuf bit[96..99] to PHV-allocated egress::hdr.tcp.data_offset;
+rewrite extract inbuf bit[100..103] to egress::hdr.tcp.res; as:
+  PHV: extract inbuf bit[100..103] to PHV-allocated egress::hdr.tcp.res;
+rewrite extract inbuf bit[104..111] to egress::hdr.tcp.flags; as:
+  PHV: extract inbuf bit[104..111] to PHV-allocated egress::hdr.tcp.flags;
+rewrite extract inbuf bit[112..127] to egress::hdr.tcp.window; as:
+  PHV: extract inbuf bit[112..127] to PHV-allocated egress::hdr.tcp.window;
+rewrite extract inbuf bit[128..143] to egress::hdr.tcp.checksum; as:
+  PHV: extract inbuf bit[128..143] to PHV-allocated egress::hdr.tcp.checksum;
+rewrite extract inbuf bit[144..159] to egress::hdr.tcp.urgent_ptr; as:
+  PHV: extract inbuf bit[144..159] to PHV-allocated egress::hdr.tcp.urgent_ptr;
+rewrite extract constant 1 to egress::hdr.tcp.$valid; as:
+  PHV: extract constant 1 to PHV-allocated egress::hdr.tcp.$valid;
+rewrite extract inbuf bit[0..87] to egress::hdr.min_parse_depth_padding_0[0].packet_payload; as:
+  PHV: extract inbuf bit[72..87] to PHV-allocated egress::hdr.min_parse_depth_padding_0[0].packet_payload[15:0];
+  PHV: extract inbuf bit[56..71] to PHV-allocated egress::hdr.min_parse_depth_padding_0[0].packet_payload[31:16];
+  PHV: extract inbuf bit[24..55] to PHV-allocated egress::hdr.min_parse_depth_padding_0[0].packet_payload[63:32];
+  PHV: extract inbuf bit[8..23] to PHV-allocated egress::hdr.min_parse_depth_padding_0[0].packet_payload[79:64];
+  PHV: extract inbuf bit[0..7] to PHV-allocated egress::hdr.min_parse_depth_padding_0[0].packet_payload[87:80];
+rewrite extract constant 4 to egress::hdr.min_parse_depth_padding_0.$stkvalid; as:
+  PHV: extract constant 4 to PHV-allocated egress::hdr.min_parse_depth_padding_0.$stkvalid;
+rewrite extract inbuf bit[0..87] to egress::hdr.min_parse_depth_padding_0[1].packet_payload; as:
+  PHV: extract inbuf bit[56..87] to PHV-allocated egress::hdr.min_parse_depth_padding_0[1].packet_payload[31:0];
+  PHV: extract inbuf bit[24..55] to PHV-allocated egress::hdr.min_parse_depth_padding_0[1].packet_payload[63:32];
+  PHV: extract inbuf bit[8..23] to PHV-allocated egress::hdr.min_parse_depth_padding_0[1].packet_payload[79:64];
+  PHV: extract inbuf bit[0..7] to PHV-allocated egress::hdr.min_parse_depth_padding_0[1].packet_payload[87:80];
+rewrite extract constant 2 to egress::hdr.min_parse_depth_padding_0.$stkvalid; as:
+  PHV: extract constant 2 to PHV-allocated egress::hdr.min_parse_depth_padding_0.$stkvalid;
+rewrite extract inbuf bit[0..87] to egress::hdr.min_parse_depth_padding_0[2].packet_payload; as:
+  PHV: extract inbuf bit[56..87] to PHV-allocated egress::hdr.min_parse_depth_padding_0[2].packet_payload[31:0];
+  PHV: extract inbuf bit[40..55] to PHV-allocated egress::hdr.min_parse_depth_padding_0[2].packet_payload[47:32];
+  PHV: extract inbuf bit[24..39] to PHV-allocated egress::hdr.min_parse_depth_padding_0[2].packet_payload[63:48];
+  PHV: extract inbuf bit[8..23] to PHV-allocated egress::hdr.min_parse_depth_padding_0[2].packet_payload[79:64];
+  PHV: extract inbuf bit[0..7] to PHV-allocated egress::hdr.min_parse_depth_padding_0[2].packet_payload[87:80];
+rewrite extract constant 1 to egress::hdr.min_parse_depth_padding_0.$stkvalid; as:
+  PHV: extract constant 1 to PHV-allocated egress::hdr.min_parse_depth_padding_0.$stkvalid;
+rewrite extract inbuf bit[0..15] to egress::hdr.udp.src_port; as:
+  PHV: extract inbuf bit[0..15] to PHV-allocated egress::hdr.udp.src_port;
+rewrite extract inbuf bit[16..31] to egress::hdr.udp.dst_port; as:
+  PHV: extract inbuf bit[16..31] to PHV-allocated egress::hdr.udp.dst_port;
+rewrite extract inbuf bit[32..47] to egress::hdr.udp.hdr_lenght; as:
+  PHV: extract inbuf bit[32..47] to PHV-allocated egress::hdr.udp.hdr_lenght;
+rewrite extract inbuf bit[48..63] to egress::hdr.udp.checksum; as:
+  PHV: extract inbuf bit[48..63] to PHV-allocated egress::hdr.udp.checksum;
+rewrite extract constant 1 to egress::hdr.udp.$valid; as:
+  PHV: extract constant 1 to PHV-allocated egress::hdr.udp.$valid;
+split_parser_state(ingress::start_1, ingress::start_1, 0)
+  no need to split ingress::start_1 (nothing spilled)
+split_parser_state(ingress::EthIpParser_parse_tcp, ingress::EthIpParser_parse_tcp, 0)
+  constant: 4
+  extractors needed: 8 : 1
+  no need to split ingress::EthIpParser_parse_tcp (nothing spilled)
+split_parser_state(ingress::EthIpParser_parse_udp, ingress::EthIpParser_parse_udp, 0)
+  constant: 8
+  extractors needed: 8 : 1
+  no need to split ingress::EthIpParser_parse_udp (nothing spilled)
+split_parser_state(ingress::EthIpParser_parse_ip, ingress::EthIpParser_parse_ip, 0)
+  constant: 2
+  extractors needed: 8 : 1
+  spill extract constant 1 to PHV-allocated ingress::hdr.ip.$valid; { (ran out of extractors) }
+  created split state ingress parser state ingress::EthIpParser_parse_ip.$split_0 []:
+  computed max shift = 160 for split iteration 0 of ingress::EthIpParser_parse_ip
+  1 split, 13 current
+split_parser_state(ingress::EthIpParser_parse_ip.$split_0, ingress::EthIpParser_parse_ip, 1)
+  constant: 2
+  extractors needed: 8 : 1
+  no need to split ingress::EthIpParser_parse_ip.$split_0 (nothing spilled)
+ingress::EthIpParser_parse_ip is split into 2 states:
+  ingress::EthIpParser_parse_ip
+  ingress::EthIpParser_parse_ip.$split_0
+split_parser_state(ingress::start, ingress::start, 0)
+  constant: 1
+  extractors needed: 8 : 1
+  no need to split ingress::start (nothing spilled)
+split_parser_state(ingress::$entry_point, ingress::$entry_point, 0)
+  no need to split ingress::$entry_point (nothing spilled)
+split_parser_state(egress::min_parse_depth_accept_loop.$it2, egress::min_parse_depth_accept_loop.$it2, 0)
+  constant: 1
+  extractors needed: 8 : 1
+  egress::min_parse_depth_accept_loop.$it2 spill counter select
+  created split state egress parser state egress::min_parse_depth_accept_loop.$it2.$split_0 []:
+  computed max shift = 88 for split iteration 0 of egress::min_parse_depth_accept_loop.$it2
+  0 split, 7 current
+split_parser_state(egress::min_parse_depth_accept_loop.$it2.$split_0, egress::min_parse_depth_accept_loop.$it2, 1)
+  no need to split egress::min_parse_depth_accept_loop.$it2.$split_0 (nothing spilled)
+egress::min_parse_depth_accept_loop.$it2 is split into 2 states:
+  egress::min_parse_depth_accept_loop.$it2
+  egress::min_parse_depth_accept_loop.$it2.$split_0
+split_parser_state(egress::min_parse_depth_accept_loop.$it1, egress::min_parse_depth_accept_loop.$it1, 0)
+  constant: 2
+  extractors needed: 8 : 1
+  egress::min_parse_depth_accept_loop.$it1 spill counter select
+  created split state egress parser state egress::min_parse_depth_accept_loop.$it1.$split_0 []:
+  computed max shift = 88 for split iteration 0 of egress::min_parse_depth_accept_loop.$it1
+  0 split, 6 current
+split_parser_state(egress::min_parse_depth_accept_loop.$it1.$split_0, egress::min_parse_depth_accept_loop.$it1, 1)
+  no need to split egress::min_parse_depth_accept_loop.$it1.$split_0 (nothing spilled)
+egress::min_parse_depth_accept_loop.$it1 is split into 2 states:
+  egress::min_parse_depth_accept_loop.$it1
+  egress::min_parse_depth_accept_loop.$it1.$split_0
+split_parser_state(egress::min_parse_depth_accept_loop, egress::min_parse_depth_accept_loop, 0)
+  constant: 4
+  extractors needed: 8 : 1
+  egress::min_parse_depth_accept_loop spill counter select
+  created split state egress parser state egress::min_parse_depth_accept_loop.$split_0 []:
+  computed max shift = 88 for split iteration 0 of egress::min_parse_depth_accept_loop
+  0 split, 7 current
+split_parser_state(egress::min_parse_depth_accept_loop.$split_0, egress::min_parse_depth_accept_loop, 1)
+  no need to split egress::min_parse_depth_accept_loop.$split_0 (nothing spilled)
+egress::min_parse_depth_accept_loop is split into 2 states:
+  egress::min_parse_depth_accept_loop
+  egress::min_parse_depth_accept_loop.$split_0
+split_parser_state(egress::min_parse_depth_accept_initial, egress::min_parse_depth_accept_initial, 0)
+  no need to split egress::min_parse_depth_accept_initial (nothing spilled)
+split_parser_state(egress::start_3, egress::start_3, 0)
+  no need to split egress::start_3 (nothing spilled)
+split_parser_state(egress::EthIpParser_parse_tcp_0, egress::EthIpParser_parse_tcp_0, 0)
+  constant: 4
+  extractors needed: 8 : 1
+  no need to split egress::EthIpParser_parse_tcp_0 (nothing spilled)
+split_parser_state(egress::EthIpParser_parse_udp_0, egress::EthIpParser_parse_udp_0, 0)
+  constant: 8
+  extractors needed: 8 : 1
+  no need to split egress::EthIpParser_parse_udp_0 (nothing spilled)
+split_parser_state(egress::EthIpParser_parse_ip_0, egress::EthIpParser_parse_ip_0, 0)
+  constant: 2
+  extractors needed: 8 : 1
+  spill extract constant 1 to PHV-allocated egress::hdr.ip.$valid; { (ran out of extractors) }
+  created split state egress parser state egress::EthIpParser_parse_ip_0.$split_0 []:
+  computed max shift = 160 for split iteration 0 of egress::EthIpParser_parse_ip_0
+  1 split, 17 current
+split_parser_state(egress::EthIpParser_parse_ip_0.$split_0, egress::EthIpParser_parse_ip_0, 1)
+  constant: 2
+  extractors needed: 8 : 1
+  no need to split egress::EthIpParser_parse_ip_0.$split_0 (nothing spilled)
+egress::EthIpParser_parse_ip_0 is split into 2 states:
+  egress::EthIpParser_parse_ip_0
+  egress::EthIpParser_parse_ip_0.$split_0
+split_parser_state(egress::start, egress::start, 0)
+  spill extract inbuf bit[248..263] to PHV-allocated egress::hdr.ethernet.dst_addr[15:0]; { (out of buffer) }
+  spill extract inbuf bit[264..279] to PHV-allocated egress::hdr.ethernet.src_addr[47:32]; { (out of buffer) }
+  spill extract inbuf bit[280..295] to PHV-allocated egress::hdr.ethernet.src_addr[31:16]; { (out of buffer) }
+  spill extract inbuf bit[296..311] to PHV-allocated egress::hdr.ethernet.src_addr[15:0]; { (out of buffer) }
+  spill extract inbuf bit[312..327] to PHV-allocated egress::hdr.ethernet.ether_type; { (out of buffer) }
+  constant: 1
+  extractors needed: 8 : 1
+  egress::start has out of buffer select
+  created split state egress parser state egress::start.$split_0 []:
+  computed max shift = 248 for split iteration 0 of egress::start
+  5 split, 6 current
+split_parser_state(egress::start.$split_0, egress::start, 1)
+  spill extract inbuf bit[64..79] to PHV-allocated egress::hdr.ethernet.ether_type; { (ran out of extractors) }
+  created split state egress parser state egress::start.$split_1 []:
+  computed max shift = 64 for split iteration 1 of egress::start.$split_0
+  1 split, 4 current
+split_parser_state(egress::start.$split_1, egress::start, 2)
+  no need to split egress::start.$split_1 (nothing spilled)
+egress::start is split into 3 states:
+  egress::start
+  egress::start.$split_0
+  egress::start.$split_1
+split_parser_state(egress::$entry_point, egress::$entry_point, 0)
+  no need to split egress::$entry_point (nothing spilled)
+group: {  [ egress::start.$split_1 : inbuf bit[0..15] hdr.ethernet/ethernet.ether_type; ] } has 1 def sets:
+def set 0:
+egress::start.$split_0 -> egress::start.$split_1
+group: {  [ egress::EthIpParser_parse_ip_0.$split_0 : inbuf bit[-88..-81] hdr.ip/ip.protocol; ] } has 1 def sets:
+def set 0:
+egress::EthIpParser_parse_ip_0 -> egress::EthIpParser_parse_ip_0.$split_0
+created 2 coalesced groups:
+group 0: {  [ egress::start.$split_1 : inbuf bit[0..15] hdr.ethernet/ethernet.ether_type; ] }
+group 1: {  [ egress::EthIpParser_parse_ip_0.$split_0 : inbuf bit[-88..-81] hdr.ip/ip.protocol; ] }
+try allocating top down:
+>>>>>>>>>>>>>>>>
+allocating {  [ egress::start.$split_1 : inbuf bit[0..15] hdr.ethernet/ethernet.ether_type; ] }
+try def set 0
+available regs are:
+half
+byte0
+byte1
+allocated { $half } to {  [ egress::start.$split_1 : inbuf bit[0..15] hdr.ethernet/ethernet.ether_type; ] }
+success
+<<<<<<<<<<<<<<<<
+>>>>>>>>>>>>>>>>
+allocating {  [ egress::EthIpParser_parse_ip_0.$split_0 : inbuf bit[-88..-81] hdr.ip/ip.protocol; ] }
+try def set 0
+available regs are:
+half
+byte0
+byte1
+allocated { $byte1 } to {  [ egress::EthIpParser_parse_ip_0.$split_0 : inbuf bit[-88..-81] hdr.ip/ip.protocol; ] }
+success
+<<<<<<<<<<<<<<<<
+top down allocation successful!
+group: {  [ ingress::start : inbuf bit[224..239] hdr.ethernet/ethernet.ether_type; ] } has 1 def sets:
+def set 0:
+ingress::$entry_point -> ingress::start
+group: {  [ ingress::EthIpParser_parse_ip.$split_0 : inbuf bit[-88..-81] hdr.ip/ip.protocol; ] } has 1 def sets:
+def set 0:
+ingress::EthIpParser_parse_ip -> ingress::EthIpParser_parse_ip.$split_0
+created 2 coalesced groups:
+group 0: {  [ ingress::start : inbuf bit[224..239] hdr.ethernet/ethernet.ether_type; ] }
+group 1: {  [ ingress::EthIpParser_parse_ip.$split_0 : inbuf bit[-88..-81] hdr.ip/ip.protocol; ] }
+try allocating top down:
+>>>>>>>>>>>>>>>>
+allocating {  [ ingress::start : inbuf bit[224..239] hdr.ethernet/ethernet.ether_type; ] }
+try def set 0
+available regs are:
+half
+byte0
+byte1
+allocated { $half } to {  [ ingress::start : inbuf bit[224..239] hdr.ethernet/ethernet.ether_type; ] }
+success
+<<<<<<<<<<<<<<<<
+>>>>>>>>>>>>>>>>
+allocating {  [ ingress::EthIpParser_parse_ip.$split_0 : inbuf bit[-88..-81] hdr.ip/ip.protocol; ] }
+try def set 0
+available regs are:
+half
+byte0
+byte1
+allocated { $byte1 } to {  [ ingress::EthIpParser_parse_ip.$split_0 : inbuf bit[-88..-81] hdr.ip/ip.protocol; ] }
+success
+<<<<<<<<<<<<<<<<
+top down allocation successful!
+removed empty parser start state on ingress
+removed empty parser start state on egress
+elim empty state ingress::start_1
+elim empty state ingress::start_1
+elim empty state ingress::start_1
+elim empty state ingress::start_1
+elim empty state egress::start_3
+elim empty state egress::start_3
+elim empty state egress::start_3
+elim empty state egress::start_3
+ComputeLoweredParserIR preorder on Header : header ingress_intrinsic_metadata_t @__intrinsic_metadata {
+  @__intrinsic_metadata bit<1> resubmit_flag;
+  @padding @__intrinsic_metadata bit<1> _pad1;
+  @__intrinsic_metadata bit<2> packet_version;
+  @padding @__intrinsic_metadata bit<3> _pad2;
+  @__intrinsic_metadata bit<9> ingress_port;
+  @__intrinsic_metadata bit<48> ingress_mac_tstamp; }
+ComputeLoweredParserIR preorder on Header : header ethernet_h {
+  bit<48> dst_addr;
+  bit<48> src_addr;
+  bit<16> ether_type; }
+ComputeLoweredParserIR preorder on Header : header ipv4_h {
+  bit<4> version;
+  bit<4> ihl;
+  bit<6> dscp;
+  bit<2> ecn;
+  bit<16> total_len;
+  bit<16> identification;
+  bit<3> flags;
+  bit<13> frag_offset;
+  bit<8> ttl;
+  bit<8> protocol;
+  bit<16> hdr_checksum;
+  bit<32> src_addr;
+  bit<32> dst_addr; }
+ComputeLoweredParserIR preorder on Header : header tcp_h {
+  bit<16> src_port;
+  bit<16> dst_port;
+  bit<32> seq_no;
+  bit<32> ack_no;
+  bit<4> data_offset;
+  bit<4> res;
+  bit<8> flags;
+  bit<16> window;
+  bit<16> checksum;
+  bit<16> urgent_ptr; }
+[ComputeLoweredParserIR] lowering state ingress::EthIpParser_parse_tcp
+mapping input buffer field slice bit[0..15] into W12 bit[0..15] named ingress::hdr.tcp.src_port;. Final buffer range: bit[0..31]
+mapping input buffer field slice bit[16..31] into W12 bit[16..31] named ingress::hdr.tcp.dst_port;. Final buffer range: bit[0..31]
+mapping input buffer field slice bit[32..47] into TH10 bit[0..15] named ingress::hdr.tcp.seq_no[31:16];. Final buffer range: bit[32..47]
+mapping input buffer field slice bit[48..63] into TH9 bit[0..15] named ingress::hdr.tcp.seq_no[15:0];. Final buffer range: bit[48..63]
+mapping input buffer field slice bit[64..79] into TH8 bit[0..15] named ingress::hdr.tcp.ack_no[31:16];. Final buffer range: bit[64..79]
+mapping input buffer field slice bit[80..95] into TH7 bit[0..15] named ingress::hdr.tcp.ack_no[15:0];. Final buffer range: bit[80..95]
+mapping input buffer field slice bit[96..99] into TW4 bit[0..3] named ingress::hdr.tcp.data_offset;. Final buffer range: bit[96..127]
+mapping input buffer field slice bit[100..103] into TW4 bit[4..7] named ingress::hdr.tcp.res;. Final buffer range: bit[96..127]
+mapping input buffer field slice bit[104..111] into TW4 bit[8..15] named ingress::hdr.tcp.flags;. Final buffer range: bit[96..127]
+mapping input buffer field slice bit[112..127] into TW4 bit[16..31] named ingress::hdr.tcp.window;. Final buffer range: bit[96..127]
+mapping input buffer field slice bit[128..143] into TW6 bit[0..15] named ingress::hdr.tcp.checksum;. Final buffer range: bit[128..159]
+mapping input buffer field slice bit[144..159] into TW6 bit[16..31] named ingress::hdr.tcp.urgent_ptr;. Final buffer range: bit[128..159]
+extract 4 into B3
+ComputeLoweredParserIR preorder on Header : header udp_h {
+  bit<16> src_port;
+  bit<16> dst_port;
+  bit<16> hdr_lenght;
+  bit<16> checksum; }
+[ComputeLoweredParserIR] lowering state ingress::EthIpParser_parse_udp
+mapping input buffer field slice bit[0..15] into W12 bit[0..15] named ingress::hdr.udp.src_port;. Final buffer range: bit[0..31]
+mapping input buffer field slice bit[16..31] into W12 bit[16..31] named ingress::hdr.udp.dst_port;. Final buffer range: bit[0..31]
+mapping input buffer field slice bit[32..47] into TW4 bit[0..15] named ingress::hdr.udp.hdr_lenght;. Final buffer range: bit[32..63]
+mapping input buffer field slice bit[48..63] into TW4 bit[16..31] named ingress::hdr.udp.checksum;. Final buffer range: bit[32..63]
+extract 8 into B3
+[ComputeLoweredParserIR] lowering state ingress::EthIpParser_parse_ip.$split_0
+extract 2 into B3
+[ComputeLoweredParserIR] lowering state ingress::EthIpParser_parse_ip
+mapping input buffer field slice bit[0..3] into TB5 bit[0..3] named ingress::hdr.ip.version;. Final buffer range: bit[0..7]
+mapping input buffer field slice bit[4..7] into TB5 bit[4..7] named ingress::hdr.ip.ihl;. Final buffer range: bit[0..7]
+mapping input buffer field slice bit[8..13] into B2 bit[0..5] named ingress::hdr.ip.dscp;. Final buffer range: bit[8..15]
+mapping input buffer field slice bit[14..15] into B2 bit[6..7] named ingress::hdr.ip.ecn;. Final buffer range: bit[8..15]
+mapping input buffer field slice bit[16..31] into H1 bit[0..15] named ingress::hdr.ip.total_len;. Final buffer range: bit[16..31]
+mapping input buffer field slice bit[32..47] into TW5 bit[0..15] named ingress::hdr.ip.identification;. Final buffer range: bit[32..63]
+mapping input buffer field slice bit[48..50] into TW5 bit[16..18] named ingress::hdr.ip.flags;. Final buffer range: bit[32..63]
+mapping input buffer field slice bit[51..63] into TW5 bit[19..31] named ingress::hdr.ip.frag_offset;. Final buffer range: bit[32..63]
+mapping input buffer field slice bit[64..71] into TB4 bit[0..7] named ingress::hdr.ip.ttl;. Final buffer range: bit[64..71]
+mapping input buffer field slice bit[72..79] into B1 bit[0..7] named ingress::hdr.ip.protocol;. Final buffer range: bit[72..79]
+mapping input buffer field slice bit[80..95] into TH6 bit[0..15] named ingress::hdr.ip.hdr_checksum;. Final buffer range: bit[80..95]
+mapping input buffer field slice bit[96..127] into W32 bit[0..31] named ingress::hdr.ip.src_addr;. Final buffer range: bit[96..127]
+mapping input buffer field slice bit[128..159] into W15 bit[0..31] named ingress::hdr.ip.dst_addr;. Final buffer range: bit[128..159]
+[ComputeLoweredParserIR] lowering state ingress::start
+mapping input buffer field slice bit[16..31] into H4 bit[0..15] named ingress::ig_intr_md.ingress_mac_tstamp[47:32];. Final buffer range: bit[16..31]
+mapping input buffer field slice bit[32..63] into W39 bit[0..31] named ingress::ig_intr_md.ingress_mac_tstamp[31:0];. Final buffer range: bit[32..63]
+mapping input buffer field slice bit[128..143] into H3 bit[0..15] named ingress::hdr.ethernet.dst_addr[47:32];. Final buffer range: bit[128..143]
+mapping input buffer field slice bit[144..175] into W14 bit[0..31] named ingress::hdr.ethernet.dst_addr[31:0];. Final buffer range: bit[144..175]
+mapping input buffer field slice bit[176..183] into TB7 bit[0..7] named ingress::hdr.ethernet.src_addr[47:40];. Final buffer range: bit[176..183]
+mapping input buffer field slice bit[184..191] into TB6 bit[0..7] named ingress::hdr.ethernet.src_addr[39:32];. Final buffer range: bit[184..191]
+mapping input buffer field slice bit[192..223] into TW7 bit[0..31] named ingress::hdr.ethernet.src_addr[31:0];. Final buffer range: bit[192..223]
+mapping input buffer field slice bit[224..239] into TH11 bit[0..15] named ingress::hdr.ethernet.ether_type;. Final buffer range: bit[224..239]
+extract 1 into B3
+[ComputeLoweredParserIR] lowering state ingress::$entry_point
+ComputeLoweredParserIR preorder on Header : header egress_intrinsic_metadata_t @__intrinsic_metadata {
+  @padding @__intrinsic_metadata bit<7> _pad0;
+  @__intrinsic_metadata bit<9> egress_port;
+  @padding @__intrinsic_metadata bit<5> _pad1;
+  @__intrinsic_metadata bit<19> enq_qdepth;
+  @padding @__intrinsic_metadata bit<6> _pad2;
+  @__intrinsic_metadata bit<2> enq_congest_stat;
+  @padding @__intrinsic_metadata bit<14> _pad3;
+  @__intrinsic_metadata bit<18> enq_tstamp;
+  @padding @__intrinsic_metadata bit<5> _pad4;
+  @__intrinsic_metadata bit<19> deq_qdepth;
+  @padding @__intrinsic_metadata bit<6> _pad5;
+  @__intrinsic_metadata bit<2> deq_congest_stat;
+  @__intrinsic_metadata bit<8> app_pool_congest_stat;
+  @padding @__intrinsic_metadata bit<14> _pad6;
+  @__intrinsic_metadata bit<18> deq_timedelta;
+  @__intrinsic_metadata bit<16> egress_rid;
+  @padding @__intrinsic_metadata bit<7> _pad7;
+  @__intrinsic_metadata bit<1> egress_rid_first;
+  @padding @__intrinsic_metadata bit<3> _pad8;
+  @__intrinsic_metadata bit<5> egress_qid;
+  @padding @__intrinsic_metadata bit<5> _pad9;
+  @__intrinsic_metadata bit<3> egress_cos;
+  @padding @__intrinsic_metadata bit<7> _pad10;
+  @__intrinsic_metadata bit<1> deflection_flag;
+  @__intrinsic_metadata bit<16> pkt_length; }
+meta_opt: 8191
+meta_size: 27
+ComputeLoweredParserIR preorder on Header : header min_parse_depth_padding_t {
+  bit<88> packet_payload; }
+[ComputeLoweredParserIR] lowering state egress::min_parse_depth_accept_loop.$it2.$split_0
+[ComputeLoweredParserIR] lowering state egress::min_parse_depth_accept_loop.$it2
+mapping input buffer field slice bit[0..7] into TB2 bit[0..7] named egress::hdr.min_parse_depth_padding_0[2].packet_payload[87:80];. Final buffer range: bit[0..7]
+mapping input buffer field slice bit[8..23] into TH20 bit[0..15] named egress::hdr.min_parse_depth_padding_0[2].packet_payload[79:64];. Final buffer range: bit[8..23]
+mapping input buffer field slice bit[24..39] into TH13 bit[0..15] named egress::hdr.min_parse_depth_padding_0[2].packet_payload[63:48];. Final buffer range: bit[24..39]
+mapping input buffer field slice bit[40..55] into TH12 bit[0..15] named egress::hdr.min_parse_depth_padding_0[2].packet_payload[47:32];. Final buffer range: bit[40..55]
+mapping input buffer field slice bit[56..87] into TW11 bit[0..31] named egress::hdr.min_parse_depth_padding_0[2].packet_payload[31:0];. Final buffer range: bit[56..87]
+extract 1 into B16
+[ComputeLoweredParserIR] lowering state egress::min_parse_depth_accept_loop.$it1.$split_0
+[ComputeLoweredParserIR] lowering state egress::min_parse_depth_accept_loop.$it1
+mapping input buffer field slice bit[0..7] into TB1 bit[0..7] named egress::hdr.min_parse_depth_padding_0[1].packet_payload[87:80];. Final buffer range: bit[0..7]
+mapping input buffer field slice bit[8..23] into TH19 bit[0..15] named egress::hdr.min_parse_depth_padding_0[1].packet_payload[79:64];. Final buffer range: bit[8..23]
+mapping input buffer field slice bit[24..55] into TW10 bit[0..31] named egress::hdr.min_parse_depth_padding_0[1].packet_payload[63:32];. Final buffer range: bit[24..55]
+mapping input buffer field slice bit[56..87] into TW9 bit[0..31] named egress::hdr.min_parse_depth_padding_0[1].packet_payload[31:0];. Final buffer range: bit[56..87]
+extract 2 into B16
+[ComputeLoweredParserIR] lowering state egress::min_parse_depth_accept_loop.$split_0
+[ComputeLoweredParserIR] lowering state egress::min_parse_depth_accept_loop
+mapping input buffer field slice bit[0..7] into TB0 bit[0..7] named egress::hdr.min_parse_depth_padding_0[0].packet_payload[87:80];. Final buffer range: bit[0..7]
+mapping input buffer field slice bit[8..23] into TH18 bit[0..15] named egress::hdr.min_parse_depth_padding_0[0].packet_payload[79:64];. Final buffer range: bit[8..23]
+mapping input buffer field slice bit[24..55] into TW8 bit[0..31] named egress::hdr.min_parse_depth_padding_0[0].packet_payload[63:32];. Final buffer range: bit[24..55]
+mapping input buffer field slice bit[56..71] into TH5 bit[0..15] named egress::hdr.min_parse_depth_padding_0[0].packet_payload[31:16];. Final buffer range: bit[56..71]
+mapping input buffer field slice bit[72..87] into TH4 bit[0..15] named egress::hdr.min_parse_depth_padding_0[0].packet_payload[15:0];. Final buffer range: bit[72..87]
+extract 4 into B16
+[ComputeLoweredParserIR] lowering state egress::min_parse_depth_accept_initial
+[ComputeLoweredParserIR] lowering state egress::EthIpParser_parse_tcp_0
+mapping input buffer field slice bit[0..15] into TH3 bit[0..15] named egress::hdr.tcp.src_port;. Final buffer range: bit[0..15]
+mapping input buffer field slice bit[16..31] into TH2 bit[0..15] named egress::hdr.tcp.dst_port;. Final buffer range: bit[16..31]
+mapping input buffer field slice bit[32..63] into TW14 bit[0..31] named egress::hdr.tcp.seq_no;. Final buffer range: bit[32..63]
+mapping input buffer field slice bit[64..95] into TW13 bit[0..31] named egress::hdr.tcp.ack_no;. Final buffer range: bit[64..95]
+mapping input buffer field slice bit[96..99] into TW1 bit[0..3] named egress::hdr.tcp.data_offset;. Final buffer range: bit[96..127]
+mapping input buffer field slice bit[100..103] into TW1 bit[4..7] named egress::hdr.tcp.res;. Final buffer range: bit[96..127]
+mapping input buffer field slice bit[104..111] into TW1 bit[8..15] named egress::hdr.tcp.flags;. Final buffer range: bit[96..127]
+mapping input buffer field slice bit[112..127] into TW1 bit[16..31] named egress::hdr.tcp.window;. Final buffer range: bit[96..127]
+mapping input buffer field slice bit[128..143] into TH1 bit[0..15] named egress::hdr.tcp.checksum;. Final buffer range: bit[128..143]
+mapping input buffer field slice bit[144..159] into TH0 bit[0..15] named egress::hdr.tcp.urgent_ptr;. Final buffer range: bit[144..159]
+extract 4 into B17
+[ComputeLoweredParserIR] lowering state egress::EthIpParser_parse_udp_0
+mapping input buffer field slice bit[0..15] into TH1 bit[0..15] named egress::hdr.udp.src_port;. Final buffer range: bit[0..15]
+mapping input buffer field slice bit[16..31] into TH0 bit[0..15] named egress::hdr.udp.dst_port;. Final buffer range: bit[16..31]
+mapping input buffer field slice bit[32..47] into TW1 bit[0..15] named egress::hdr.udp.hdr_lenght;. Final buffer range: bit[32..63]
+mapping input buffer field slice bit[48..63] into TW1 bit[16..31] named egress::hdr.udp.checksum;. Final buffer range: bit[32..63]
+extract 8 into B17
+[ComputeLoweredParserIR] lowering state egress::EthIpParser_parse_ip_0.$split_0
+extract 2 into B17
+[ComputeLoweredParserIR] lowering state egress::EthIpParser_parse_ip_0
+mapping input buffer field slice bit[0..3] into TW0 bit[0..3] named egress::hdr.ip.version;. Final buffer range: bit[0..31]
+mapping input buffer field slice bit[4..7] into TW0 bit[4..7] named egress::hdr.ip.ihl;. Final buffer range: bit[0..31]
+mapping input buffer field slice bit[8..13] into TW0 bit[8..13] named egress::hdr.ip.dscp;. Final buffer range: bit[0..31]
+mapping input buffer field slice bit[14..15] into TW0 bit[14..15] named egress::hdr.ip.ecn;. Final buffer range: bit[0..31]
+mapping input buffer field slice bit[16..31] into TW0 bit[16..31] named egress::hdr.ip.total_len;. Final buffer range: bit[0..31]
+mapping input buffer field slice bit[32..47] into TW3 bit[0..15] named egress::hdr.ip.identification;. Final buffer range: bit[32..63]
+mapping input buffer field slice bit[48..50] into TW3 bit[16..18] named egress::hdr.ip.flags;. Final buffer range: bit[32..63]
+mapping input buffer field slice bit[51..63] into TW3 bit[19..31] named egress::hdr.ip.frag_offset;. Final buffer range: bit[32..63]
+mapping input buffer field slice bit[64..71] into TW2 bit[0..7] named egress::hdr.ip.ttl;. Final buffer range: bit[64..95]
+mapping input buffer field slice bit[72..79] into TW2 bit[8..15] named egress::hdr.ip.protocol;. Final buffer range: bit[64..95]
+mapping input buffer field slice bit[80..95] into TW2 bit[16..31] named egress::hdr.ip.hdr_checksum;. Final buffer range: bit[64..95]
+mapping input buffer field slice bit[96..127] into TW12 bit[0..31] named egress::hdr.ip.src_addr;. Final buffer range: bit[96..127]
+mapping input buffer field slice bit[128..135] into TB10 bit[0..7] named egress::hdr.ip.dst_addr[31:24];. Final buffer range: bit[128..135]
+mapping input buffer field slice bit[136..143] into TB9 bit[0..7] named egress::hdr.ip.dst_addr[23:16];. Final buffer range: bit[136..143]
+mapping input buffer field slice bit[144..151] into TB8 bit[0..7] named egress::hdr.ip.dst_addr[15:8];. Final buffer range: bit[144..151]
+mapping input buffer field slice bit[152..159] into TB3 bit[0..7] named egress::hdr.ip.dst_addr[7:0];. Final buffer range: bit[152..159]
+[ComputeLoweredParserIR] lowering state egress::start.$split_1
+mapping input buffer field slice bit[0..15] into TH21 bit[0..15] named egress::hdr.ethernet.ether_type;. Final buffer range: bit[0..15]
+[ComputeLoweredParserIR] lowering state egress::start.$split_0
+mapping input buffer field slice bit[0..15] into TH16 bit[0..15] named egress::hdr.ethernet.dst_addr[15:0];. Final buffer range: bit[0..15]
+mapping input buffer field slice bit[16..31] into TH22 bit[0..15] named egress::hdr.ethernet.src_addr[47:32];. Final buffer range: bit[16..31]
+mapping input buffer field slice bit[32..47] into TH15 bit[0..15] named egress::hdr.ethernet.src_addr[31:16];. Final buffer range: bit[32..47]
+mapping input buffer field slice bit[48..63] into TH14 bit[0..15] named egress::hdr.ethernet.src_addr[15:0];. Final buffer range: bit[48..63]
+[ComputeLoweredParserIR] lowering state egress::start
+mapping input buffer field slice bit[7..15] into H16 bit[7..15] named egress::eg_intr_md.egress_port;. Final buffer range: bit[0..15]
+mapping input buffer field slice bit[216..231] into TH23 bit[0..15] named egress::hdr.ethernet.dst_addr[47:32];. Final buffer range: bit[216..231]
+mapping input buffer field slice bit[232..247] into TH17 bit[0..15] named egress::hdr.ethernet.dst_addr[31:16];. Final buffer range: bit[232..247]
+extract 1 into B17
+[ComputeLoweredParserIR] lowering state egress::$entry_point
+merge start with $entry_point (const: *)
+merge min_parse_depth_accept_loop with min_parse_depth_accept_initial (const: 0x0)
+merge min_parse_depth_accept_loop.$it1 with min_parse_depth_accept_loop.$split_0 (const: 0x0)
+merge min_parse_depth_accept_loop.$it2 with min_parse_depth_accept_loop.$it1.$split_0 (const: 0x0)
+merge min_parse_depth_accept_loop.$it2.$split_0 with min_parse_depth_accept_loop.$it1.$split_0 (const: 0x0)
+[RewriteEmitClot] Rewriting EmitFields and EmitChecksums as EmitClots for ingress
+Rewriting complete. Deparser emits for ingress are now:
+  emit ingress::hdr.ethernet.dst_addr if ingress::hdr.ethernet.$valid
+  emit ingress::hdr.ethernet.src_addr if ingress::hdr.ethernet.$valid
+  emit ingress::hdr.ethernet.ether_type if ingress::hdr.ethernet.$valid
+  emit ingress::hdr.ip.version if ingress::hdr.ip.$valid
+  emit ingress::hdr.ip.ihl if ingress::hdr.ip.$valid
+  emit ingress::hdr.ip.dscp if ingress::hdr.ip.$valid
+  emit ingress::hdr.ip.ecn if ingress::hdr.ip.$valid
+  emit ingress::hdr.ip.total_len if ingress::hdr.ip.$valid
+  emit ingress::hdr.ip.identification if ingress::hdr.ip.$valid
+  emit ingress::hdr.ip.flags if ingress::hdr.ip.$valid
+  emit ingress::hdr.ip.frag_offset if ingress::hdr.ip.$valid
+  emit ingress::hdr.ip.ttl if ingress::hdr.ip.$valid
+  emit ingress::hdr.ip.protocol if ingress::hdr.ip.$valid
+  emit ingress::hdr.ip.hdr_checksum if ingress::hdr.ip.$valid
+  emit ingress::hdr.ip.src_addr if ingress::hdr.ip.$valid
+  emit ingress::hdr.ip.dst_addr if ingress::hdr.ip.$valid
+  emit ingress::hdr.tcp.src_port if ingress::hdr.tcp.$valid
+  emit ingress::hdr.tcp.dst_port if ingress::hdr.tcp.$valid
+  emit ingress::hdr.tcp.seq_no if ingress::hdr.tcp.$valid
+  emit ingress::hdr.tcp.ack_no if ingress::hdr.tcp.$valid
+  emit ingress::hdr.tcp.data_offset if ingress::hdr.tcp.$valid
+  emit ingress::hdr.tcp.res if ingress::hdr.tcp.$valid
+  emit ingress::hdr.tcp.flags if ingress::hdr.tcp.$valid
+  emit ingress::hdr.tcp.window if ingress::hdr.tcp.$valid
+  emit ingress::hdr.tcp.checksum if ingress::hdr.tcp.$valid
+  emit ingress::hdr.tcp.urgent_ptr if ingress::hdr.tcp.$valid
+  emit ingress::hdr.udp.src_port if ingress::hdr.udp.$valid
+  emit ingress::hdr.udp.dst_port if ingress::hdr.udp.$valid
+  emit ingress::hdr.udp.hdr_lenght if ingress::hdr.udp.$valid
+  emit ingress::hdr.udp.checksum if ingress::hdr.udp.$valid
+[RewriteEmitClot] Rewriting EmitFields and EmitChecksums as EmitClots for egress
+Rewriting complete. Deparser emits for egress are now:
+  emit egress::hdr.ethernet.dst_addr if egress::hdr.ethernet.$valid
+  emit egress::hdr.ethernet.src_addr if egress::hdr.ethernet.$valid
+  emit egress::hdr.ethernet.ether_type if egress::hdr.ethernet.$valid
+  emit egress::hdr.ip.version if egress::hdr.ip.$valid
+  emit egress::hdr.ip.ihl if egress::hdr.ip.$valid
+  emit egress::hdr.ip.dscp if egress::hdr.ip.$valid
+  emit egress::hdr.ip.ecn if egress::hdr.ip.$valid
+  emit egress::hdr.ip.total_len if egress::hdr.ip.$valid
+  emit egress::hdr.ip.identification if egress::hdr.ip.$valid
+  emit egress::hdr.ip.flags if egress::hdr.ip.$valid
+  emit egress::hdr.ip.frag_offset if egress::hdr.ip.$valid
+  emit egress::hdr.ip.ttl if egress::hdr.ip.$valid
+  emit egress::hdr.ip.protocol if egress::hdr.ip.$valid
+  emit egress::hdr.ip.hdr_checksum if egress::hdr.ip.$valid
+  emit egress::hdr.ip.src_addr if egress::hdr.ip.$valid
+  emit egress::hdr.ip.dst_addr if egress::hdr.ip.$valid
+  emit egress::hdr.tcp.src_port if egress::hdr.tcp.$valid
+  emit egress::hdr.tcp.dst_port if egress::hdr.tcp.$valid
+  emit egress::hdr.tcp.seq_no if egress::hdr.tcp.$valid
+  emit egress::hdr.tcp.ack_no if egress::hdr.tcp.$valid
+  emit egress::hdr.tcp.data_offset if egress::hdr.tcp.$valid
+  emit egress::hdr.tcp.res if egress::hdr.tcp.$valid
+  emit egress::hdr.tcp.flags if egress::hdr.tcp.$valid
+  emit egress::hdr.tcp.window if egress::hdr.tcp.$valid
+  emit egress::hdr.tcp.checksum if egress::hdr.tcp.$valid
+  emit egress::hdr.tcp.urgent_ptr if egress::hdr.tcp.$valid
+  emit egress::hdr.udp.src_port if egress::hdr.udp.$valid
+  emit egress::hdr.udp.dst_port if egress::hdr.udp.$valid
+  emit egress::hdr.udp.hdr_lenght if egress::hdr.udp.$valid
+  emit egress::hdr.udp.checksum if egress::hdr.udp.$valid
+  emit egress::hdr.min_parse_depth_padding_0[0].packet_payload if egress::hdr.min_parse_depth_padding_0[0].$valid
+  emit egress::hdr.min_parse_depth_padding_0[1].packet_payload if egress::hdr.min_parse_depth_padding_0[1].$valid
+  emit egress::hdr.min_parse_depth_padding_0[2].packet_payload if egress::hdr.min_parse_depth_padding_0[2].$valid
+Grouping deparser primitives:
+ - Starting new emit group: emit ingress::hdr.ethernet.dst_addr if ingress::hdr.ethernet.$valid
+ - Adding emit to group: emit ingress::hdr.ethernet.src_addr if ingress::hdr.ethernet.$valid
+ - Adding emit to group: emit ingress::hdr.ethernet.ether_type if ingress::hdr.ethernet.$valid
+ - Starting new emit group: emit ingress::hdr.ip.version if ingress::hdr.ip.$valid
+ - Adding emit to group: emit ingress::hdr.ip.ihl if ingress::hdr.ip.$valid
+ - Adding emit to group: emit ingress::hdr.ip.dscp if ingress::hdr.ip.$valid
+ - Adding emit to group: emit ingress::hdr.ip.ecn if ingress::hdr.ip.$valid
+ - Adding emit to group: emit ingress::hdr.ip.total_len if ingress::hdr.ip.$valid
+ - Adding emit to group: emit ingress::hdr.ip.identification if ingress::hdr.ip.$valid
+ - Adding emit to group: emit ingress::hdr.ip.flags if ingress::hdr.ip.$valid
+ - Adding emit to group: emit ingress::hdr.ip.frag_offset if ingress::hdr.ip.$valid
+ - Adding emit to group: emit ingress::hdr.ip.ttl if ingress::hdr.ip.$valid
+ - Adding emit to group: emit ingress::hdr.ip.protocol if ingress::hdr.ip.$valid
+ - Adding emit to group: emit ingress::hdr.ip.hdr_checksum if ingress::hdr.ip.$valid
+ - Adding emit to group: emit ingress::hdr.ip.src_addr if ingress::hdr.ip.$valid
+ - Adding emit to group: emit ingress::hdr.ip.dst_addr if ingress::hdr.ip.$valid
+ - Starting new emit group: emit ingress::hdr.tcp.src_port if ingress::hdr.tcp.$valid
+ - Adding emit to group: emit ingress::hdr.tcp.dst_port if ingress::hdr.tcp.$valid
+ - Adding emit to group: emit ingress::hdr.tcp.seq_no if ingress::hdr.tcp.$valid
+ - Adding emit to group: emit ingress::hdr.tcp.ack_no if ingress::hdr.tcp.$valid
+ - Adding emit to group: emit ingress::hdr.tcp.data_offset if ingress::hdr.tcp.$valid
+ - Adding emit to group: emit ingress::hdr.tcp.res if ingress::hdr.tcp.$valid
+ - Adding emit to group: emit ingress::hdr.tcp.flags if ingress::hdr.tcp.$valid
+ - Adding emit to group: emit ingress::hdr.tcp.window if ingress::hdr.tcp.$valid
+ - Adding emit to group: emit ingress::hdr.tcp.checksum if ingress::hdr.tcp.$valid
+ - Adding emit to group: emit ingress::hdr.tcp.urgent_ptr if ingress::hdr.tcp.$valid
+ - Starting new emit group: emit ingress::hdr.udp.src_port if ingress::hdr.udp.$valid
+ - Adding emit to group: emit ingress::hdr.udp.dst_port if ingress::hdr.udp.$valid
+ - Adding emit to group: emit ingress::hdr.udp.hdr_lenght if ingress::hdr.udp.$valid
+ - Adding emit to group: emit ingress::hdr.udp.checksum if ingress::hdr.udp.$valid
+Deparser: lowering field ingress::hdr.ethernet.dst_addr; to H3
+Deparser: lowering field ingress::hdr.ethernet.dst_addr; to W14
+Deparser: lowering field ingress::hdr.ethernet.src_addr; to TB7
+Deparser: lowering field ingress::hdr.ethernet.src_addr; to TB6
+Deparser: lowering field ingress::hdr.ethernet.src_addr; to TW7
+Deparser: lowering field ingress::hdr.ethernet.ether_type; to TH11
+Mapping bit field ingress::hdr.ethernet.$valid; to B3(0)
+Deparser: lowering field ingress::hdr.ip.version; to TB5
+ - Merging in ingress::hdr.ip.ihl;
+Deparser: lowering field ingress::hdr.ip.dscp; to B2
+ - Merging in ingress::hdr.ip.ecn;
+Deparser: lowering field ingress::hdr.ip.total_len; to H1
+Deparser: lowering field ingress::hdr.ip.identification; to TW5
+ - Merging in ingress::hdr.ip.flags;
+ - Merging in ingress::hdr.ip.frag_offset;
+Deparser: lowering field ingress::hdr.ip.ttl; to TB4
+Deparser: lowering field ingress::hdr.ip.protocol; to B1
+Deparser: lowering field ingress::hdr.ip.hdr_checksum; to TH6
+Deparser: lowering field ingress::hdr.ip.src_addr; to W32
+Deparser: lowering field ingress::hdr.ip.dst_addr; to W15
+Mapping bit field ingress::hdr.ip.$valid; to B3(1)
+Deparser: lowering field ingress::hdr.tcp.src_port; to W12
+ - Merging in ingress::hdr.tcp.dst_port;
+Deparser: lowering field ingress::hdr.tcp.seq_no; to TH10
+Deparser: lowering field ingress::hdr.tcp.seq_no; to TH9
+Deparser: lowering field ingress::hdr.tcp.ack_no; to TH8
+Deparser: lowering field ingress::hdr.tcp.ack_no; to TH7
+Deparser: lowering field ingress::hdr.tcp.data_offset; to TW4
+ - Merging in ingress::hdr.tcp.res;
+ - Merging in ingress::hdr.tcp.flags;
+ - Merging in ingress::hdr.tcp.window;
+Deparser: lowering field ingress::hdr.tcp.checksum; to TW6
+ - Merging in ingress::hdr.tcp.urgent_ptr;
+Mapping bit field ingress::hdr.tcp.$valid; to B3(2)
+Deparser: lowering field ingress::hdr.udp.src_port; to W12
+ - Merging in ingress::hdr.udp.dst_port;
+Deparser: lowering field ingress::hdr.udp.hdr_lenght; to TW4
+ - Merging in ingress::hdr.udp.checksum;
+Mapping bit field ingress::hdr.udp.$valid; to B3(3)
+Deparser: lowering field ingress::ig_intr_md_for_tm.ucast_egress_port; to H0
+Deparser: lowering field ingress::ig_intr_md_for_dprsr.drop_ctl; to W10
+Deparser: lowering field ingress::ig_intr_md_for_dprsr.mirror_type; to B0
+	emit fieldlist 0 :[ ingress::$tmp2 ]
+Deparser: lowering field ingress::$tmp2 to H2
+Grouping deparser primitives:
+ - Starting new emit group: emit egress::hdr.ethernet.dst_addr if egress::hdr.ethernet.$valid
+ - Adding emit to group: emit egress::hdr.ethernet.src_addr if egress::hdr.ethernet.$valid
+ - Adding emit to group: emit egress::hdr.ethernet.ether_type if egress::hdr.ethernet.$valid
+ - Starting new emit group: emit egress::hdr.ip.version if egress::hdr.ip.$valid
+ - Adding emit to group: emit egress::hdr.ip.ihl if egress::hdr.ip.$valid
+ - Adding emit to group: emit egress::hdr.ip.dscp if egress::hdr.ip.$valid
+ - Adding emit to group: emit egress::hdr.ip.ecn if egress::hdr.ip.$valid
+ - Adding emit to group: emit egress::hdr.ip.total_len if egress::hdr.ip.$valid
+ - Adding emit to group: emit egress::hdr.ip.identification if egress::hdr.ip.$valid
+ - Adding emit to group: emit egress::hdr.ip.flags if egress::hdr.ip.$valid
+ - Adding emit to group: emit egress::hdr.ip.frag_offset if egress::hdr.ip.$valid
+ - Adding emit to group: emit egress::hdr.ip.ttl if egress::hdr.ip.$valid
+ - Adding emit to group: emit egress::hdr.ip.protocol if egress::hdr.ip.$valid
+ - Adding emit to group: emit egress::hdr.ip.hdr_checksum if egress::hdr.ip.$valid
+ - Adding emit to group: emit egress::hdr.ip.src_addr if egress::hdr.ip.$valid
+ - Adding emit to group: emit egress::hdr.ip.dst_addr if egress::hdr.ip.$valid
+ - Starting new emit group: emit egress::hdr.tcp.src_port if egress::hdr.tcp.$valid
+ - Adding emit to group: emit egress::hdr.tcp.dst_port if egress::hdr.tcp.$valid
+ - Adding emit to group: emit egress::hdr.tcp.seq_no if egress::hdr.tcp.$valid
+ - Adding emit to group: emit egress::hdr.tcp.ack_no if egress::hdr.tcp.$valid
+ - Adding emit to group: emit egress::hdr.tcp.data_offset if egress::hdr.tcp.$valid
+ - Adding emit to group: emit egress::hdr.tcp.res if egress::hdr.tcp.$valid
+ - Adding emit to group: emit egress::hdr.tcp.flags if egress::hdr.tcp.$valid
+ - Adding emit to group: emit egress::hdr.tcp.window if egress::hdr.tcp.$valid
+ - Adding emit to group: emit egress::hdr.tcp.checksum if egress::hdr.tcp.$valid
+ - Adding emit to group: emit egress::hdr.tcp.urgent_ptr if egress::hdr.tcp.$valid
+ - Starting new emit group: emit egress::hdr.udp.src_port if egress::hdr.udp.$valid
+ - Adding emit to group: emit egress::hdr.udp.dst_port if egress::hdr.udp.$valid
+ - Adding emit to group: emit egress::hdr.udp.hdr_lenght if egress::hdr.udp.$valid
+ - Adding emit to group: emit egress::hdr.udp.checksum if egress::hdr.udp.$valid
+ - Starting new emit group: emit egress::hdr.min_parse_depth_padding_0[0].packet_payload if egress::hdr.min_parse_depth_padding_0[0].$valid
+ - Starting new emit group: emit egress::hdr.min_parse_depth_padding_0[1].packet_payload if egress::hdr.min_parse_depth_padding_0[1].$valid
+ - Starting new emit group: emit egress::hdr.min_parse_depth_padding_0[2].packet_payload if egress::hdr.min_parse_depth_padding_0[2].$valid
+Deparser: lowering field egress::hdr.ethernet.dst_addr; to TH23
+Deparser: lowering field egress::hdr.ethernet.dst_addr; to TH17
+Deparser: lowering field egress::hdr.ethernet.dst_addr; to TH16
+Deparser: lowering field egress::hdr.ethernet.src_addr; to TH22
+Deparser: lowering field egress::hdr.ethernet.src_addr; to TH15
+Deparser: lowering field egress::hdr.ethernet.src_addr; to TH14
+Deparser: lowering field egress::hdr.ethernet.ether_type; to TH21
+Mapping bit field egress::hdr.ethernet.$valid; to B17(0)
+Deparser: lowering field egress::hdr.ip.version; to TW0
+ - Merging in egress::hdr.ip.ihl;
+ - Merging in egress::hdr.ip.dscp;
+ - Merging in egress::hdr.ip.ecn;
+ - Merging in egress::hdr.ip.total_len;
+Deparser: lowering field egress::hdr.ip.identification; to TW3
+ - Merging in egress::hdr.ip.flags;
+ - Merging in egress::hdr.ip.frag_offset;
+Deparser: lowering field egress::hdr.ip.ttl; to TW2
+ - Merging in egress::hdr.ip.protocol;
+ - Merging in egress::hdr.ip.hdr_checksum;
+Deparser: lowering field egress::hdr.ip.src_addr; to TW12
+Deparser: lowering field egress::hdr.ip.dst_addr; to TB10
+Deparser: lowering field egress::hdr.ip.dst_addr; to TB9
+Deparser: lowering field egress::hdr.ip.dst_addr; to TB8
+Deparser: lowering field egress::hdr.ip.dst_addr; to TB3
+Mapping bit field egress::hdr.ip.$valid; to B17(1)
+Deparser: lowering field egress::hdr.tcp.src_port; to TH3
+Deparser: lowering field egress::hdr.tcp.dst_port; to TH2
+Deparser: lowering field egress::hdr.tcp.seq_no; to TW14
+Deparser: lowering field egress::hdr.tcp.ack_no; to TW13
+Deparser: lowering field egress::hdr.tcp.data_offset; to TW1
+ - Merging in egress::hdr.tcp.res;
+ - Merging in egress::hdr.tcp.flags;
+ - Merging in egress::hdr.tcp.window;
+Deparser: lowering field egress::hdr.tcp.checksum; to TH1
+Deparser: lowering field egress::hdr.tcp.urgent_ptr; to TH0
+Mapping bit field egress::hdr.tcp.$valid; to B17(2)
+Deparser: lowering field egress::hdr.udp.src_port; to TH1
+Deparser: lowering field egress::hdr.udp.dst_port; to TH0
+Deparser: lowering field egress::hdr.udp.hdr_lenght; to TW1
+ - Merging in egress::hdr.udp.checksum;
+Mapping bit field egress::hdr.udp.$valid; to B17(3)
+Deparser: lowering field egress::hdr.min_parse_depth_padding_0[0].packet_payload; to TB0
+Deparser: lowering field egress::hdr.min_parse_depth_padding_0[0].packet_payload; to TH18
+Deparser: lowering field egress::hdr.min_parse_depth_padding_0[0].packet_payload; to TW8
+Deparser: lowering field egress::hdr.min_parse_depth_padding_0[0].packet_payload; to TH5
+Deparser: lowering field egress::hdr.min_parse_depth_padding_0[0].packet_payload; to TH4
+Mapping bit field egress::hdr.min_parse_depth_padding_0[0].$valid; to B16(2)
+Deparser: lowering field egress::hdr.min_parse_depth_padding_0[1].packet_payload; to TB1
+Deparser: lowering field egress::hdr.min_parse_depth_padding_0[1].packet_payload; to TH19
+Deparser: lowering field egress::hdr.min_parse_depth_padding_0[1].packet_payload; to TW10
+Deparser: lowering field egress::hdr.min_parse_depth_padding_0[1].packet_payload; to TW9
+Mapping bit field egress::hdr.min_parse_depth_padding_0[1].$valid; to B16(1)
+Deparser: lowering field egress::hdr.min_parse_depth_padding_0[2].packet_payload; to TB2
+Deparser: lowering field egress::hdr.min_parse_depth_padding_0[2].packet_payload; to TH20
+Deparser: lowering field egress::hdr.min_parse_depth_padding_0[2].packet_payload; to TH13
+Deparser: lowering field egress::hdr.min_parse_depth_padding_0[2].packet_payload; to TH12
+Deparser: lowering field egress::hdr.min_parse_depth_padding_0[2].packet_payload; to TW11
+Mapping bit field egress::hdr.min_parse_depth_padding_0[2].$valid; to B16(0)
+Deparser: lowering field egress::eg_intr_md.egress_port; to H16
+H0 contains intrinsic invalidate fields
+parser init W5
+parser init W8
+parser init W40
+parser init W3
+parser init W7
+parser init W6
+parser init W13
+parser init H5
+parser init W9
+parser init H6
+parser init W37
+parser init W10
+parser init H2
+parser init W11
+parser init B3
+parser init W38
+parser init W36
+parser init W4
+parser init B0
+parser init W0
+parser init W1
+parser init W2
+parser init B17
+parser init B16
+mark B3 as bitwise-or
+mark B16 as bitwise-or
+mark B17 as bitwise-or

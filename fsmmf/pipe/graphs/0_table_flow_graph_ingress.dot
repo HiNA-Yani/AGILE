@@ -1,0 +1,358 @@
+digraph ingress {
+ingress_assign_const_to_phv_0 [ shape=record, style="filled", fillcolor=cornsilk, label="ingress_assign_const_to_phv_0\l\l
+W:\l
+ const_to_phv_32w20000\l
+ const_to_phv_32w5000000\l
+ "];
+cond_15 [ shape=record, style="filled", fillcolor=cornsilk, label="hdr.udp.$valid == 1\l\l
+ "];
+tbl_fsmmf167 [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_fsmmf167\l\l
+R:\l
+ hdr.udp.src_port\l
+ hdr.udp.dst_port\l
+\lW:\l
+ md.sport\l
+ md.dport\l
+ "];
+cond_16 [ shape=record, style="filled", fillcolor=cornsilk, label="hdr.tcp.$valid == 1\l\l
+ "];
+t_igr_tiForward [ shape=record, style="filled", fillcolor=cornsilk, label="t_igr_tiForward\l\l
+M:\l
+ hdr.ethernet.dst_addr\l
+\lW:\l
+ ig_intr_md_for_tm.ucast_egress_port\l
+ "];
+tbl_fsmmf170 [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_fsmmf170\l\l
+R:\l
+ hdr.tcp.src_port\l
+ hdr.tcp.dst_port\l
+\lW:\l
+ md.sport\l
+ md.dport\l
+ "];
+tbl_t_igr_aiSetfid [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_t_igr_aiSetfid\l\l
+W:\l
+ md.fid\l
+ "];
+tbl_t_igr_aiFcount [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_t_igr_aiFcount\l\l
+R:\l
+ hdr.ip.total_len\l
+\l "];
+tbl_t_igr_aiSetTableKey [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_t_igr_aiSetTableKey\l\l
+R:\l
+ md.fid\l
+\lW:\l
+ t_igr_table_key\l
+ "];
+tbl_t_igr_aiTs [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_t_igr_aiTs\l\l
+W:\l
+ t_igr_ts\l
+ "];
+tbl_t_igr_aiCaldT [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_t_igr_aiCaldT\l\l
+R:\l
+ t_igr_ts\l
+\lW:\l
+ t_igr_dt\l
+ "];
+tbl_t_igr_test_dt [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_t_igr_test_dt\l\l
+R:\l
+ t_igr_dt\l
+\l "];
+t_igr_tiCalc_log_dt [ shape=record, style="filled", fillcolor=cornsilk, label="t_igr_tiCalc_log_dt\l\l
+M:\l
+ t_igr_dt\l
+\lW:\l
+ t_igr_log_dt\l
+ "];
+t_igr_tiRate [ shape=record, style="filled", fillcolor=cornsilk, label="t_igr_tiRate\l\l
+M:\l
+ t_igr_table_key\l
+\lW:\l
+ t_igr_rate\l
+ "];
+tbl_t_igr_test_rate [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_t_igr_test_rate\l\l
+R:\l
+ t_igr_rate\l
+\l "];
+t_igr_tiCalc_dt_x_rate [ shape=record, style="filled", fillcolor=cornsilk, label="t_igr_tiCalc_dt_x_rate\l\l
+M:\l
+ t_igr_log_dt\l
+ t_igr_rate\l
+\lW:\l
+ t_igr_dt_x_rate_B\l
+ "];
+tbl_t_igr_test_dt_x_rate [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_t_igr_test_dt_x_rate\l\l
+R:\l
+ t_igr_dt_x_rate_B\l
+\l "];
+tbl_ingress_objects136 [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_ingress_objects136\l\l
+R:\l
+ hdr.ip.total_len\l
+\lW:\l
+ $hash_field_argument0\l
+ "];
+tbl_t_igr_aiSetpktlen [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_t_igr_aiSetpktlen\l\l
+W:\l
+ md.pktlen\l
+ "];
+tbl_t_igr_aiCalc_pktlen_minus_dt_x_rate [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_t_igr_aiCalc_pktlen_minus_dt_x_rate\l\l
+R:\l
+ md.pktlen\l
+ t_igr_dt_x_rate_B\l
+\lW:\l
+ t_igr_pktlen_minus_dt_x_rate\l
+ "];
+tbl_t_igr_aiSetRC [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_t_igr_aiSetRC\l\l
+R:\l
+ t_igr_pktlen_minus_dt_x_rate\l
+ t_igr_dt_x_rate_B\l
+\lW:\l
+ md.RC\l
+ "];
+t_igr_tiRC_nag [ shape=record, style="filled", fillcolor=cornsilk, label="t_igr_tiRC_nag\l\l
+M:\l
+ md.RC\l
+\lW:\l
+ t_igr_RC_nag\l
+ md.RC\l
+ "];
+tbl_t_igr_aiSetburstStage [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_t_igr_aiSetburstStage\l\l
+W:\l
+ t_igr_ifburstStage\l
+ "];
+cond_17 [ shape=record, style="filled", fillcolor=cornsilk, label="t_igr_ifburstStage == 1\l\l
+ "];
+tbl_t_igr_aiTs_ms [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_t_igr_aiTs_ms\l\l
+W:\l
+ t_igr_ts_ms\l
+ "];
+cond_18 [ shape=record, style="filled", fillcolor=cornsilk, label="t_igr_dt_ms != 0\l\l
+ "];
+tbl_t_igr_aiCalburst_t [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_t_igr_aiCalburst_t\l\l
+R:\l
+ t_igr_ts_ms\l
+\lW:\l
+ t_igr_dt_ms\l
+ "];
+tbl_t_igr_aiCalc_gapRC [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_t_igr_aiCalc_gapRC\l\l
+R:\l
+ md.RC\l
+\lW:\l
+ t_igr_gapRC\l
+ "];
+tbl_t_igr_aiCalc_gap_minus_tolerance [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_t_igr_aiCalc_gap_minus_tolerance\l\l
+R:\l
+ t_igr_gapRC\l
+ const_to_phv_32w20000\l
+\lW:\l
+ t_igr_burst\l
+ "];
+t_igr_tiGapRC_pos [ shape=record, style="filled", fillcolor=cornsilk, label="t_igr_tiGapRC_pos\l\l
+M:\l
+ t_igr_gapRC\l
+\lW:\l
+ t_igr_gapRC\l
+ "];
+tbl_t_igr_test_burstdrop [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_t_igr_test_burstdrop\l\l
+R:\l
+ t_igr_burst\l
+\l "];
+tbl_t_igr_test_gapRC [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_t_igr_test_gapRC\l\l
+R:\l
+ t_igr_gapRC\l
+\l "];
+tbl_t_igr_aiCal_RC_minus_threshold [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_t_igr_aiCal_RC_minus_threshold\l\l
+R:\l
+ md.RC\l
+ const_to_phv_32w5000000\l
+\lW:\l
+ t_igr_RC_minus_threshold\l
+ "];
+cond_19 [ shape=record, style="filled", fillcolor=cornsilk, label="t_igr_RC_minus_threshold != 0\l\l
+ "];
+tbl_ingress79 [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_ingress79\l\l
+W:\l
+ t_igr_drop_flag\l
+ "];
+tbl_t_igr_aiSetnodropflag [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_t_igr_aiSetnodropflag\l\l
+R:\l
+ hdr.ip.total_len\l
+\lW:\l
+ t_igr_tcp_drop_flag\l
+ "];
+tbl_t_igr_aiSetnoecnflag [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_t_igr_aiSetnoecnflag\l\l
+R:\l
+ hdr.ip.total_len\l
+\lW:\l
+ t_igr_ecn_flag\l
+ "];
+cond_20 [ shape=record, style="filled", fillcolor=cornsilk, label="t_igr_RC_nag == 1\l\l
+ "];
+tbl_t_igr_aiSetdropflag [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_t_igr_aiSetdropflag\l\l
+R:\l
+ hdr.ip.total_len\l
+\lW:\l
+ t_igr_tcp_drop_flag\l
+ "];
+tbl_t_igr_aiSetecnflag [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_t_igr_aiSetecnflag\l\l
+R:\l
+ hdr.ip.total_len\l
+\lW:\l
+ t_igr_ecn_flag\l
+ "];
+tbl_t_igr_aiSetBottleneck [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_t_igr_aiSetBottleneck\l\l
+ "];
+cond_21 [ shape=record, style="filled", fillcolor=cornsilk, label="hdr.tcp.$valid == 1\l\l
+ "];
+cond_22 [ shape=record, style="filled", fillcolor=cornsilk, label="t_igr_tcp_drop_flag != 0\l\l
+ "];
+cond_26 [ shape=record, style="filled", fillcolor=cornsilk, label="hdr.tcp.$valid == 1\l\l
+ "];
+tbl_ingress98 [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_ingress98\l\l
+W:\l
+ ig_intr_md_for_dprsr.drop_ctl\l
+ "];
+cond_23 [ shape=record, style="filled", fillcolor=cornsilk, label="t_igr_burst != 0 && t_igr_gapRC != 0 && t_igr_RC_nag == 0\l\l
+ "];
+tbl_bottlenecked_rate_read_cms_act1 [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_bottlenecked_rate_read_cms_act1\l\l
+W:\l
+ bottlenecked_rate_cms_output_1\l
+ "];
+tbl_ingress100 [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_ingress100\l\l
+W:\l
+ ig_intr_md_for_dprsr.drop_ctl\l
+ "];
+cond_24 [ shape=record, style="filled", fillcolor=cornsilk, label="hdr.ip.ecn != 0 && t_igr_ecn_flag != 0\l\l
+ "];
+tbl_ingress102 [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_ingress102\l\l
+W:\l
+ hdr.ip.ecn\l
+ "];
+cond_25 [ shape=record, style="filled", fillcolor=cornsilk, label="t_igr_ecn_flag != 0\l\l
+ "];
+tbl_ingress105 [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_ingress105\l\l
+W:\l
+ ig_intr_md_for_dprsr.drop_ctl\l
+ "];
+cond_27 [ shape=record, style="filled", fillcolor=cornsilk, label="t_igr_drop_flag != 0\l\l
+ "];
+tbl_ingress112 [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_ingress112\l\l
+W:\l
+ ig_intr_md_for_dprsr.drop_ctl\l
+ "];
+cond_28 [ shape=record, style="filled", fillcolor=cornsilk, label="t_igr_burst != 0 && t_igr_gapRC != 0 && t_igr_RC_nag != 0\l\l
+ "];
+tbl_ingress114 [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_ingress114\l\l
+W:\l
+ ig_intr_md_for_dprsr.drop_ctl\l
+ "];
+tbl_bottlenecked_rate_read_cms_act2 [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_bottlenecked_rate_read_cms_act2\l\l
+W:\l
+ bottlenecked_rate_cms_output_2\l
+ "];
+tbl_bottlenecked_rate_read_cms_act3 [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_bottlenecked_rate_read_cms_act3\l\l
+W:\l
+ bottlenecked_rate_cms_output_3\l
+ "];
+tbl_Bottlenecked_Rate68 [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_Bottlenecked_Rate68\l\l
+R:\l
+ bottlenecked_rate_cms_output_1\l
+ bottlenecked_rate_cms_output_2\l
+\lW:\l
+ md.measured_rate\l
+ "];
+tbl_Bottlenecked_Rate69 [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_Bottlenecked_Rate69\l\l
+R:\l
+ md.measured_rate\l
+ bottlenecked_rate_cms_output_3\l
+\lW:\l
+ md.measured_rate\l
+ "];
+tbl_Bottlenecked_Rate70 [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_Bottlenecked_Rate70\l\l
+R:\l
+ md.measured_rate\l
+\lW:\l
+ md.measured_rate\l
+ "];
+tbl_Bottlenecked_Rate73 [ shape=record, style="filled", fillcolor=cornsilk, label="tbl_Bottlenecked_Rate73\l\l
+R:\l
+ md.measured_rate\l
+\l "];
+    PARSER -> ingress_assign_const_to_phv_0
+    ingress_assign_const_to_phv_0 -> cond_15
+    cond_15 -> tbl_fsmmf167
+    cond_15 -> cond_16
+    tbl_fsmmf167 -> t_igr_tiForward
+    cond_16 -> tbl_fsmmf170
+    cond_16 -> t_igr_tiForward
+    tbl_fsmmf170 -> t_igr_tiForward
+    t_igr_tiForward -> tbl_t_igr_aiSetfid
+    tbl_t_igr_aiSetfid -> tbl_t_igr_aiFcount
+    tbl_t_igr_aiFcount -> tbl_t_igr_aiSetTableKey
+    tbl_t_igr_aiSetTableKey -> tbl_t_igr_aiTs
+    tbl_t_igr_aiTs -> tbl_t_igr_aiCaldT
+    tbl_t_igr_aiCaldT -> tbl_t_igr_test_dt
+    tbl_t_igr_test_dt -> t_igr_tiCalc_log_dt
+    t_igr_tiCalc_log_dt -> t_igr_tiRate
+    t_igr_tiRate -> tbl_t_igr_test_rate
+    tbl_t_igr_test_rate -> t_igr_tiCalc_dt_x_rate
+    t_igr_tiCalc_dt_x_rate -> tbl_t_igr_test_dt_x_rate
+    tbl_t_igr_test_dt_x_rate -> tbl_ingress_objects136
+    tbl_ingress_objects136 -> tbl_t_igr_aiSetpktlen
+    tbl_t_igr_aiSetpktlen -> tbl_t_igr_aiCalc_pktlen_minus_dt_x_rate
+    tbl_t_igr_aiCalc_pktlen_minus_dt_x_rate -> tbl_t_igr_aiSetRC
+    tbl_t_igr_aiSetRC -> t_igr_tiRC_nag
+    t_igr_tiRC_nag -> tbl_t_igr_aiSetburstStage
+    tbl_t_igr_aiSetburstStage -> cond_17
+    cond_17 -> tbl_t_igr_aiTs_ms
+    cond_17 -> cond_18
+    tbl_t_igr_aiTs_ms -> tbl_t_igr_aiCalburst_t
+    tbl_t_igr_aiCalburst_t -> cond_18
+    cond_18 -> tbl_t_igr_aiCalc_gapRC
+    cond_18 -> tbl_t_igr_aiCalc_gap_minus_tolerance
+    tbl_t_igr_aiCalc_gapRC -> tbl_t_igr_aiCalc_gap_minus_tolerance
+    tbl_t_igr_aiCalc_gap_minus_tolerance -> t_igr_tiGapRC_pos
+    t_igr_tiGapRC_pos -> tbl_t_igr_test_burstdrop
+    tbl_t_igr_test_burstdrop -> tbl_t_igr_test_gapRC
+    tbl_t_igr_test_gapRC -> tbl_t_igr_aiCal_RC_minus_threshold
+    tbl_t_igr_aiCal_RC_minus_threshold -> cond_19
+    cond_19 -> tbl_ingress79
+    cond_19 -> tbl_t_igr_aiSetnodropflag
+    tbl_t_igr_aiSetnodropflag -> tbl_t_igr_aiSetnoecnflag
+    tbl_t_igr_aiSetnoecnflag -> cond_20
+    tbl_ingress79 -> tbl_t_igr_aiSetdropflag
+    tbl_t_igr_aiSetdropflag -> tbl_t_igr_aiSetecnflag
+    tbl_t_igr_aiSetecnflag -> cond_20
+    cond_20 -> tbl_t_igr_aiSetBottleneck
+    cond_20 -> cond_21
+    tbl_t_igr_aiSetBottleneck -> cond_21
+    cond_21 -> cond_22
+    cond_21 -> cond_26
+    cond_22 -> tbl_ingress98
+    cond_22 -> cond_23
+    tbl_ingress98 -> tbl_bottlenecked_rate_read_cms_act1
+    cond_23 -> tbl_ingress100
+    cond_23 -> cond_24
+    cond_24 -> tbl_ingress102
+    cond_24 -> cond_25
+    cond_25 -> tbl_ingress105
+    cond_25 -> tbl_bottlenecked_rate_read_cms_act1
+    tbl_ingress105 -> tbl_bottlenecked_rate_read_cms_act1
+    tbl_ingress102 -> tbl_bottlenecked_rate_read_cms_act1
+    tbl_ingress100 -> tbl_bottlenecked_rate_read_cms_act1
+    cond_26 -> cond_27
+    cond_26 -> tbl_bottlenecked_rate_read_cms_act1
+    cond_27 -> tbl_ingress112
+    cond_27 -> cond_28
+    tbl_ingress112 -> tbl_bottlenecked_rate_read_cms_act1
+    cond_28 -> tbl_ingress114
+    cond_28 -> tbl_bottlenecked_rate_read_cms_act1
+    tbl_ingress114 -> tbl_bottlenecked_rate_read_cms_act1
+    tbl_bottlenecked_rate_read_cms_act1 -> tbl_bottlenecked_rate_read_cms_act2
+    tbl_bottlenecked_rate_read_cms_act2 -> tbl_bottlenecked_rate_read_cms_act3
+    tbl_bottlenecked_rate_read_cms_act3 -> tbl_Bottlenecked_Rate68
+    tbl_Bottlenecked_Rate68 -> tbl_Bottlenecked_Rate69
+    tbl_Bottlenecked_Rate69 -> tbl_Bottlenecked_Rate70
+    tbl_Bottlenecked_Rate70 -> tbl_Bottlenecked_Rate73
+    tbl_Bottlenecked_Rate73 -> DEPARSER
+}

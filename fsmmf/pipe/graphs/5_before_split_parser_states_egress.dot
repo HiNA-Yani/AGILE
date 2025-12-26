@@ -1,0 +1,30 @@
+digraph parser {
+size="8,5"
+State0xd6d36c0 [shape=record, style="filled,rounded", fillcolor=cornsilk, label="{\$entry_point}"];
+State0xd6d3b40 [shape=record, style="filled,rounded", fillcolor=cornsilk, label="{start}"];
+State0xa56f000 [shape=record, style="filled,rounded", fillcolor=cornsilk, label="{EthIpParser_parse_ip_0}"];
+State0xa07f900 [shape=record, style="filled,rounded", fillcolor=cornsilk, label="{start_3}"];
+State0xa07fb40 [shape=record, style="filled,rounded", fillcolor=cornsilk, label="{EthIpParser_parse_tcp_0}"];
+State0xa095900 [shape=record, style="filled,rounded", fillcolor=cornsilk, label="{EthIpParser_parse_udp_0}"];
+State0xa08ab40 [shape=record, style="filled,rounded", fillcolor=cornsilk, label="{min_parse_depth_accept_initial}"];
+State0xa08a480 [shape=record, style="filled,rounded", fillcolor=cornsilk, label="{min_parse_depth_accept_loop}"];
+State0xa095d80 [shape=record, style="filled,rounded", fillcolor=cornsilk, label="{min_parse_depth_accept_loop\.\$it1}"];
+State0xa095b40 [shape=record, style="filled,rounded", fillcolor=cornsilk, label="{min_parse_depth_accept_loop\.\$it2}"];
+State0xd6d36c0 -> State0xd6d3b40 [  ]
+State0xd6d3b40 -> State0xa56f000 [  ]
+State0xd6d3b40 -> State0xa07f900 [  ]
+State0xa56f000 -> State0xa07fb40 [  ]
+State0xa56f000 -> State0xa095900 [  ]
+State0xa56f000 -> State0xa07f900 [  ]
+State0xa07fb40 -> State0xa07f900 [  ]
+State0xa07f900 -> State0xa08ab40 [  ]
+State0xa08ab40 -> State0xa08a480 [  ]
+State0xa08a480 -> State0xa095d80 [  ]
+State0xa095d80 -> State0xa095b40 [  ]
+State0xa095900 -> State0xa07f900 [  ]
+State0xa08ab40 -> egress_pipe [  ]
+State0xa08a480 -> egress_pipe [  ]
+State0xa095d80 -> egress_pipe [  ]
+State0xa095b40 -> egress_pipe [  ]
+State0xa095b40 -> egress_pipe [  ]
+}

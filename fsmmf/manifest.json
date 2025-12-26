@@ -1,0 +1,135 @@
+{
+  "build_date": "Fri Dec 26 20:28:44 2025",
+  "compiler_version": "9.11.1 (0b97def)",
+  "compile_command": "/usr/local/sde/bin/bf-p4c --std p4-16 --target tofino --arch tna --verbose 3 -o /usr/Yani/YaniExperiments/FSMMF/220_00001/fsmmf --bf-rt-schema /usr/Yani/YaniExperiments/FSMMF/220_00001/fsmmf/bf-rt.json fsmmf.p4",
+  "programs": [
+    {
+      "frontend_ir_log_file": "frontend-ir.json",
+      "source_files": {
+        "defines": [
+          "__TARGET_TOFINO__=1",
+          "__p4c__=1",
+          "__p4c_major__=9",
+          "__p4c_minor__=11",
+          "__p4c_patchlevel__=1",
+          "__p4c_version__=\"9.11.1\""
+        ],
+        "src_root": "/usr/Yani/YaniExperiments/FSMMF/220_00001",
+        "src_map": "source.json",
+        "includes": [
+          "/usr/local/sde/share/p4c/p4include"
+        ]
+      },
+      "p4_version": "p4-16",
+      "event_log_file": "events.json",
+      "program_name": "fsmmf.p4",
+      "pipes": [
+        {
+          "pipe_id": 0,
+          "pipe_name": "pipe",
+          "files": {
+            "logs": [
+              {
+                "path": "pipe/logs/flexible_packing.log",
+                "log_type": "parser"
+              },
+              {
+                "path": "pipe/logs/parser.characterize.log",
+                "log_type": "parser"
+              },
+              {
+                "path": "pipe/logs/parser.log",
+                "log_type": "parser"
+              },
+              {
+                "path": "pipe/logs/phv.json",
+                "log_type": "phv"
+              },
+              {
+                "path": "pipe/logs/phv_allocation_0.log",
+                "log_type": "phv"
+              },
+              {
+                "path": "pipe/logs/phv_allocation_history_0.log",
+                "log_type": "phv"
+              },
+              {
+                "path": "pipe/logs/phv_allocation_summary_0.log",
+                "log_type": "phv"
+              },
+              {
+                "path": "pipe/logs/power.json",
+                "log_type": "power"
+              },
+              {
+                "path": "pipe/logs/pragmas.log",
+                "log_type": "phv"
+              },
+              {
+                "path": "pipe/logs/table_dependency_graph.log",
+                "log_type": "mau"
+              },
+              {
+                "path": "pipe/logs/table_dependency_summary.log",
+                "log_type": "mau"
+              },
+              {
+                "path": "pipe/logs/table_placement_1.log",
+                "log_type": "mau"
+              },
+              {
+                "path": "pipe/logs/table_summary.log",
+                "log_type": "mau"
+              },
+              {
+                "path": "pipe/logs/mau.json",
+                "log_type": "mau"
+              }
+            ],
+            "graphs": [],
+            "metrics": {
+              "path": "pipe/logs/metrics.json"
+            },
+            "resources": [
+              {
+                "path": "pipe/logs/resources.json",
+                "type": "resources"
+              }
+            ],
+            "context": {
+              "path": "pipe/context.json"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "conf_file": "fsmmf.conf",
+  "compilation_succeeded": true,
+  "architecture": "tna",
+  "compilation_time": "16.07945942878723",
+  "schema_version": "2.0.6",
+  "target": "tofino",
+  "architectureConfig": {
+    "pipes": [
+      {
+        "pipe": 0,
+        "egress": {
+          "nextControl": [],
+          "pipeName": "Egress"
+        },
+        "ingress": {
+          "nextControl": [
+            {
+              "pipe": 0,
+              "pipeName": "Egress"
+            }
+          ],
+          "pipeName": "Ingress"
+        }
+      }
+    ],
+    "name": "64q"
+  },
+  "run_id": "d3ec2832c0a1470c"
+}

@@ -1,0 +1,3091 @@
+version:
+  version: 1.0.1
+  run_id: "d3ec2832c0a1470c"
+  target: Tofino
+phv ingress:
+  ig_intr_md.ingress_mac_tstamp.0-31: {  stage 0..3: W39 } 
+  ig_intr_md.ingress_mac_tstamp.32-47: {  stage 0..3: H4 } 
+  hdr.ethernet.dst_addr.0-31: W14
+  hdr.ethernet.dst_addr.32-47: H3
+  hdr.ethernet.src_addr.0-31: TW7
+  hdr.ethernet.src_addr.32-39: TB6
+  hdr.ethernet.src_addr.40-47: TB7
+  hdr.ethernet.ether_type: TH11
+  hdr.ip.version: TB5(4..7)
+  hdr.ip.ihl: TB5(0..3)
+  hdr.ip.dscp: B2(2..7)
+  hdr.ip.ecn: B2(0..1)
+  hdr.ip.total_len: H1
+  hdr.ip.identification: TW5(16..31)
+  hdr.ip.flags: TW5(13..15)
+  hdr.ip.frag_offset: TW5(0..12)
+  hdr.ip.ttl: TB4
+  hdr.ip.protocol: B1
+  hdr.ip.hdr_checksum: TH6
+  hdr.ip.src_addr: W32
+  hdr.ip.dst_addr: W15
+  hdr.tcp.src_port: W12(16..31)
+  hdr.tcp.dst_port: W12(0..15)
+  hdr.tcp.seq_no.0-15: TH9
+  hdr.tcp.seq_no.16-31: TH10
+  hdr.tcp.ack_no.0-15: TH7
+  hdr.tcp.ack_no.16-31: TH8
+  hdr.tcp.data_offset: TW4(28..31)
+  hdr.tcp.res: TW4(24..27)
+  hdr.tcp.flags: TW4(16..23)
+  hdr.tcp.window: TW4(0..15)
+  hdr.tcp.checksum: TW6(16..31)
+  hdr.tcp.urgent_ptr: TW6(0..15)
+  hdr.udp.src_port: W12(16..31)
+  hdr.udp.dst_port: W12(0..15)
+  hdr.udp.hdr_lenght: TW4(16..31)
+  hdr.udp.checksum: TW4(0..15)
+  const_to_phv_32w20000: {  stage 1..9: W5 } 
+  const_to_phv_32w5000000: {  stage 1..8: W8 } 
+  md.fid: {  stage 2..10: W40(0..10) } 
+  md.measured_rate: {  stage 4..6: W3 } 
+  md.RC: {  stage 7..8: W7 } 
+  md.pktlen: {  stage 2..5: W6 } 
+  md.sport: {  stage 1..2: W13(16..31) } 
+  md.dport: {  stage 1..2: W13(0..15) } 
+  ig_intr_md_for_tm.ucast_egress_port: {  stage 1..12: H0(0..8) } 
+  t_igr_table_key.0-18: {  stage 3: W40(11..29) } 
+  t_igr_table_key.19-31: {  stage 3: H5(0..12) } 
+  t_igr_ts: {  stage 1..2: W7 } 
+  t_igr_dt: {  stage 3: W9 } 
+  t_igr_log_dt: {  stage 4: H6 } 
+  t_igr_rate: {  stage 4: W37 } 
+  t_igr_dt_x_rate_B: {  stage 5..6: W10 } 
+  $hash_field_argument0: {  stage 1: H2 } 
+  t_igr_pktlen_minus_dt_x_rate: {  stage 6: W11 } 
+  t_igr_RC_nag: {  stage 6..10: H5(0) } 
+  t_igr_ifburstStage: {  stage 3: B3(4) } 
+  t_igr_ts_ms: {  stage 4: W38 } 
+  t_igr_dt_ms: {  stage 5..8: W36 } 
+  t_igr_gapRC: {  stage 9..10: W4 } 
+  t_igr_burst: {  stage 10: W6 } 
+  t_igr_RC_minus_threshold: {  stage 9: W9 } 
+  t_igr_tcp_drop_flag: {  stage 9..10: B3(4) } 
+  t_igr_ecn_flag: {  stage 9..10: H6(0..7) } 
+  t_igr_drop_flag: {  stage 9..10: H4(0) } 
+  ig_intr_md_for_dprsr.drop_ctl: {  stage 9..12: W10(0..2) } 
+  ig_intr_md_for_dprsr.mirror_type: {  stage 12: B0(0..2) } 
+  bottlenecked_rate_cms_output_1: {  stage 3: W0 } 
+  bottlenecked_rate_cms_output_2: {  stage 2..3: W1 } 
+  bottlenecked_rate_cms_output_3: {  stage 3..4: W2 } 
+  $tmp2: {  stage 12: H2(0..9) } 
+  hdr.ethernet.$valid: B3(0)
+  hdr.ip.$valid: B3(1)
+  hdr.tcp.$valid: B3(2)
+  hdr.udp.$valid: B3(3)
+  context_json:
+    B0:
+    - { name : ig_intr_md_for_dprsr.mirror_type, live_start : deparser, live_end : deparser, mutually_exclusive_with: [  ] }
+    B1:
+    - { name : hdr.ip.protocol, live_start : parser, live_end : deparser, mutually_exclusive_with: [  ] }
+    B2:
+    - { name : hdr.ip.dscp, live_start : parser, live_end : deparser, mutually_exclusive_with: [  ] }
+    - { name : hdr.ip.ecn, live_start : parser, live_end : deparser, mutually_exclusive_with: [  ] }
+    B3:
+    - { name : t_igr_ifburstStage, live_start : 3, live_end : 3, mutually_exclusive_with: [  ] }
+    - { name : t_igr_tcp_drop_flag, live_start : 9, live_end : 10, mutually_exclusive_with: [  ] }
+    - { name : hdr.ethernet.$valid, live_start : parser, live_end : deparser, mutually_exclusive_with: [  ] }
+    - { name : hdr.ip.$valid, live_start : parser, live_end : deparser, mutually_exclusive_with: [  ] }
+    - { name : hdr.tcp.$valid, live_start : parser, live_end : deparser, mutually_exclusive_with: [  ] }
+    - { name : hdr.udp.$valid, live_start : parser, live_end : deparser, mutually_exclusive_with: [  ] }
+    H0:
+    - { name : ig_intr_md_for_tm.ucast_egress_port, live_start : 1, live_end : deparser, mutually_exclusive_with: [  ] }
+    H1:
+    - { name : hdr.ip.total_len, live_start : parser, live_end : deparser, mutually_exclusive_with: [  ] }
+    H2:
+    - { name : $hash_field_argument0, live_start : 1, live_end : 1, mutually_exclusive_with: [  ] }
+    - { name : $tmp2, live_start : deparser, live_end : deparser, mutually_exclusive_with: [  ] }
+    H3:
+    - { name : hdr.ethernet.dst_addr, live_start : parser, live_end : deparser, mutually_exclusive_with: [  ] }
+    H4:
+    - { name : ig_intr_md.ingress_mac_tstamp, live_start : parser, live_end : 3, mutually_exclusive_with: [  ] }
+    - { name : t_igr_drop_flag, live_start : 9, live_end : 10, mutually_exclusive_with: [  ] }
+    H5:
+    - { name : t_igr_table_key, live_start : 3, live_end : 3, mutually_exclusive_with: [  ] }
+    - { name : t_igr_RC_nag, live_start : 6, live_end : 10, mutually_exclusive_with: [  ] }
+    H6:
+    - { name : t_igr_log_dt, live_start : 4, live_end : 4, mutually_exclusive_with: [  ] }
+    - { name : t_igr_ecn_flag, live_start : 9, live_end : 10, mutually_exclusive_with: [  ] }
+    W0:
+    - { name : bottlenecked_rate_cms_output_1, live_start : 3, live_end : 3, mutually_exclusive_with: [  ] }
+    W1:
+    - { name : bottlenecked_rate_cms_output_2, live_start : 2, live_end : 3, mutually_exclusive_with: [  ] }
+    W2:
+    - { name : bottlenecked_rate_cms_output_3, live_start : 3, live_end : 4, mutually_exclusive_with: [  ] }
+    W3:
+    - { name : md.measured_rate, live_start : 4, live_end : 6, mutually_exclusive_with: [  ] }
+    W4:
+    - { name : t_igr_gapRC, live_start : 9, live_end : 10, mutually_exclusive_with: [  ] }
+    W5:
+    - { name : const_to_phv_32w20000, live_start : 1, live_end : 9, mutually_exclusive_with: [  ] }
+    W6:
+    - { name : md.pktlen, live_start : 2, live_end : 5, mutually_exclusive_with: [  ] }
+    - { name : t_igr_burst, live_start : 10, live_end : 10, mutually_exclusive_with: [  ] }
+    W7:
+    - { name : md.RC, live_start : 7, live_end : 8, mutually_exclusive_with: [  ] }
+    - { name : t_igr_ts, live_start : 1, live_end : 2, mutually_exclusive_with: [  ] }
+    W8:
+    - { name : const_to_phv_32w5000000, live_start : 1, live_end : 8, mutually_exclusive_with: [  ] }
+    W9:
+    - { name : t_igr_dt, live_start : 3, live_end : 3, mutually_exclusive_with: [  ] }
+    - { name : t_igr_RC_minus_threshold, live_start : 9, live_end : 9, mutually_exclusive_with: [  ] }
+    W10:
+    - { name : t_igr_dt_x_rate_B, live_start : 5, live_end : 6, mutually_exclusive_with: [  ] }
+    - { name : ig_intr_md_for_dprsr.drop_ctl, live_start : 9, live_end : deparser, mutually_exclusive_with: [  ] }
+    W11:
+    - { name : t_igr_pktlen_minus_dt_x_rate, live_start : 6, live_end : 6, mutually_exclusive_with: [  ] }
+    W12:
+    - { name : hdr.tcp.src_port, live_start : parser, live_end : deparser, mutually_exclusive_with: [ hdr.udp.dst_port, hdr.udp.src_port ] }
+    - { name : hdr.tcp.dst_port, live_start : parser, live_end : deparser, mutually_exclusive_with: [ hdr.udp.dst_port, hdr.udp.src_port ] }
+    - { name : hdr.udp.src_port, live_start : parser, live_end : deparser, mutually_exclusive_with: [ hdr.tcp.dst_port, hdr.tcp.src_port ] }
+    - { name : hdr.udp.dst_port, live_start : parser, live_end : deparser, mutually_exclusive_with: [ hdr.tcp.dst_port, hdr.tcp.src_port ] }
+    W13:
+    - { name : md.sport, live_start : 1, live_end : 2, mutually_exclusive_with: [  ] }
+    - { name : md.dport, live_start : 1, live_end : 2, mutually_exclusive_with: [  ] }
+    W14:
+    - { name : hdr.ethernet.dst_addr, live_start : parser, live_end : deparser, mutually_exclusive_with: [  ] }
+    W15:
+    - { name : hdr.ip.dst_addr, live_start : parser, live_end : deparser, mutually_exclusive_with: [  ] }
+    W32:
+    - { name : hdr.ip.src_addr, live_start : parser, live_end : deparser, mutually_exclusive_with: [  ] }
+    W36:
+    - { name : t_igr_dt_ms, live_start : 5, live_end : 8, mutually_exclusive_with: [  ] }
+    W37:
+    - { name : t_igr_rate, live_start : 4, live_end : 4, mutually_exclusive_with: [  ] }
+    W38:
+    - { name : t_igr_ts_ms, live_start : 4, live_end : 4, mutually_exclusive_with: [  ] }
+    W39:
+    - { name : ig_intr_md.ingress_mac_tstamp, live_start : parser, live_end : 3, mutually_exclusive_with: [  ] }
+    W40:
+    - { name : md.fid, live_start : 2, live_end : 10, mutually_exclusive_with: [  ] }
+    - { name : t_igr_table_key, live_start : 3, live_end : 3, mutually_exclusive_with: [  ] }
+phv egress:
+  eg_intr_md.egress_port: H16(0..8)
+  hdr.min_parse_depth_padding_0$0.packet_payload.0-15: TH4
+  hdr.min_parse_depth_padding_0$0.packet_payload.16-31: TH5
+  hdr.min_parse_depth_padding_0$0.packet_payload.32-63: TW8
+  hdr.min_parse_depth_padding_0$0.packet_payload.64-79: TH18
+  hdr.min_parse_depth_padding_0$0.packet_payload.80-87: TB0
+  hdr.min_parse_depth_padding_0$1.packet_payload.0-31: TW9
+  hdr.min_parse_depth_padding_0$1.packet_payload.32-63: TW10
+  hdr.min_parse_depth_padding_0$1.packet_payload.64-79: TH19
+  hdr.min_parse_depth_padding_0$1.packet_payload.80-87: TB1
+  hdr.min_parse_depth_padding_0$2.packet_payload.0-31: TW11
+  hdr.min_parse_depth_padding_0$2.packet_payload.32-47: TH12
+  hdr.min_parse_depth_padding_0$2.packet_payload.48-63: TH13
+  hdr.min_parse_depth_padding_0$2.packet_payload.64-79: TH20
+  hdr.min_parse_depth_padding_0$2.packet_payload.80-87: TB2
+  hdr.ethernet.dst_addr.0-15: TH16
+  hdr.ethernet.dst_addr.16-31: TH17
+  hdr.ethernet.dst_addr.32-47: TH23
+  hdr.ethernet.src_addr.0-15: TH14
+  hdr.ethernet.src_addr.16-31: TH15
+  hdr.ethernet.src_addr.32-47: TH22
+  hdr.ethernet.ether_type: TH21
+  hdr.ip.version: TW0(28..31)
+  hdr.ip.ihl: TW0(24..27)
+  hdr.ip.dscp: TW0(18..23)
+  hdr.ip.ecn: TW0(16..17)
+  hdr.ip.total_len: TW0(0..15)
+  hdr.ip.identification: TW3(16..31)
+  hdr.ip.flags: TW3(13..15)
+  hdr.ip.frag_offset: TW3(0..12)
+  hdr.ip.ttl: TW2(24..31)
+  hdr.ip.protocol: TW2(16..23)
+  hdr.ip.hdr_checksum: TW2(0..15)
+  hdr.ip.src_addr: TW12
+  hdr.ip.dst_addr.0-7: TB3
+  hdr.ip.dst_addr.8-15: TB8
+  hdr.ip.dst_addr.16-23: TB9
+  hdr.ip.dst_addr.24-31: TB10
+  hdr.tcp.src_port: TH3
+  hdr.tcp.dst_port: TH2
+  hdr.tcp.seq_no: TW14
+  hdr.tcp.ack_no: TW13
+  hdr.tcp.data_offset: TW1(28..31)
+  hdr.tcp.res: TW1(24..27)
+  hdr.tcp.flags: TW1(16..23)
+  hdr.tcp.window: TW1(0..15)
+  hdr.tcp.checksum: TH1
+  hdr.tcp.urgent_ptr: TH0
+  hdr.udp.src_port: TH1
+  hdr.udp.dst_port: TH0
+  hdr.udp.hdr_lenght: TW1(16..31)
+  hdr.udp.checksum: TW1(0..15)
+  hdr.ethernet.$valid: B17(0)
+  hdr.ip.$valid: B17(1)
+  hdr.tcp.$valid: B17(2)
+  hdr.udp.$valid: B17(3)
+  hdr.min_parse_depth_padding_0.$stkvalid: B16(0..2)
+  hdr.min_parse_depth_padding_0$0.$valid: B16(2)
+  hdr.min_parse_depth_padding_0$1.$valid: B16(1)
+  hdr.min_parse_depth_padding_0$2.$valid: B16(0)
+  context_json:
+    B16:
+    - { name : hdr.min_parse_depth_padding_0$2.$valid, live_start : parser, live_end : deparser, mutually_exclusive_with: [  ] }
+    - { name : hdr.min_parse_depth_padding_0.$stkvalid, live_start : parser, live_end : deparser, mutually_exclusive_with: [  ] }
+    - { name : hdr.min_parse_depth_padding_0$0.$valid, live_start : parser, live_end : deparser, mutually_exclusive_with: [  ] }
+    - { name : hdr.min_parse_depth_padding_0$1.$valid, live_start : parser, live_end : deparser, mutually_exclusive_with: [  ] }
+    B17:
+    - { name : hdr.ethernet.$valid, live_start : parser, live_end : deparser, mutually_exclusive_with: [  ] }
+    - { name : hdr.ip.$valid, live_start : parser, live_end : deparser, mutually_exclusive_with: [  ] }
+    - { name : hdr.tcp.$valid, live_start : parser, live_end : deparser, mutually_exclusive_with: [  ] }
+    - { name : hdr.udp.$valid, live_start : parser, live_end : deparser, mutually_exclusive_with: [  ] }
+    H16:
+    - { name : eg_intr_md.egress_port, live_start : parser, live_end : deparser, mutually_exclusive_with: [  ] }
+parser ingress:
+  start: $entry_point
+  init_zero: [ W5, W8, W40, W3, W7, W6, W13, H5, W9, H6, W37, W10, H2, W11, B3, W38, W36, W4, B0, W0, W1, W2 ]
+  bitwise_or: [ B3 ]
+  hdr_len_adj: 16
+  states:
+    $entry_point:
+      *:
+        load: { half : 28..29 }
+        buf_req: 30
+        next: start
+    start:
+      match: [ half ]
+      0x0800:
+        2..3: H4  # ingress::ig_intr_md.ingress_mac_tstamp[47:32].32-47
+        4..7: W39  # ingress::ig_intr_md.ingress_mac_tstamp[31:0].0-31
+        16..17: H3  # ingress::hdr.ethernet.dst_addr[47:32].32-47
+        18..21: W14  # ingress::hdr.ethernet.dst_addr[31:0].0-31
+        22: TB7  # ingress::hdr.ethernet.src_addr[47:40].40-47
+        23: TB6  # ingress::hdr.ethernet.src_addr[39:32].32-39
+        24..27: TW7  # ingress::hdr.ethernet.src_addr[31:0].0-31
+        28..29: TH11  # ingress::hdr.ethernet.ether_type
+        B3: 1  # value 1 -> B3 bit[0]: ingress::hdr.ethernet.$valid
+        shift: 30
+        buf_req: 30
+        next: EthIpParser_parse_ip
+      0x****:
+        2..3: H4  # ingress::ig_intr_md.ingress_mac_tstamp[47:32].32-47
+        4..7: W39  # ingress::ig_intr_md.ingress_mac_tstamp[31:0].0-31
+        16..17: H3  # ingress::hdr.ethernet.dst_addr[47:32].32-47
+        18..21: W14  # ingress::hdr.ethernet.dst_addr[31:0].0-31
+        22: TB7  # ingress::hdr.ethernet.src_addr[47:40].40-47
+        23: TB6  # ingress::hdr.ethernet.src_addr[39:32].32-39
+        24..27: TW7  # ingress::hdr.ethernet.src_addr[31:0].0-31
+        28..29: TH11  # ingress::hdr.ethernet.ether_type
+        B3: 1  # value 1 -> B3 bit[0]: ingress::hdr.ethernet.$valid
+        shift: 30
+        buf_req: 30
+        next: end
+    EthIpParser_parse_ip:
+      *:
+        0: TB5
+            # - bit[0..3] -> TB5 bit[7..4]: ingress::hdr.ip.version
+            # - bit[4..7] -> TB5 bit[3..0]: ingress::hdr.ip.ihl
+        1: B2
+            # - bit[8..13] -> B2 bit[7..2]: ingress::hdr.ip.dscp
+            # - bit[14..15] -> B2 bit[1..0]: ingress::hdr.ip.ecn
+        2..3: H1  # ingress::hdr.ip.total_len
+        4..7: TW5
+            # - bit[32..47] -> TW5 bit[31..16]: ingress::hdr.ip.identification
+            # - bit[48..50] -> TW5 bit[15..13]: ingress::hdr.ip.flags
+            # - bit[51..63] -> TW5 bit[12..0]: ingress::hdr.ip.frag_offset
+        8: TB4  # ingress::hdr.ip.ttl
+        9: B1  # ingress::hdr.ip.protocol
+        10..11: TH6  # ingress::hdr.ip.hdr_checksum
+        12..15: W32  # ingress::hdr.ip.src_addr
+        16..19: W15  # ingress::hdr.ip.dst_addr
+        load: { byte1 : 9 }
+        shift: 20
+        buf_req: 20
+        next: EthIpParser_parse_ip.$split_0
+    EthIpParser_parse_ip.$split_0:
+      match: [ byte1 ]
+      0x06:
+        B3: 2  # value 1 -> B3 bit[1]: ingress::hdr.ip.$valid
+        buf_req: 0
+        next: EthIpParser_parse_tcp
+      0x11:
+        B3: 2  # value 1 -> B3 bit[1]: ingress::hdr.ip.$valid
+        buf_req: 0
+        next: EthIpParser_parse_udp
+      0x**:
+        B3: 2  # value 1 -> B3 bit[1]: ingress::hdr.ip.$valid
+        buf_req: 0
+        next: end
+    EthIpParser_parse_tcp:
+      *:
+        0..3: W12
+            # - bit[0..15] -> W12 bit[31..16]: ingress::hdr.tcp.src_port
+            # - bit[16..31] -> W12 bit[15..0]: ingress::hdr.tcp.dst_port
+        4..5: TH10  # ingress::hdr.tcp.seq_no[31:16].16-31
+        6..7: TH9  # ingress::hdr.tcp.seq_no[15:0].0-15
+        8..9: TH8  # ingress::hdr.tcp.ack_no[31:16].16-31
+        10..11: TH7  # ingress::hdr.tcp.ack_no[15:0].0-15
+        12..15: TW4
+            # - bit[96..99] -> TW4 bit[31..28]: ingress::hdr.tcp.data_offset
+            # - bit[100..103] -> TW4 bit[27..24]: ingress::hdr.tcp.res
+            # - bit[104..111] -> TW4 bit[23..16]: ingress::hdr.tcp.flags
+            # - bit[112..127] -> TW4 bit[15..0]: ingress::hdr.tcp.window
+        16..19: TW6
+            # - bit[128..143] -> TW6 bit[31..16]: ingress::hdr.tcp.checksum
+            # - bit[144..159] -> TW6 bit[15..0]: ingress::hdr.tcp.urgent_ptr
+        B3: 4  # value 1 -> B3 bit[2]: ingress::hdr.tcp.$valid
+        shift: 20
+        buf_req: 20
+        next: end
+    EthIpParser_parse_udp:
+      *:
+        0..3: W12
+            # - bit[0..15] -> W12 bit[31..16]: ingress::hdr.udp.src_port
+            # - bit[16..31] -> W12 bit[15..0]: ingress::hdr.udp.dst_port
+        4..7: TW4
+            # - bit[32..47] -> TW4 bit[31..16]: ingress::hdr.udp.hdr_lenght
+            # - bit[48..63] -> TW4 bit[15..0]: ingress::hdr.udp.checksum
+        B3: 8  # value 1 -> B3 bit[3]: ingress::hdr.udp.$valid
+        shift: 8
+        buf_req: 8
+        next: end
+deparser ingress:
+  dictionary:
+    H3: B3(0)  # ingress::hdr.ethernet.dst_addr.32-47 if ingress::hdr.ethernet.$valid
+    W14: B3(0)  # ingress::hdr.ethernet.dst_addr.0-31 if ingress::hdr.ethernet.$valid
+    TB7: B3(0)  # ingress::hdr.ethernet.src_addr.40-47 if ingress::hdr.ethernet.$valid
+    TB6: B3(0)  # ingress::hdr.ethernet.src_addr.32-39 if ingress::hdr.ethernet.$valid
+    TW7: B3(0)  # ingress::hdr.ethernet.src_addr.0-31 if ingress::hdr.ethernet.$valid
+    TH11: B3(0)  # ingress::hdr.ethernet.ether_type if ingress::hdr.ethernet.$valid
+    TB5: B3(1)
+        # - bit[7..4]: ingress::hdr.ip.version if ingress::hdr.ip.$valid
+        # - bit[3..0]: ingress::hdr.ip.ihl if ingress::hdr.ip.$valid
+    B2: B3(1)
+        # - bit[7..2]: ingress::hdr.ip.dscp if ingress::hdr.ip.$valid
+        # - bit[1..0]: ingress::hdr.ip.ecn if ingress::hdr.ip.$valid
+    H1: B3(1)  # ingress::hdr.ip.total_len if ingress::hdr.ip.$valid
+    TW5: B3(1)
+        # - bit[31..16]: ingress::hdr.ip.identification if ingress::hdr.ip.$valid
+        # - bit[15..13]: ingress::hdr.ip.flags if ingress::hdr.ip.$valid
+        # - bit[12..0]: ingress::hdr.ip.frag_offset if ingress::hdr.ip.$valid
+    TB4: B3(1)  # ingress::hdr.ip.ttl if ingress::hdr.ip.$valid
+    B1: B3(1)  # ingress::hdr.ip.protocol if ingress::hdr.ip.$valid
+    TH6: B3(1)  # ingress::hdr.ip.hdr_checksum if ingress::hdr.ip.$valid
+    W32: B3(1)  # ingress::hdr.ip.src_addr if ingress::hdr.ip.$valid
+    W15: B3(1)  # ingress::hdr.ip.dst_addr if ingress::hdr.ip.$valid
+    W12: B3(2)
+        # - bit[31..16]: ingress::hdr.tcp.src_port if ingress::hdr.tcp.$valid
+        # - bit[15..0]: ingress::hdr.tcp.dst_port if ingress::hdr.tcp.$valid
+    TH10: B3(2)  # ingress::hdr.tcp.seq_no.16-31 if ingress::hdr.tcp.$valid
+    TH9: B3(2)  # ingress::hdr.tcp.seq_no.0-15 if ingress::hdr.tcp.$valid
+    TH8: B3(2)  # ingress::hdr.tcp.ack_no.16-31 if ingress::hdr.tcp.$valid
+    TH7: B3(2)  # ingress::hdr.tcp.ack_no.0-15 if ingress::hdr.tcp.$valid
+    TW4: B3(2)
+        # - bit[31..28]: ingress::hdr.tcp.data_offset if ingress::hdr.tcp.$valid
+        # - bit[27..24]: ingress::hdr.tcp.res if ingress::hdr.tcp.$valid
+        # - bit[23..16]: ingress::hdr.tcp.flags if ingress::hdr.tcp.$valid
+        # - bit[15..0]: ingress::hdr.tcp.window if ingress::hdr.tcp.$valid
+    TW6: B3(2)
+        # - bit[31..16]: ingress::hdr.tcp.checksum if ingress::hdr.tcp.$valid
+        # - bit[15..0]: ingress::hdr.tcp.urgent_ptr if ingress::hdr.tcp.$valid
+    W12: B3(3)
+        # - bit[31..16]: ingress::hdr.udp.src_port if ingress::hdr.udp.$valid
+        # - bit[15..0]: ingress::hdr.udp.dst_port if ingress::hdr.udp.$valid
+    TW4: B3(3)
+        # - bit[31..16]: ingress::hdr.udp.hdr_lenght if ingress::hdr.udp.$valid
+        # - bit[15..0]: ingress::hdr.udp.checksum if ingress::hdr.udp.$valid
+  egress_unicast_port: H0(0..8)  # bit[8..0]: ingress::ig_intr_md_for_tm.ucast_egress_port
+  drop_ctl: W10(0..2)  # bit[2..0]: ingress::ig_intr_md_for_dprsr.drop_ctl
+  mirror:
+    select: B0(0..2)  # bit[2..0]: ingress::ig_intr_md_for_dprsr.mirror_type
+    0:
+      - H2(0..9)  # bit[9..0]: ingress::$tmp2
+parser egress:
+  start: $entry_point
+  init_zero: [ B17, B16 ]
+  bitwise_or: [ B16, B17 ]
+  hdr_len_adj: 27
+  meta_opt: 8191
+  states:
+    $entry_point:
+      *:
+        counter:
+          imm: 24
+        0..1: H16  # bit[7..15] -> H16 bit[8..0]: egress::eg_intr_md.egress_port
+        27..28: TH23  # egress::hdr.ethernet.dst_addr[47:32].32-47
+        29..30: TH17  # egress::hdr.ethernet.dst_addr[31:16].16-31
+        B17: 1  # value 1 -> B17 bit[0]: egress::hdr.ethernet.$valid
+        intr_md: 9
+        shift: 31
+        buf_req: 31
+        next: start.$split_0
+    start.$split_0:
+      *:
+        0..1: TH16  # egress::hdr.ethernet.dst_addr[15:0].0-15
+        2..3: TH22  # egress::hdr.ethernet.src_addr[47:32].32-47
+        4..5: TH15  # egress::hdr.ethernet.src_addr[31:16].16-31
+        6..7: TH14  # egress::hdr.ethernet.src_addr[15:0].0-15
+        load: { half : 8..9 }
+        shift: 8
+        buf_req: 10
+        next: start.$split_1
+    start.$split_1:
+      match: [ half ]
+      0x0800:
+        0..1: TH21  # egress::hdr.ethernet.ether_type
+        shift: 2
+        buf_req: 2
+        next: EthIpParser_parse_ip_0
+      0x****:
+        0..1: TH21  # egress::hdr.ethernet.ether_type
+        shift: 2
+        buf_req: 2
+        next: min_parse_depth_accept_initial
+    EthIpParser_parse_ip_0:
+      *:
+        counter: dec 20
+        0..3: TW0
+            # - bit[0..3] -> TW0 bit[31..28]: egress::hdr.ip.version
+            # - bit[4..7] -> TW0 bit[27..24]: egress::hdr.ip.ihl
+            # - bit[8..13] -> TW0 bit[23..18]: egress::hdr.ip.dscp
+            # - bit[14..15] -> TW0 bit[17..16]: egress::hdr.ip.ecn
+            # - bit[16..31] -> TW0 bit[15..0]: egress::hdr.ip.total_len
+        4..7: TW3
+            # - bit[32..47] -> TW3 bit[31..16]: egress::hdr.ip.identification
+            # - bit[48..50] -> TW3 bit[15..13]: egress::hdr.ip.flags
+            # - bit[51..63] -> TW3 bit[12..0]: egress::hdr.ip.frag_offset
+        8..11: TW2
+            # - bit[64..71] -> TW2 bit[31..24]: egress::hdr.ip.ttl
+            # - bit[72..79] -> TW2 bit[23..16]: egress::hdr.ip.protocol
+            # - bit[80..95] -> TW2 bit[15..0]: egress::hdr.ip.hdr_checksum
+        12..15: TW12  # egress::hdr.ip.src_addr
+        16: TB10  # egress::hdr.ip.dst_addr[31:24].24-31
+        17: TB9  # egress::hdr.ip.dst_addr[23:16].16-23
+        18: TB8  # egress::hdr.ip.dst_addr[15:8].8-15
+        19: TB3  # egress::hdr.ip.dst_addr[7:0].0-7
+        load: { byte1 : 9 }
+        shift: 20
+        buf_req: 20
+        next: EthIpParser_parse_ip_0.$split_0
+    EthIpParser_parse_ip_0.$split_0:
+      match: [ byte1 ]
+      0x06:
+        B17: 2  # value 1 -> B17 bit[1]: egress::hdr.ip.$valid
+        buf_req: 0
+        next: EthIpParser_parse_tcp_0
+      0x11:
+        B17: 2  # value 1 -> B17 bit[1]: egress::hdr.ip.$valid
+        buf_req: 0
+        next: EthIpParser_parse_udp_0
+      0x**:
+        B17: 2  # value 1 -> B17 bit[1]: egress::hdr.ip.$valid
+        buf_req: 0
+        next: min_parse_depth_accept_initial
+    EthIpParser_parse_tcp_0:
+      *:
+        counter: dec 20
+        0..1: TH3  # egress::hdr.tcp.src_port
+        2..3: TH2  # egress::hdr.tcp.dst_port
+        4..7: TW14  # egress::hdr.tcp.seq_no
+        8..11: TW13  # egress::hdr.tcp.ack_no
+        12..15: TW1
+            # - bit[96..99] -> TW1 bit[31..28]: egress::hdr.tcp.data_offset
+            # - bit[100..103] -> TW1 bit[27..24]: egress::hdr.tcp.res
+            # - bit[104..111] -> TW1 bit[23..16]: egress::hdr.tcp.flags
+            # - bit[112..127] -> TW1 bit[15..0]: egress::hdr.tcp.window
+        16..17: TH1  # egress::hdr.tcp.checksum
+        18..19: TH0  # egress::hdr.tcp.urgent_ptr
+        B17: 4  # value 1 -> B17 bit[2]: egress::hdr.tcp.$valid
+        shift: 20
+        buf_req: 20
+        next: min_parse_depth_accept_initial
+    min_parse_depth_accept_initial:
+      match: [ ctr_neg, ctr_zero ]
+      0x0:
+        counter: dec 11
+        0: TB0  # egress::hdr.min_parse_depth_padding_0[0].packet_payload[87:80].80-87
+        1..2: TH18  # egress::hdr.min_parse_depth_padding_0[0].packet_payload[79:64].64-79
+        3..6: TW8  # egress::hdr.min_parse_depth_padding_0[0].packet_payload[63:32].32-63
+        7..8: TH5  # egress::hdr.min_parse_depth_padding_0[0].packet_payload[31:16].16-31
+        9..10: TH4  # egress::hdr.min_parse_depth_padding_0[0].packet_payload[15:0].0-15
+        B16: 4  # value 4 -> B16 bit[2..0]: egress::hdr.min_parse_depth_padding_0.$stkvalid
+        shift: 11
+        buf_req: 11
+        next: min_parse_depth_accept_loop.$split_0
+      0b**:
+        buf_req: 0
+        next: end
+    min_parse_depth_accept_loop.$split_0:
+      match: [ ctr_neg, ctr_zero ]
+      0x0:
+        counter: dec 11
+        0: TB1  # egress::hdr.min_parse_depth_padding_0[1].packet_payload[87:80].80-87
+        1..2: TH19  # egress::hdr.min_parse_depth_padding_0[1].packet_payload[79:64].64-79
+        3..6: TW10  # egress::hdr.min_parse_depth_padding_0[1].packet_payload[63:32].32-63
+        7..10: TW9  # egress::hdr.min_parse_depth_padding_0[1].packet_payload[31:0].0-31
+        B16: 2  # value 2 -> B16 bit[2..0]: egress::hdr.min_parse_depth_padding_0.$stkvalid
+        shift: 11
+        buf_req: 11
+        next: min_parse_depth_accept_loop.$it1.$split_0
+      0b**:
+        buf_req: 0
+        next: end
+    min_parse_depth_accept_loop.$it1.$split_0:
+      match: [ ctr_neg, ctr_zero ]
+      0x0:
+        counter: dec 11
+        0: TB2  # egress::hdr.min_parse_depth_padding_0[2].packet_payload[87:80].80-87
+        1..2: TH20  # egress::hdr.min_parse_depth_padding_0[2].packet_payload[79:64].64-79
+        3..4: TH13  # egress::hdr.min_parse_depth_padding_0[2].packet_payload[63:48].48-63
+        5..6: TH12  # egress::hdr.min_parse_depth_padding_0[2].packet_payload[47:32].32-47
+        7..10: TW11  # egress::hdr.min_parse_depth_padding_0[2].packet_payload[31:0].0-31
+        B16: 1  # value 1 -> B16 bit[2..0]: egress::hdr.min_parse_depth_padding_0.$stkvalid
+        shift: 11
+        buf_req: 11
+        next: end
+      0b**:
+        buf_req: 0
+        next: end
+    EthIpParser_parse_udp_0:
+      *:
+        counter: dec 8
+        0..1: TH1  # egress::hdr.udp.src_port
+        2..3: TH0  # egress::hdr.udp.dst_port
+        4..7: TW1
+            # - bit[32..47] -> TW1 bit[31..16]: egress::hdr.udp.hdr_lenght
+            # - bit[48..63] -> TW1 bit[15..0]: egress::hdr.udp.checksum
+        B17: 8  # value 1 -> B17 bit[3]: egress::hdr.udp.$valid
+        shift: 8
+        buf_req: 8
+        next: min_parse_depth_accept_initial
+deparser egress:
+  dictionary:
+    TH23: B17(0)  # egress::hdr.ethernet.dst_addr.32-47 if egress::hdr.ethernet.$valid
+    TH17: B17(0)  # egress::hdr.ethernet.dst_addr.16-31 if egress::hdr.ethernet.$valid
+    TH16: B17(0)  # egress::hdr.ethernet.dst_addr.0-15 if egress::hdr.ethernet.$valid
+    TH22: B17(0)  # egress::hdr.ethernet.src_addr.32-47 if egress::hdr.ethernet.$valid
+    TH15: B17(0)  # egress::hdr.ethernet.src_addr.16-31 if egress::hdr.ethernet.$valid
+    TH14: B17(0)  # egress::hdr.ethernet.src_addr.0-15 if egress::hdr.ethernet.$valid
+    TH21: B17(0)  # egress::hdr.ethernet.ether_type if egress::hdr.ethernet.$valid
+    TW0: B17(1)
+        # - bit[31..28]: egress::hdr.ip.version if egress::hdr.ip.$valid
+        # - bit[27..24]: egress::hdr.ip.ihl if egress::hdr.ip.$valid
+        # - bit[23..18]: egress::hdr.ip.dscp if egress::hdr.ip.$valid
+        # - bit[17..16]: egress::hdr.ip.ecn if egress::hdr.ip.$valid
+        # - bit[15..0]: egress::hdr.ip.total_len if egress::hdr.ip.$valid
+    TW3: B17(1)
+        # - bit[31..16]: egress::hdr.ip.identification if egress::hdr.ip.$valid
+        # - bit[15..13]: egress::hdr.ip.flags if egress::hdr.ip.$valid
+        # - bit[12..0]: egress::hdr.ip.frag_offset if egress::hdr.ip.$valid
+    TW2: B17(1)
+        # - bit[31..24]: egress::hdr.ip.ttl if egress::hdr.ip.$valid
+        # - bit[23..16]: egress::hdr.ip.protocol if egress::hdr.ip.$valid
+        # - bit[15..0]: egress::hdr.ip.hdr_checksum if egress::hdr.ip.$valid
+    TW12: B17(1)  # egress::hdr.ip.src_addr if egress::hdr.ip.$valid
+    TB10: B17(1)  # egress::hdr.ip.dst_addr.24-31 if egress::hdr.ip.$valid
+    TB9: B17(1)  # egress::hdr.ip.dst_addr.16-23 if egress::hdr.ip.$valid
+    TB8: B17(1)  # egress::hdr.ip.dst_addr.8-15 if egress::hdr.ip.$valid
+    TB3: B17(1)  # egress::hdr.ip.dst_addr.0-7 if egress::hdr.ip.$valid
+    TH3: B17(2)  # egress::hdr.tcp.src_port if egress::hdr.tcp.$valid
+    TH2: B17(2)  # egress::hdr.tcp.dst_port if egress::hdr.tcp.$valid
+    TW14: B17(2)  # egress::hdr.tcp.seq_no if egress::hdr.tcp.$valid
+    TW13: B17(2)  # egress::hdr.tcp.ack_no if egress::hdr.tcp.$valid
+    TW1: B17(2)
+        # - bit[31..28]: egress::hdr.tcp.data_offset if egress::hdr.tcp.$valid
+        # - bit[27..24]: egress::hdr.tcp.res if egress::hdr.tcp.$valid
+        # - bit[23..16]: egress::hdr.tcp.flags if egress::hdr.tcp.$valid
+        # - bit[15..0]: egress::hdr.tcp.window if egress::hdr.tcp.$valid
+    TH1: B17(2)  # egress::hdr.tcp.checksum if egress::hdr.tcp.$valid
+    TH0: B17(2)  # egress::hdr.tcp.urgent_ptr if egress::hdr.tcp.$valid
+    TH1: B17(3)  # egress::hdr.udp.src_port if egress::hdr.udp.$valid
+    TH0: B17(3)  # egress::hdr.udp.dst_port if egress::hdr.udp.$valid
+    TW1: B17(3)
+        # - bit[31..16]: egress::hdr.udp.hdr_lenght if egress::hdr.udp.$valid
+        # - bit[15..0]: egress::hdr.udp.checksum if egress::hdr.udp.$valid
+    TB0: B16(2)  # egress::hdr.min_parse_depth_padding_0[0].packet_payload.80-87 if egress::hdr.min_parse_depth_padding_0[0].$valid
+    TH18: B16(2)  # egress::hdr.min_parse_depth_padding_0[0].packet_payload.64-79 if egress::hdr.min_parse_depth_padding_0[0].$valid
+    TW8: B16(2)  # egress::hdr.min_parse_depth_padding_0[0].packet_payload.32-63 if egress::hdr.min_parse_depth_padding_0[0].$valid
+    TH5: B16(2)  # egress::hdr.min_parse_depth_padding_0[0].packet_payload.16-31 if egress::hdr.min_parse_depth_padding_0[0].$valid
+    TH4: B16(2)  # egress::hdr.min_parse_depth_padding_0[0].packet_payload.0-15 if egress::hdr.min_parse_depth_padding_0[0].$valid
+    TB1: B16(1)  # egress::hdr.min_parse_depth_padding_0[1].packet_payload.80-87 if egress::hdr.min_parse_depth_padding_0[1].$valid
+    TH19: B16(1)  # egress::hdr.min_parse_depth_padding_0[1].packet_payload.64-79 if egress::hdr.min_parse_depth_padding_0[1].$valid
+    TW10: B16(1)  # egress::hdr.min_parse_depth_padding_0[1].packet_payload.32-63 if egress::hdr.min_parse_depth_padding_0[1].$valid
+    TW9: B16(1)  # egress::hdr.min_parse_depth_padding_0[1].packet_payload.0-31 if egress::hdr.min_parse_depth_padding_0[1].$valid
+    TB2: B16(0)  # egress::hdr.min_parse_depth_padding_0[2].packet_payload.80-87 if egress::hdr.min_parse_depth_padding_0[2].$valid
+    TH20: B16(0)  # egress::hdr.min_parse_depth_padding_0[2].packet_payload.64-79 if egress::hdr.min_parse_depth_padding_0[2].$valid
+    TH13: B16(0)  # egress::hdr.min_parse_depth_padding_0[2].packet_payload.48-63 if egress::hdr.min_parse_depth_padding_0[2].$valid
+    TH12: B16(0)  # egress::hdr.min_parse_depth_padding_0[2].packet_payload.32-47 if egress::hdr.min_parse_depth_padding_0[2].$valid
+    TW11: B16(0)  # egress::hdr.min_parse_depth_padding_0[2].packet_payload.0-31 if egress::hdr.min_parse_depth_padding_0[2].$valid
+  egress_unicast_port: H16(0..8)  # bit[8..0]: egress::eg_intr_md.egress_port
+stage 0 ingress:
+  phase0_match IngressParser.$PORT_METADATA:
+    p4:
+      name: IngressParser.$PORT_METADATA
+      size: 288
+      preferred_match_type: exact
+      match_type: exact
+    size: 288
+    p4_param_order:
+      ig_intr_md.ingress_port: { type: exact, size: 9 }
+    format: {ig_intr_md: 0..63}
+    constant_value: 0
+    actions:
+      set_port_metadata:
+      - handle: 0x20000000
+      - p4_param_order: { ig_intr_md: 64 } 
+  ternary_match tbl_fsmmf167 0:
+    p4: { name: tbl_fsmmf167, hidden: true }
+    gateway:
+      name: cond-15
+      input_xbar:
+        exact group 0: { 3: hdr.udp.$valid }
+      row: 0
+      bus: 0
+      unit: 0
+      match: { 3: hdr.udp.$valid }
+      0x1:
+        run_table: true
+      miss:
+        next:  tbl_fsmmf170
+      condition: 
+        expression: "(hdr.udp.$valid == 1)"
+        true:  tbl_fsmmf167
+        false:  tbl_fsmmf170
+    hit: [  tbl_t_igr_aiTs ]
+    miss:  tbl_t_igr_aiTs
+    indirect: tbl_fsmmf167$tind
+  ternary_indirect tbl_fsmmf167$tind:
+    row: 1
+    bus: 1
+    format: { action: 0..0 }
+    instruction: tbl_fsmmf167$tind(action, $DEFAULT)
+    actions:
+      fsmmf167(1, 1):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true, is_constant: true }
+      - handle: 0x20000002
+      - next_table: 0
+      - set W13(0..31), W12
+    default_action: fsmmf167
+  ternary_match tbl_fsmmf170 1:
+    p4: { name: tbl_fsmmf170, hidden: true }
+    gateway:
+      name: cond-16
+      input_xbar:
+        exact group 0: { 2: hdr.tcp.$valid }
+      row: 7
+      bus: 0
+      unit: 0
+      match: { 2: hdr.tcp.$valid }
+      0x1:
+        run_table: true
+      miss:
+        next:  tbl_t_igr_aiTs
+      condition: 
+        expression: "(hdr.tcp.$valid == 1)"
+        true:  tbl_fsmmf170
+        false:  tbl_t_igr_aiTs
+    hit: [  tbl_t_igr_aiTs ]
+    miss:  tbl_t_igr_aiTs
+    indirect: tbl_fsmmf170$tind
+  ternary_indirect tbl_fsmmf170$tind:
+    row: 1
+    bus: 0
+    format: { action: 0..0 }
+    instruction: tbl_fsmmf170$tind(action, $DEFAULT)
+    actions:
+      fsmmf170(1, 2):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true, is_constant: true }
+      - handle: 0x20000003
+      - next_table: 0
+      - set W13(0..31), W12
+    default_action: fsmmf170
+  hash_action tbl_t_igr_aiTs 2:
+    p4: { name: tbl_t_igr_aiTs, hidden: true }
+    row: 0
+    result_bus: 0
+    hash_dist:
+      0: { hash: 0, mask: 0xffff, shift: 0 }
+      1: { hash: 0, mask: 0xffff, shift: 0 }
+    input_xbar:
+      exact group 0: { 8: ig_intr_md.ingress_mac_tstamp.0-31(8..31), 39: ig_intr_md.ingress_mac_tstamp.0-31(7), 48: ig_intr_md.ingress_mac_tstamp.32-47(0..6) }
+      hash 0:
+        0..15: slice(stripe(crc(0x80000000, 0x0, 0x0, 32, { 0: ig_intr_md.ingress_mac_tstamp.0-31(7), 1: ig_intr_md.ingress_mac_tstamp.0-31(8..31), 25: ig_intr_md.ingress_mac_tstamp.32-47(0..6) }, { })), 0..15)
+      hash group 0:
+        table: [0]
+        seed: 0x0
+      exact group 0: { 8: ig_intr_md.ingress_mac_tstamp.0-31(8..31), 39: ig_intr_md.ingress_mac_tstamp.0-31(7), 48: ig_intr_md.ingress_mac_tstamp.32-47(0..6) }
+      hash 0:
+        16..31: slice(stripe(crc(0x80000000, 0x0, 0x0, 32, { 0: ig_intr_md.ingress_mac_tstamp.0-31(7), 1: ig_intr_md.ingress_mac_tstamp.0-31(8..31), 25: ig_intr_md.ingress_mac_tstamp.32-47(0..6) }, { })), 16..31)
+      hash group 0:
+        table: [0]
+        seed: 0x0
+    gateway:
+      name: tbl_t_igr_aiTs-gateway
+      row: 0
+      bus: 0
+      unit: 1
+      0x0:  tbl_ingress_objects136
+      miss:  tbl_ingress_objects136
+      condition: 
+        expression: "true(always hit)"
+        true:  tbl_ingress_objects136
+        false:  tbl_ingress_objects136
+    next: []
+    action_bus: { 96..99 : hash_dist(0, 1) }
+    instruction: tbl_t_igr_aiTs($DEFAULT, $DEFAULT)
+    actions:
+      Ingress.t_igr.aiTs(0, 3):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true, is_constant: true }
+      - handle: 0x20000009
+      - next_table: 0
+      - set W7(0..31), hash_dist(0, 1, 0..31)
+    default_action: Ingress.t_igr.aiTs
+  ternary_match tbl_ingress_objects136 3:
+    p4: { name: tbl_ingress_objects136, hidden: true }
+    hit: [  ingress_assign_const_to_phv_0 ]
+    miss:  ingress_assign_const_to_phv_0
+    indirect: tbl_ingress_objects136$tind
+  ternary_indirect tbl_ingress_objects136$tind:
+    row: 0
+    bus: 1
+    format: { action: 0..0 }
+    instruction: tbl_ingress_objects136$tind(action, $DEFAULT)
+    actions:
+      ingress_objects136(0, 4):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true, is_constant: true }
+      - handle: 0x20000012
+      - next_table: 0
+      - shru $hash_field_argument0, hdr.ip.total_len, 6
+    default_action: ingress_objects136
+  ternary_match ingress_assign_const_to_phv_0 4:
+    p4: { name: ingress_assign_const_to_phv_0, hidden: true }
+    hit: [  t_igr_tiForward ]
+    miss:  t_igr_tiForward
+    indirect: ingress_assign_const_to_phv_0$tind
+  ternary_indirect ingress_assign_const_to_phv_0$tind:
+    row: 0
+    bus: 0
+    format: { action: 0..0, immediate: 1..32 }
+    action_bus: { 100..103 : immediate(0..31) }
+    instruction: ingress_assign_const_to_phv_0$tind(action, $DEFAULT)
+    actions:
+      __assign_const_to_phv__(0, 5):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true }
+      - handle: 0x20000001
+      - next_table: 0
+      - { $constant0: immediate(0..31), $constant0: 5000000 }
+      - set const_to_phv_32w20000, 20000
+      - set const_to_phv_32w5000000, $constant0
+    default_action: __assign_const_to_phv__
+  exact_match t_igr_tiForward 5:
+    p4: { name: Ingress.t_igr.tiForward, size: 512 }
+    p4_param_order: 
+      hdr.ethernet.dst_addr: { type: exact, size: 48, full_size: 48 }
+    row: 7
+    bus: 0
+    column: [ 2, 3, 4, 5 ]
+    stash: 
+      row: [ 7 ]
+      col: [ 2 ]
+      unit: [ 0 ]
+    ways:
+      - { group: 1, index: 0..9, select: 40..51 & 0x0, rams: [[7, 2]] }
+      - { group: 1, index: 10..19, select: 40..51 & 0x0, rams: [[7, 3]] }
+      - { group: 1, index: 20..29, select: 40..51 & 0x0, rams: [[7, 4]] }
+      - { group: 1, index: 30..39, select: 40..51 & 0x0, rams: [[7, 5]] }
+    input_xbar:
+      exact group 0: { 64: hdr.ethernet.dst_addr.0-31, 96: hdr.ethernet.dst_addr.32-47 }
+      hash 1:
+        0..7: random(hdr.ethernet.dst_addr.0-31, hdr.ethernet.dst_addr.32-47(10..15)) ^ hdr.ethernet.dst_addr.32-47(0..7)
+        8..9: random(hdr.ethernet.dst_addr.0-31, hdr.ethernet.dst_addr.32-47(10..15)) ^ hdr.ethernet.dst_addr.32-47(8..9)
+        11..18: random(hdr.ethernet.dst_addr.0-31, hdr.ethernet.dst_addr.32-47(10..15)) ^ hdr.ethernet.dst_addr.32-47(0..7)
+        19: random(hdr.ethernet.dst_addr.0-31, hdr.ethernet.dst_addr.32-47(10..15)) ^ hdr.ethernet.dst_addr.32-47(8)
+        10: random(hdr.ethernet.dst_addr.0-31, hdr.ethernet.dst_addr.32-47(10..15)) ^ hdr.ethernet.dst_addr.32-47(9)
+        22..29: random(hdr.ethernet.dst_addr.0-31, hdr.ethernet.dst_addr.32-47(10..15)) ^ hdr.ethernet.dst_addr.32-47(0..7)
+        20..21: random(hdr.ethernet.dst_addr.0-31, hdr.ethernet.dst_addr.32-47(10..15)) ^ hdr.ethernet.dst_addr.32-47(8..9)
+        33..39: random(hdr.ethernet.dst_addr.0-31, hdr.ethernet.dst_addr.32-47(10..15)) ^ hdr.ethernet.dst_addr.32-47(0..6)
+        30: random(hdr.ethernet.dst_addr.0-31, hdr.ethernet.dst_addr.32-47(10..15)) ^ hdr.ethernet.dst_addr.32-47(7)
+        31..32: random(hdr.ethernet.dst_addr.0-31, hdr.ethernet.dst_addr.32-47(10..15)) ^ hdr.ethernet.dst_addr.32-47(8..9)
+      hash group 1:
+        table: [1]
+        seed: 0x254863c0e9
+    format: { action(0): 0..0, immediate(0): 2..10, version(0): 112..115, match(0): [ 66..71, 32..63 ], action(1): 1..1, immediate(1): 11..19, version(1): 116..119, match(1): [ 106..111, 72..103 ] }
+    match: [ hdr.ethernet.dst_addr.32-47(10..15), hdr.ethernet.dst_addr.0-31(0..7), hdr.ethernet.dst_addr.0-31(8..15), hdr.ethernet.dst_addr.0-31(16..23), hdr.ethernet.dst_addr.0-31(24..31) ]
+    match_group_map: [ [ 0, 1 ] ]
+    hit: [  tbl_t_igr_aiSetfid ]
+    miss:  tbl_t_igr_aiSetfid
+    action_bus: { 32..33 : immediate(0..8) }
+    instruction: t_igr_tiForward(action, $DEFAULT)
+    actions:
+      Ingress.t_igr.aiSetEgress(0, 6):
+      - p4_param_order: { egr_port: 9 }
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: false, reason: has_const_default_action }
+      - handle: 0x20000004
+      - next_table: 0
+      - { egr_port: immediate(0..8) }
+      - set ig_intr_md_for_tm.ucast_egress_port, egr_port
+      Ingress.t_igr.aiNoop(1, 0):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true, is_constant: true }
+      - handle: 0x20000005
+      - next_table: 0
+      - {  }
+    default_action: Ingress.t_igr.aiNoop
+stage 1 ingress:
+  dependency: match
+  hash_action tbl_t_igr_aiSetfid 0:
+    p4: { name: tbl_t_igr_aiSetfid, hidden: true }
+    row: 0
+    result_bus: 1
+    hash_dist:
+      0: { hash: 0, mask: 0x7ff, shift: 0 }
+    input_xbar:
+      exact group 0: { 0: md.dport, 16: md.sport, 32: hdr.ip.dst_addr, 64: hdr.ip.src_addr, 96: hdr.ip.protocol }
+      hash 0:
+        0..10: slice(stripe(crc_rev(0xc002, 0x0, 0x0, 104, { 0: md.dport, 16: md.sport, 40: hdr.ip.dst_addr }, { })), 0..10)
+      hash 1:
+        0..10: slice(stripe(crc_rev(0xc002, 0x0, 0x0, 104, { 32: hdr.ip.protocol, 72: hdr.ip.src_addr }, { })), 0..10)
+      hash group 0:
+        table: [0, 1]
+        seed: 0x0
+    gateway:
+      name: tbl_t_igr_aiSetfid-gateway
+      row: 0
+      bus: 0
+      unit: 1
+      0x0:  tbl_t_igr_aiSetpktlen
+      miss:  tbl_t_igr_aiSetpktlen
+      condition: 
+        expression: "true(always hit)"
+        true:  tbl_t_igr_aiSetpktlen
+        false:  tbl_t_igr_aiSetpktlen
+    next: []
+    action_bus: { 96..99 : hash_dist(0) }
+    instruction: tbl_t_igr_aiSetfid($DEFAULT, $DEFAULT)
+    actions:
+      Ingress.t_igr.aiSetfid(0, 1):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true, is_constant: true }
+      - handle: 0x20000006
+      - next_table: 0
+      - set W40(0..10), hash_dist(0, 0..10)
+    default_action: Ingress.t_igr.aiSetfid
+  hash_action tbl_t_igr_aiSetpktlen 1:
+    p4: { name: tbl_t_igr_aiSetpktlen, hidden: true }
+    row: 0
+    result_bus: 0
+    hash_dist:
+      1: { hash: 0, mask: 0xffff, shift: 0 }
+      2: { hash: 0, mask: 0xffff, shift: 0 }
+    input_xbar:
+      exact group 0: { 104: $hash_field_argument0(8..15), 112: $hash_field_argument0(0..7) }
+      hash 1:
+        16..31: slice(stripe(crc(0x80000000, 0x0, 0x0, 16, { 0: $hash_field_argument0(0..7), 8: $hash_field_argument0(8..15) }, { })), 0..15)
+      hash group 0:
+        table: [1]
+        seed: 0x0
+      exact group 0: { 104: $hash_field_argument0(8..15), 112: $hash_field_argument0(0..7) }
+      hash 1:
+        32..47: slice(stripe(crc(0x80000000, 0x0, 0x0, 16, { 0: $hash_field_argument0(0..7), 8: $hash_field_argument0(8..15) }, { })), 16..31)
+      hash group 0:
+        table: [1]
+        seed: 0x0
+    gateway:
+      name: tbl_t_igr_aiSetpktlen-gateway
+      row: 0
+      bus: 0
+      unit: 0
+      0x0:  tbl_bottlenecked_rate_read_cms_act2
+      miss:  tbl_bottlenecked_rate_read_cms_act2
+      condition: 
+        expression: "true(always hit)"
+        true:  tbl_bottlenecked_rate_read_cms_act2
+        false:  tbl_bottlenecked_rate_read_cms_act2
+    next: []
+    action_bus: { 100..103 : hash_dist(1, 2) }
+    instruction: tbl_t_igr_aiSetpktlen($DEFAULT, $DEFAULT)
+    actions:
+      Ingress.t_igr.aiSetpktlen(0, 2):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true, is_constant: true }
+      - handle: 0x20000013
+      - next_table: 0
+      - set W6(0..31), hash_dist(1, 2, 0..31)
+    default_action: Ingress.t_igr.aiSetpktlen
+  hash_action tbl_bottlenecked_rate_read_cms_act2 2:
+    p4: { name: tbl_bottlenecked_rate_read_cms_act2, hidden: true }
+    row: 1
+    result_bus: 0
+    hash_dist:
+      3: { hash: 1, mask: 0x7ff, shift: 3 }
+      4: { hash: 1, mask: 0x7ff, shift: 7 }
+    input_xbar:
+      exact group 1: { 0: md.dport, 16: md.sport, 32: hdr.ip.dst_addr, 80: hdr.ip.src_addr(16..31), 96: hdr.ip.src_addr(0..15), 112: hdr.ip.protocol }
+      hash 2:
+        0..10: slice(stripe(crc_rev(0xc002, 0x0, 0x0, 110, { 0: md.dport, 16: md.sport, 43: hdr.ip.dst_addr }, { 40..42: 0, 75..77: 0 })), 0..10)
+      hash 3:
+        0..10: slice(stripe(crc_rev(0xc002, 0x0, 0x0, 110, { 32: hdr.ip.protocol, 78: hdr.ip.src_addr(0..15), 94: hdr.ip.src_addr(16..31) }, { 40..42: 0, 75..77: 0 })), 0..10)
+      hash group 1:
+        table: [2, 3]
+        seed: 0x0
+      exact group 1: { 0: md.dport, 16: md.sport, 32: hdr.ip.dst_addr, 80: hdr.ip.src_addr(16..31), 96: hdr.ip.src_addr(0..15), 112: hdr.ip.protocol }
+      hash 2:
+        16..26: slice(stripe(crc_rev(0xc002, 0x0, 0x0, 110, { 0: md.dport, 16: md.sport, 43: hdr.ip.dst_addr }, { 40..42: 0, 75..77: 0 })), 0..10)
+      hash 3:
+        16..26: slice(stripe(crc_rev(0xc002, 0x0, 0x0, 110, { 32: hdr.ip.protocol, 78: hdr.ip.src_addr(0..15), 94: hdr.ip.src_addr(16..31) }, { 40..42: 0, 75..77: 0 })), 0..10)
+      hash group 1:
+        table: [2, 3]
+        seed: 0x0
+    gateway:
+      name: tbl_bottlenecked_rate_read_cms_act2-gateway
+      row: 1
+      bus: 0
+      unit: 0
+      0x0:  tbl_t_igr_aiCaldT
+      miss:  tbl_t_igr_aiCaldT
+      condition: 
+        expression: "true(always hit)"
+        true:  tbl_t_igr_aiCaldT
+        false:  tbl_t_igr_aiCaldT
+    next: []
+    action_bus: { 104..107 : tbl_bottlenecked_rate_read_cms_act2$meter.Ingress.bottlenecked_rate.lpf_2(0..31) }
+    meter: tbl_bottlenecked_rate_read_cms_act2$meter.Ingress.bottlenecked_rate.lpf_2(hash_dist 4, $DEFAULT, $DEFAULT)
+    instruction: tbl_bottlenecked_rate_read_cms_act2($DEFAULT, $DEFAULT)
+    actions:
+      Ingress.bottlenecked_rate.read_cms_act2_(0, 3):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true, is_constant: true }
+      - handle: 0x20000031
+      - next_table: 0
+      - set W1(0..31), tbl_bottlenecked_rate_read_cms_act2$meter.Ingress.bottlenecked_rate.lpf_2
+      - tbl_bottlenecked_rate_read_cms_act2$meter.Ingress.bottlenecked_rate.lpf_2(2, $hash_dist)
+    default_action: Ingress.bottlenecked_rate.read_cms_act2_
+  meter tbl_bottlenecked_rate_read_cms_act2$meter.Ingress.bottlenecked_rate.lpf_2:
+    p4: { name: Ingress.bottlenecked_rate.lpf_2, size: 2048 }
+    input_xbar:
+      exact group 1: { 64: hdr.ip.total_len }
+    row: 15
+    logical_bus: S
+    column: [ 0, 1, 2 ]
+    maprams: [ 0, 1, 2 ]
+    vpns: [ 0, 1, 2 ]
+    home_row: 15
+    type: lpf
+stage 2 ingress:
+  dependency: match
+  hash_action tbl_t_igr_aiCaldT 0:
+    p4: { name: tbl_t_igr_aiCaldT, hidden: true }
+    row: 1
+    result_bus: 0
+    hash_dist:
+      0: { hash: 0, mask: 0x7ff, shift: 5 }
+    input_xbar:
+      exact group 0: { 0: md.fid }
+      hash 0:
+        0..10: md.fid
+      hash group 0:
+        table: [0]
+        seed: 0x0
+    gateway:
+      name: tbl_t_igr_aiCaldT-gateway
+      row: 1
+      bus: 0
+      unit: 0
+      0x0:  tbl_t_igr_aiSetTableKey
+      miss:  tbl_t_igr_aiSetTableKey
+      condition: 
+        expression: "true(always hit)"
+        true:  tbl_t_igr_aiSetTableKey
+        false:  tbl_t_igr_aiSetTableKey
+    next: []
+    action_bus: { 96..99 : tbl_t_igr_aiCaldT$salu.Ingress.t_igr.riTs(0..31) }
+    stateful: tbl_t_igr_aiCaldT$salu.Ingress.t_igr.riTs(hash_dist 0, $DEFAULT, $DEFAULT)
+    instruction: tbl_t_igr_aiCaldT($DEFAULT, $DEFAULT)
+    actions:
+      Ingress.t_igr.aiCaldT(0, 1):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true, is_constant: true }
+      - handle: 0x2000000a
+      - next_table: 0
+      - set W9(0..31), tbl_t_igr_aiCaldT$salu.Ingress.t_igr.riTs
+      - tbl_t_igr_aiCaldT$salu.Ingress.t_igr.riTs(t_igr_raSetTs, $hash_dist)
+    default_action: Ingress.t_igr.aiCaldT
+  stateful tbl_t_igr_aiCaldT$salu.Ingress.t_igr.riTs:
+    p4: { name: Ingress.t_igr.riTs, size: 2048 }
+    row: 3
+    logical_bus: S
+    column: [ 0, 1 ]
+    maprams: [ 0, 1 ]
+    home_row: 3
+    input_xbar:
+      exact group 0: { 64: t_igr_ts }
+    data_bytemask: 15
+    format: { lo: 32 }
+    actions:
+      t_igr_raSetTs:
+      - sub hi, phv_lo, lo
+      - alu_a lo, phv_lo
+      - output alu_hi
+  ternary_match tbl_t_igr_aiSetTableKey 1:
+    p4: { name: tbl_t_igr_aiSetTableKey, hidden: true }
+    hit: [  tbl_t_igr_aiSetburstStage ]
+    miss:  tbl_t_igr_aiSetburstStage
+    indirect: tbl_t_igr_aiSetTableKey$tind
+  ternary_indirect tbl_t_igr_aiSetTableKey$tind:
+    row: 0
+    bus: 0
+    format: { action: 0..0 }
+    instruction: tbl_t_igr_aiSetTableKey$tind(action, $DEFAULT)
+    actions:
+      Ingress.t_igr.aiSetTableKey(0, 2):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true, is_constant: true }
+      - handle: 0x20000008
+      - next_table: 0
+      - set t_igr_table_key.0-18(0..10), md.fid
+    default_action: Ingress.t_igr.aiSetTableKey
+  hash_action tbl_t_igr_aiSetburstStage 2:
+    p4: { name: tbl_t_igr_aiSetburstStage, hidden: true }
+    row: 0
+    result_bus: 1
+    hash_dist:
+      0: { hash: 0, mask: 0x7ff, shift: 5 }
+    input_xbar:
+      exact group 0: { 0: md.fid }
+      hash 0:
+        0..10: md.fid
+      hash group 0:
+        table: [0]
+        seed: 0x0
+    gateway:
+      name: tbl_t_igr_aiSetburstStage-gateway
+      row: 0
+      bus: 0
+      unit: 1
+      0x0:  tbl_bottlenecked_rate_read_cms_act1
+      miss:  tbl_bottlenecked_rate_read_cms_act1
+      condition: 
+        expression: "true(always hit)"
+        true:  tbl_bottlenecked_rate_read_cms_act1
+        false:  tbl_bottlenecked_rate_read_cms_act1
+    next: []
+    action_bus: { 0 : tbl_t_igr_aiSetburstStage$salu.Ingress.t_igr.riburstStage(0..7) }
+    stateful: tbl_t_igr_aiSetburstStage$salu.Ingress.t_igr.riburstStage(hash_dist 0, $DEFAULT, $DEFAULT)
+    instruction: tbl_t_igr_aiSetburstStage($DEFAULT, $DEFAULT)
+    actions:
+      Ingress.t_igr.aiSetburstStage(0, 3):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true, is_constant: true }
+      - handle: 0x20000019
+      - next_table: 0
+      - set B3(4..4), tbl_t_igr_aiSetburstStage$salu.Ingress.t_igr.riburstStage(0..0)
+      - tbl_t_igr_aiSetburstStage$salu.Ingress.t_igr.riburstStage(t_igr_raburstStage, $hash_dist)
+    default_action: Ingress.t_igr.aiSetburstStage
+  stateful tbl_t_igr_aiSetburstStage$salu.Ingress.t_igr.riburstStage:
+    p4: { name: Ingress.t_igr.riburstStage, size: 2048 }
+    row: 7
+    logical_bus: S
+    column: [ 0, 1 ]
+    maprams: [ 0, 1 ]
+    home_row: 7
+    format: { lo: 32 }
+    initial_value: { lo: 1 , hi: 0 }
+    actions:
+      t_igr_raburstStage:
+      - alu_a hi, lo
+      - output alu_hi
+  hash_action tbl_bottlenecked_rate_read_cms_act1 3:
+    p4: { name: tbl_bottlenecked_rate_read_cms_act1, hidden: true }
+    row: 0
+    result_bus: 0
+    hash_dist:
+      1: { hash: 0, mask: 0x7ff, shift: 3 }
+      2: { hash: 0, mask: 0x7ff, shift: 7 }
+    input_xbar:
+      exact group 1: { 0: md.dport, 16: md.sport, 32: hdr.ip.dst_addr, 80: hdr.ip.src_addr(16..31), 96: hdr.ip.src_addr(0..15), 112: hdr.ip.protocol }
+      hash 2:
+        16..26: slice(stripe(crc_rev(0xc002, 0x0, 0x0, 104, { 0: md.dport, 16: md.sport, 40: hdr.ip.dst_addr }, { })), 0..10)
+      hash 3:
+        16..26: slice(stripe(crc_rev(0xc002, 0x0, 0x0, 104, { 32: hdr.ip.protocol, 72: hdr.ip.src_addr(0..15), 88: hdr.ip.src_addr(16..31) }, { })), 0..10)
+      hash group 0:
+        table: [2, 3]
+        seed: 0x0
+      exact group 1: { 0: md.dport, 16: md.sport, 32: hdr.ip.dst_addr, 80: hdr.ip.src_addr(16..31), 96: hdr.ip.src_addr(0..15), 112: hdr.ip.protocol }
+      hash 2:
+        32..42: slice(stripe(crc_rev(0xc002, 0x0, 0x0, 104, { 0: md.dport, 16: md.sport, 40: hdr.ip.dst_addr }, { })), 0..10)
+      hash 3:
+        32..42: slice(stripe(crc_rev(0xc002, 0x0, 0x0, 104, { 32: hdr.ip.protocol, 72: hdr.ip.src_addr(0..15), 88: hdr.ip.src_addr(16..31) }, { })), 0..10)
+      hash group 0:
+        table: [2, 3]
+        seed: 0x0
+    gateway:
+      name: tbl_bottlenecked_rate_read_cms_act1-gateway
+      row: 0
+      bus: 0
+      unit: 0
+      0x0:  tbl_bottlenecked_rate_read_cms_act3
+      miss:  tbl_bottlenecked_rate_read_cms_act3
+      condition: 
+        expression: "true(always hit)"
+        true:  tbl_bottlenecked_rate_read_cms_act3
+        false:  tbl_bottlenecked_rate_read_cms_act3
+    next: []
+    action_bus: { 104..107 : tbl_bottlenecked_rate_read_cms_act1$meter.Ingress.bottlenecked_rate.lpf_1(0..31) }
+    meter: tbl_bottlenecked_rate_read_cms_act1$meter.Ingress.bottlenecked_rate.lpf_1(hash_dist 2, $DEFAULT, $DEFAULT)
+    instruction: tbl_bottlenecked_rate_read_cms_act1($DEFAULT, $DEFAULT)
+    actions:
+      Ingress.bottlenecked_rate.read_cms_act1_(0, 4):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true, is_constant: true }
+      - handle: 0x20000030
+      - next_table: 0
+      - set W0(0..31), tbl_bottlenecked_rate_read_cms_act1$meter.Ingress.bottlenecked_rate.lpf_1
+      - tbl_bottlenecked_rate_read_cms_act1$meter.Ingress.bottlenecked_rate.lpf_1(2, $hash_dist)
+    default_action: Ingress.bottlenecked_rate.read_cms_act1_
+  meter tbl_bottlenecked_rate_read_cms_act1$meter.Ingress.bottlenecked_rate.lpf_1:
+    p4: { name: Ingress.bottlenecked_rate.lpf_1, size: 2048 }
+    input_xbar:
+      exact group 1: { 64: hdr.ip.total_len }
+    row: 15
+    logical_bus: S
+    column: [ 0, 1, 2 ]
+    maprams: [ 0, 1, 2 ]
+    vpns: [ 0, 1, 2 ]
+    home_row: 15
+    type: lpf
+  hash_action tbl_bottlenecked_rate_read_cms_act3 4:
+    p4: { name: tbl_bottlenecked_rate_read_cms_act3, hidden: true }
+    row: 1
+    result_bus: 1
+    hash_dist:
+      3: { hash: 1, mask: 0x7ff, shift: 3 }
+      4: { hash: 1, mask: 0x7ff, shift: 7 }
+    input_xbar:
+      exact group 2: { 0: md.dport, 16: md.sport, 32: hdr.ip.dst_addr, 80: hdr.ip.src_addr(16..31), 96: hdr.ip.src_addr(0..15), 112: hdr.ip.protocol }
+      hash 4:
+        0..10: slice(stripe(crc_rev(0xc002, 0x0, 0x0, 109, { 0: md.dport, 17: md.sport, 45: hdr.ip.dst_addr }, { 16..16: 0, 33..34: 0, 43..44: 0 })), 0..10)
+      hash 5:
+        0..10: slice(stripe(crc_rev(0xc002, 0x0, 0x0, 109, { 35: hdr.ip.protocol, 77: hdr.ip.src_addr(0..15), 93: hdr.ip.src_addr(16..31) }, { 16..16: 0, 33..34: 0, 43..44: 0 })), 0..10)
+      hash group 1:
+        table: [4, 5]
+        seed: 0x0
+      exact group 2: { 0: md.dport, 16: md.sport, 32: hdr.ip.dst_addr, 80: hdr.ip.src_addr(16..31), 96: hdr.ip.src_addr(0..15), 112: hdr.ip.protocol }
+      hash 4:
+        16..26: slice(stripe(crc_rev(0xc002, 0x0, 0x0, 109, { 0: md.dport, 17: md.sport, 45: hdr.ip.dst_addr }, { 16..16: 0, 33..34: 0, 43..44: 0 })), 0..10)
+      hash 5:
+        16..26: slice(stripe(crc_rev(0xc002, 0x0, 0x0, 109, { 35: hdr.ip.protocol, 77: hdr.ip.src_addr(0..15), 93: hdr.ip.src_addr(16..31) }, { 16..16: 0, 33..34: 0, 43..44: 0 })), 0..10)
+      hash group 1:
+        table: [4, 5]
+        seed: 0x0
+    gateway:
+      name: tbl_bottlenecked_rate_read_cms_act3-gateway
+      row: 1
+      bus: 0
+      unit: 1
+      0x0:  t_igr_tiRate
+      miss:  t_igr_tiRate
+      condition: 
+        expression: "true(always hit)"
+        true:  t_igr_tiRate
+        false:  t_igr_tiRate
+    next: []
+    action_bus: { 112..115 : tbl_bottlenecked_rate_read_cms_act3$meter.Ingress.bottlenecked_rate.lpf_3(0..31) }
+    meter: tbl_bottlenecked_rate_read_cms_act3$meter.Ingress.bottlenecked_rate.lpf_3(hash_dist 4, $DEFAULT, $DEFAULT)
+    instruction: tbl_bottlenecked_rate_read_cms_act3($DEFAULT, $DEFAULT)
+    actions:
+      Ingress.bottlenecked_rate.read_cms_act3_(0, 5):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true, is_constant: true }
+      - handle: 0x20000032
+      - next_table: 0
+      - set W2(0..31), tbl_bottlenecked_rate_read_cms_act3$meter.Ingress.bottlenecked_rate.lpf_3
+      - tbl_bottlenecked_rate_read_cms_act3$meter.Ingress.bottlenecked_rate.lpf_3(2, $hash_dist)
+    default_action: Ingress.bottlenecked_rate.read_cms_act3_
+  meter tbl_bottlenecked_rate_read_cms_act3$meter.Ingress.bottlenecked_rate.lpf_3:
+    p4: { name: Ingress.bottlenecked_rate.lpf_3, size: 2048 }
+    input_xbar:
+      exact group 2: { 64: hdr.ip.total_len }
+    row: 11
+    logical_bus: S
+    column: [ 0, 1, 2 ]
+    maprams: [ 0, 1, 2 ]
+    vpns: [ 0, 1, 2 ]
+    home_row: 11
+    type: lpf
+stage 3 ingress:
+  dependency: match
+  exact_match t_igr_tiRate 0:
+    p4: { name: Ingress.t_igr.tiRate, size: 512 }
+    p4_param_order: 
+      t_igr_table_key: { type: exact, size: 32, full_size: 32, key_name: "table_key" }
+    row: 7
+    bus: 0
+    column: [ 2, 3, 4, 5 ]
+    stash: 
+      row: [ 7 ]
+      col: [ 2 ]
+      unit: [ 0 ]
+    ways:
+      - { group: 0, index: 0..9, select: 40..51 & 0x0, rams: [[7, 2]] }
+      - { group: 0, index: 10..19, select: 40..51 & 0x0, rams: [[7, 3]] }
+      - { group: 0, index: 20..29, select: 40..51 & 0x0, rams: [[7, 4]] }
+      - { group: 0, index: 30..39, select: 40..51 & 0x0, rams: [[7, 5]] }
+    input_xbar:
+      exact group 0: { 0: t_igr_table_key.19-31(0..7), 11: t_igr_table_key.0-18, 40: t_igr_table_key.19-31(8..12) }
+      hash 0:
+        0..4: random(t_igr_table_key.19-31(0..7), t_igr_table_key.0-18(5..18)) ^ t_igr_table_key.0-18(0..4)
+        5..9: random(t_igr_table_key.19-31(0..7), t_igr_table_key.0-18(5..18)) ^ t_igr_table_key.19-31(8..12)
+        11..15: random(t_igr_table_key.19-31(0..7), t_igr_table_key.0-18(5..18)) ^ t_igr_table_key.0-18(0..4)
+        16..19: random(t_igr_table_key.19-31(0..7), t_igr_table_key.0-18(5..18)) ^ t_igr_table_key.19-31(8..11)
+        10: random(t_igr_table_key.19-31(0..7), t_igr_table_key.0-18(5..18)) ^ t_igr_table_key.19-31(12)
+        22..26: random(t_igr_table_key.19-31(0..7), t_igr_table_key.0-18(5..18)) ^ t_igr_table_key.0-18(0..4)
+        27..29: random(t_igr_table_key.19-31(0..7), t_igr_table_key.0-18(5..18)) ^ t_igr_table_key.19-31(8..10)
+        20..21: random(t_igr_table_key.19-31(0..7), t_igr_table_key.0-18(5..18)) ^ t_igr_table_key.19-31(11..12)
+        33..37: random(t_igr_table_key.19-31(0..7), t_igr_table_key.0-18(5..18)) ^ t_igr_table_key.0-18(0..4)
+        38..39: random(t_igr_table_key.19-31(0..7), t_igr_table_key.0-18(5..18)) ^ t_igr_table_key.19-31(8..9)
+        30..32: random(t_igr_table_key.19-31(0..7), t_igr_table_key.0-18(5..18)) ^ t_igr_table_key.19-31(10..12)
+      hash group 0:
+        table: [0]
+        seed: 0x9448320bc2
+    format: { immediate(0): 0..31, version(0): 112..115, match(0): 32..53 }
+    match: [ t_igr_table_key.19-31(0..7), t_igr_table_key.0-18(5..12), t_igr_table_key.0-18(13..18) ]
+    match_group_map: [ [ 0 ] ]
+    hit: [  t_igr_tiCalc_log_dt ]
+    miss:  t_igr_tiCalc_log_dt
+    action_bus: { 96..99 : immediate(0..31) }
+    instruction: t_igr_tiRate($DEFAULT, $DEFAULT)
+    actions:
+      Ingress.t_igr.aiRate(0, 1):
+      - p4_param_order: { Allocate_rate: 32 }
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true, is_constant: true }
+      - handle: 0x2000000e
+      - next_table: 0
+      - { Allocate_rate: immediate(0..31) }
+      - set t_igr_rate, Allocate_rate
+    default_action: Ingress.t_igr.aiRate
+    default_action_parameters:
+      Allocate_rate: "0x0"
+  ternary_match t_igr_tiCalc_log_dt 1:
+    p4: { name: Ingress.t_igr.tiCalc_log_dt, size: 512, hidden: true }
+    p4_param_order: 
+      t_igr_dt: { type: ternary, size: 32, full_size: 32, key_name: "dt" }
+    row: 0
+    bus: 0
+    column: 0
+    indirect_bus: 1
+    input_xbar:
+      ternary group 0: { 0: t_igr_dt }
+    match:
+    - { group: 0, byte_config: 3, dirtcam: 0x55 }
+    hit: [  tbl_t_igr_aiFcount ]
+    miss:  tbl_t_igr_aiFcount
+    context_json:
+      static_entries:
+      - priority: 0
+        match_key_fields_values:
+        - field_name: dt
+          value: "0x80000000"
+          mask: "0x80000000"
+        action_handle: 0x2000000c
+        is_default_entry: false
+        action_parameters_values:
+        - parameter_name: log_d_t
+          value: "0x1F"
+      - priority: 1
+        match_key_fields_values:
+        - field_name: dt
+          value: "0x40000000"
+          mask: "0x40000000"
+        action_handle: 0x2000000c
+        is_default_entry: false
+        action_parameters_values:
+        - parameter_name: log_d_t
+          value: "0x1E"
+      - priority: 2
+        match_key_fields_values:
+        - field_name: dt
+          value: "0x20000000"
+          mask: "0x20000000"
+        action_handle: 0x2000000c
+        is_default_entry: false
+        action_parameters_values:
+        - parameter_name: log_d_t
+          value: "0x1D"
+      - priority: 3
+        match_key_fields_values:
+        - field_name: dt
+          value: "0x10000000"
+          mask: "0x10000000"
+        action_handle: 0x2000000c
+        is_default_entry: false
+        action_parameters_values:
+        - parameter_name: log_d_t
+          value: "0x1C"
+      - priority: 4
+        match_key_fields_values:
+        - field_name: dt
+          value: "0x8000000"
+          mask: "0x8000000"
+        action_handle: 0x2000000c
+        is_default_entry: false
+        action_parameters_values:
+        - parameter_name: log_d_t
+          value: "0x1B"
+      - priority: 5
+        match_key_fields_values:
+        - field_name: dt
+          value: "0x4000000"
+          mask: "0x4000000"
+        action_handle: 0x2000000c
+        is_default_entry: false
+        action_parameters_values:
+        - parameter_name: log_d_t
+          value: "0x1A"
+      - priority: 6
+        match_key_fields_values:
+        - field_name: dt
+          value: "0x2000000"
+          mask: "0x2000000"
+        action_handle: 0x2000000c
+        is_default_entry: false
+        action_parameters_values:
+        - parameter_name: log_d_t
+          value: "0x19"
+      - priority: 7
+        match_key_fields_values:
+        - field_name: dt
+          value: "0x1000000"
+          mask: "0x1000000"
+        action_handle: 0x2000000c
+        is_default_entry: false
+        action_parameters_values:
+        - parameter_name: log_d_t
+          value: "0x18"
+      - priority: 8
+        match_key_fields_values:
+        - field_name: dt
+          value: "0x800000"
+          mask: "0x800000"
+        action_handle: 0x2000000c
+        is_default_entry: false
+        action_parameters_values:
+        - parameter_name: log_d_t
+          value: "0x17"
+      - priority: 9
+        match_key_fields_values:
+        - field_name: dt
+          value: "0x400000"
+          mask: "0x400000"
+        action_handle: 0x2000000c
+        is_default_entry: false
+        action_parameters_values:
+        - parameter_name: log_d_t
+          value: "0x16"
+      - priority: 10
+        match_key_fields_values:
+        - field_name: dt
+          value: "0x200000"
+          mask: "0x200000"
+        action_handle: 0x2000000c
+        is_default_entry: false
+        action_parameters_values:
+        - parameter_name: log_d_t
+          value: "0x15"
+      - priority: 11
+        match_key_fields_values:
+        - field_name: dt
+          value: "0x100000"
+          mask: "0x100000"
+        action_handle: 0x2000000c
+        is_default_entry: false
+        action_parameters_values:
+        - parameter_name: log_d_t
+          value: "0x14"
+      - priority: 12
+        match_key_fields_values:
+        - field_name: dt
+          value: "0x80000"
+          mask: "0x80000"
+        action_handle: 0x2000000c
+        is_default_entry: false
+        action_parameters_values:
+        - parameter_name: log_d_t
+          value: "0x13"
+      - priority: 13
+        match_key_fields_values:
+        - field_name: dt
+          value: "0x40000"
+          mask: "0x40000"
+        action_handle: 0x2000000c
+        is_default_entry: false
+        action_parameters_values:
+        - parameter_name: log_d_t
+          value: "0x12"
+      - priority: 14
+        match_key_fields_values:
+        - field_name: dt
+          value: "0x20000"
+          mask: "0x20000"
+        action_handle: 0x2000000c
+        is_default_entry: false
+        action_parameters_values:
+        - parameter_name: log_d_t
+          value: "0x11"
+      - priority: 15
+        match_key_fields_values:
+        - field_name: dt
+          value: "0x10000"
+          mask: "0x10000"
+        action_handle: 0x2000000c
+        is_default_entry: false
+        action_parameters_values:
+        - parameter_name: log_d_t
+          value: "0x10"
+      - priority: 16
+        match_key_fields_values:
+        - field_name: dt
+          value: "0x8000"
+          mask: "0x8000"
+        action_handle: 0x2000000c
+        is_default_entry: false
+        action_parameters_values:
+        - parameter_name: log_d_t
+          value: "0xF"
+      - priority: 17
+        match_key_fields_values:
+        - field_name: dt
+          value: "0x4000"
+          mask: "0x4000"
+        action_handle: 0x2000000c
+        is_default_entry: false
+        action_parameters_values:
+        - parameter_name: log_d_t
+          value: "0xE"
+      - priority: 18
+        match_key_fields_values:
+        - field_name: dt
+          value: "0x2000"
+          mask: "0x2000"
+        action_handle: 0x2000000c
+        is_default_entry: false
+        action_parameters_values:
+        - parameter_name: log_d_t
+          value: "0xD"
+      - priority: 19
+        match_key_fields_values:
+        - field_name: dt
+          value: "0x1000"
+          mask: "0x1000"
+        action_handle: 0x2000000c
+        is_default_entry: false
+        action_parameters_values:
+        - parameter_name: log_d_t
+          value: "0xC"
+      - priority: 20
+        match_key_fields_values:
+        - field_name: dt
+          value: "0x800"
+          mask: "0x800"
+        action_handle: 0x2000000c
+        is_default_entry: false
+        action_parameters_values:
+        - parameter_name: log_d_t
+          value: "0xB"
+      - priority: 21
+        match_key_fields_values:
+        - field_name: dt
+          value: "0x400"
+          mask: "0x400"
+        action_handle: 0x2000000c
+        is_default_entry: false
+        action_parameters_values:
+        - parameter_name: log_d_t
+          value: "0xA"
+      - priority: 22
+        match_key_fields_values:
+        - field_name: dt
+          value: "0x200"
+          mask: "0x200"
+        action_handle: 0x2000000c
+        is_default_entry: false
+        action_parameters_values:
+        - parameter_name: log_d_t
+          value: "0x9"
+      - priority: 23
+        match_key_fields_values:
+        - field_name: dt
+          value: "0x100"
+          mask: "0x100"
+        action_handle: 0x2000000c
+        is_default_entry: false
+        action_parameters_values:
+        - parameter_name: log_d_t
+          value: "0x8"
+      - priority: 24
+        match_key_fields_values:
+        - field_name: dt
+          value: "0x80"
+          mask: "0x80"
+        action_handle: 0x2000000c
+        is_default_entry: false
+        action_parameters_values:
+        - parameter_name: log_d_t
+          value: "0x7"
+      - priority: 25
+        match_key_fields_values:
+        - field_name: dt
+          value: "0x40"
+          mask: "0x40"
+        action_handle: 0x2000000c
+        is_default_entry: false
+        action_parameters_values:
+        - parameter_name: log_d_t
+          value: "0x6"
+      - priority: 26
+        match_key_fields_values:
+        - field_name: dt
+          value: "0x20"
+          mask: "0x20"
+        action_handle: 0x2000000c
+        is_default_entry: false
+        action_parameters_values:
+        - parameter_name: log_d_t
+          value: "0x5"
+      - priority: 27
+        match_key_fields_values:
+        - field_name: dt
+          value: "0x10"
+          mask: "0x10"
+        action_handle: 0x2000000c
+        is_default_entry: false
+        action_parameters_values:
+        - parameter_name: log_d_t
+          value: "0x4"
+      - priority: 28
+        match_key_fields_values:
+        - field_name: dt
+          value: "0x8"
+          mask: "0x8"
+        action_handle: 0x2000000c
+        is_default_entry: false
+        action_parameters_values:
+        - parameter_name: log_d_t
+          value: "0x3"
+      - priority: 29
+        match_key_fields_values:
+        - field_name: dt
+          value: "0x4"
+          mask: "0x4"
+        action_handle: 0x2000000c
+        is_default_entry: false
+        action_parameters_values:
+        - parameter_name: log_d_t
+          value: "0x2"
+      - priority: 30
+        match_key_fields_values:
+        - field_name: dt
+          value: "0x2"
+          mask: "0x2"
+        action_handle: 0x2000000c
+        is_default_entry: false
+        action_parameters_values:
+        - parameter_name: log_d_t
+          value: "0x1"
+      - priority: 31
+        match_key_fields_values:
+        - field_name: dt
+          value: "0x1"
+          mask: "0x1"
+        action_handle: 0x2000000c
+        is_default_entry: false
+        action_parameters_values:
+        - parameter_name: log_d_t
+          value: "0x0"
+      - priority: 32
+        match_key_fields_values:
+        - field_name: dt
+          value: "0x0"
+          mask: "0x0"
+        action_handle: 0x2000000c
+        is_default_entry: false
+        action_parameters_values:
+        - parameter_name: log_d_t
+          value: "0x0"
+
+    action: t_igr_tiCalc_log_dt$action_data($DIRECT, $DEFAULT)
+    instruction: t_igr_tiCalc_log_dt($DEFAULT, $DEFAULT)
+    actions:
+      Ingress.t_igr.aiCalc_log_dt(0, 2):
+      - p4_param_order: { log_d_t: 16 }
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true }
+      - handle: 0x2000000c
+      - next_table: 0
+      - { log_d_t: $adf_h0(0..15) }
+      - set t_igr_log_dt, log_d_t
+      NoAction(-1, 0):
+      - hit_allowed: { allowed: false, reason: user_indicated_default_only }
+      - default_only_action: { allowed: true }
+      - handle: 0x2000000d
+      - next_table: 0
+      - {  }
+    default_only_action: NoAction
+  action t_igr_tiCalc_log_dt$action_data:
+    p4: { name: Ingress.t_igr.tiCalc_log_dt$action }
+    row: 15
+    logical_bus: A
+    column: 2
+    vpns: [ 0 ]
+    home_row:
+    - 15
+    format Ingress.t_igr.aiCalc_log_dt: { $adf_h0: 0..15 }
+    action_bus: { 32..33 : $adf_h0 }
+  hash_action tbl_t_igr_aiFcount 2:
+    p4: { name: tbl_t_igr_aiFcount, hidden: true }
+    row: 1
+    result_bus: 0
+    hash_dist:
+      0: { hash: 1, mask: 0x7ff, shift: 5 }
+    input_xbar:
+      exact group 0: { 96: md.fid }
+      hash 1:
+        0..10: md.fid
+      hash group 1:
+        table: [1]
+        seed: 0x0
+    gateway:
+      name: tbl_t_igr_aiFcount-gateway
+      row: 0
+      bus: 0
+      unit: 1
+      0x0:  tbl_t_igr_test_dt
+      miss:  tbl_t_igr_test_dt
+      condition: 
+        expression: "true(always hit)"
+        true:  tbl_t_igr_test_dt
+        false:  tbl_t_igr_test_dt
+    next: []
+    stateful: tbl_t_igr_aiFcount$salu.Ingress.t_igr.fCount(hash_dist 0, $DEFAULT, $DEFAULT)
+    instruction: tbl_t_igr_aiFcount($DEFAULT, $DEFAULT)
+    actions:
+      Ingress.t_igr.aiFcount(0, 0):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true, is_constant: true }
+      - handle: 0x20000007
+      - next_table: 0
+      - tbl_t_igr_aiFcount$salu.Ingress.t_igr.fCount(t_igr_raFCount, $hash_dist)
+    default_action: Ingress.t_igr.aiFcount
+  stateful tbl_t_igr_aiFcount$salu.Ingress.t_igr.fCount:
+    p4: { name: Ingress.t_igr.fCount, size: 2048 }
+    row: 11
+    logical_bus: S
+    column: [ 0, 1 ]
+    maprams: [ 0, 1 ]
+    home_row: 11
+    input_xbar:
+      exact group 0: { 64: hdr.ip.total_len }
+    data_bytemask: 3
+    format: { lo: 32 }
+    actions:
+      t_igr_raFCount:
+      - alu_a lo, phv_lo(0..15)
+  hash_action tbl_t_igr_test_dt 3:
+    p4: { name: tbl_t_igr_test_dt, hidden: true }
+    row: 0
+    result_bus: 1
+    hash_dist:
+      0: { hash: 1, mask: 0x7ff, shift: 5 }
+    input_xbar:
+      exact group 0: { 96: md.fid }
+      hash 1:
+        0..10: md.fid
+      hash group 1:
+        table: [1]
+        seed: 0x0
+    gateway:
+      name: tbl_t_igr_test_dt-gateway
+      row: 0
+      bus: 0
+      unit: 0
+      0x0:  tbl_Bottlenecked_Rate68
+      miss:  tbl_Bottlenecked_Rate68
+      condition: 
+        expression: "true(always hit)"
+        true:  tbl_Bottlenecked_Rate68
+        false:  tbl_Bottlenecked_Rate68
+    next: []
+    stateful: tbl_t_igr_test_dt$salu.Ingress.t_igr.ridt(hash_dist 0, $DEFAULT, $DEFAULT)
+    instruction: tbl_t_igr_test_dt($DEFAULT, $DEFAULT)
+    actions:
+      Ingress.t_igr.test_dt(0, 0):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true, is_constant: true }
+      - handle: 0x2000000b
+      - next_table: 0
+      - tbl_t_igr_test_dt$salu.Ingress.t_igr.ridt(t_igr_radt, $hash_dist)
+    default_action: Ingress.t_igr.test_dt
+  stateful tbl_t_igr_test_dt$salu.Ingress.t_igr.ridt:
+    p4: { name: Ingress.t_igr.ridt, size: 2048 }
+    row: 15
+    logical_bus: S
+    column: [ 0, 1 ]
+    maprams: [ 0, 1 ]
+    home_row: 15
+    input_xbar:
+      exact group 1: { 64: t_igr_dt }
+    data_bytemask: 15
+    format: { lo: 32 }
+    actions:
+      t_igr_radt:
+      - alu_a lo, phv_lo
+  ternary_match tbl_Bottlenecked_Rate68 4:
+    p4: { name: tbl_Bottlenecked_Rate68, hidden: true }
+    hit: [  tbl_t_igr_aiTs_ms ]
+    miss:  tbl_t_igr_aiTs_ms
+    indirect: tbl_Bottlenecked_Rate68$tind
+  ternary_indirect tbl_Bottlenecked_Rate68$tind:
+    row: 1
+    bus: 0
+    format: { action: 0..0 }
+    instruction: tbl_Bottlenecked_Rate68$tind(action, $DEFAULT)
+    actions:
+      Bottlenecked_Rate68(0, 3):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true, is_constant: true }
+      - handle: 0x20000033
+      - next_table: 0
+      - minu W3, W0, W1
+    default_action: Bottlenecked_Rate68
+  hash_action tbl_t_igr_aiTs_ms 5:
+    p4: { name: tbl_t_igr_aiTs_ms, hidden: true }
+    row: 0
+    result_bus: 0
+    hash_dist:
+      1: { hash: 1, mask: 0xffff, shift: 0 }
+      2: { hash: 1, mask: 0xffff, shift: 0 }
+    input_xbar:
+      exact group 1: { 0: ig_intr_md.ingress_mac_tstamp.32-47(0..7), 12: ig_intr_md.ingress_mac_tstamp.0-31(12..31), 40: ig_intr_md.ingress_mac_tstamp.32-47(8..11) }
+      hash 2:
+        16..31: slice(stripe(crc(0x80000000, 0x0, 0x0, 32, { 0: ig_intr_md.ingress_mac_tstamp.0-31(12..31), 20: ig_intr_md.ingress_mac_tstamp.32-47(0..7), 28: ig_intr_md.ingress_mac_tstamp.32-47(8..11) }, { })), 0..15)
+      hash group 1:
+        table: [2]
+        seed: 0x0
+      exact group 1: { 0: ig_intr_md.ingress_mac_tstamp.32-47(0..7), 12: ig_intr_md.ingress_mac_tstamp.0-31(12..31), 40: ig_intr_md.ingress_mac_tstamp.32-47(8..11) }
+      hash 2:
+        32..47: slice(stripe(crc(0x80000000, 0x0, 0x0, 32, { 0: ig_intr_md.ingress_mac_tstamp.0-31(12..31), 20: ig_intr_md.ingress_mac_tstamp.32-47(0..7), 28: ig_intr_md.ingress_mac_tstamp.32-47(8..11) }, { })), 16..31)
+      hash group 1:
+        table: [2]
+        seed: 0x0
+    gateway:
+      name: cond-17
+      input_xbar:
+        exact group 0: { 36: t_igr_ifburstStage }
+      row: 7
+      bus: 0
+      unit: 0
+      payload_row: 0
+      payload_unit: 0
+      payload: 0x1
+      format: { action: 0..0 }
+      match: { 4: t_igr_ifburstStage }
+      0x1:
+        next:  tbl_t_igr_aiCalburst_t
+      miss:
+        run_table : true
+      condition: 
+        expression: "(t_igr_ifburstStage == 1)"
+        true:  tbl_t_igr_aiCalburst_t
+        false:  t_igr_tiCalc_dt_x_rate
+    next:  t_igr_tiCalc_dt_x_rate
+    action_bus: { 100..103 : hash_dist(1, 2) }
+    instruction: tbl_t_igr_aiTs_ms(action, $DEFAULT)
+    actions:
+      Ingress.t_igr.aiTs_ms(1, 4):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true, is_constant: true }
+      - handle: 0x2000001a
+      - next_table: 0
+      - set W38(0..31), hash_dist(1, 2, 0..31)
+    default_action: Ingress.t_igr.aiTs_ms
+stage 4 ingress:
+  dependency: match
+  hash_action tbl_t_igr_aiCalburst_t 0:
+    p4: { name: tbl_t_igr_aiCalburst_t, hidden: true }
+    row: 0
+    result_bus: 0
+    hash_dist:
+      0: { hash: 0, mask: 0x7ff, shift: 5 }
+    input_xbar:
+      exact group 0: { 0: md.fid }
+      hash 0:
+        0..10: md.fid
+      hash group 0:
+        table: [0]
+        seed: 0x0
+    gateway:
+      name: tbl_t_igr_aiCalburst_t-gateway
+      row: 0
+      bus: 0
+      unit: 0
+      0x0:  t_igr_tiCalc_dt_x_rate
+      miss:  t_igr_tiCalc_dt_x_rate
+      condition: 
+        expression: "true(always hit)"
+        true:  t_igr_tiCalc_dt_x_rate
+        false:  t_igr_tiCalc_dt_x_rate
+    next: []
+    action_bus: { 96..99 : tbl_t_igr_aiCalburst_t$salu.Ingress.t_igr.ri_ts_ms(0..31) }
+    stateful: tbl_t_igr_aiCalburst_t$salu.Ingress.t_igr.ri_ts_ms(hash_dist 0, $DEFAULT, $DEFAULT)
+    instruction: tbl_t_igr_aiCalburst_t($DEFAULT, $DEFAULT)
+    actions:
+      Ingress.t_igr.aiCalburst_t(0, 1):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true, is_constant: true }
+      - handle: 0x2000001b
+      - next_table: 0
+      - set W36(0..31), tbl_t_igr_aiCalburst_t$salu.Ingress.t_igr.ri_ts_ms
+      - tbl_t_igr_aiCalburst_t$salu.Ingress.t_igr.ri_ts_ms(t_igr_ra_ts_ms, $hash_dist)
+    default_action: Ingress.t_igr.aiCalburst_t
+  stateful tbl_t_igr_aiCalburst_t$salu.Ingress.t_igr.ri_ts_ms:
+    p4: { name: Ingress.t_igr.ri_ts_ms, size: 2048 }
+    row: 15
+    logical_bus: S
+    column: [ 0, 1 ]
+    maprams: [ 0, 1 ]
+    home_row: 15
+    input_xbar:
+      exact group 0: { 64: t_igr_ts_ms }
+    data_bytemask: 15
+    format: { lo: 32 }
+    actions:
+      t_igr_ra_ts_ms:
+      - sub hi, phv_lo, lo
+      - alu_a lo, phv_lo
+      - output alu_hi
+  exact_match t_igr_tiCalc_dt_x_rate 1:
+    p4: { name: Ingress.t_igr.tiCalc_dt_x_rate, size: 2048 }
+    p4_param_order: 
+      t_igr_log_dt: { type: exact, size: 16, full_size: 16, key_name: "log_dt" }
+      t_igr_rate: { type: exact, size: 32, full_size: 32, key_name: "rate" }
+    row: 7
+    bus: 0
+    column: [ 2, 3, 4, 5 ]
+    stash: 
+      row: [ 7 ]
+      col: [ 2 ]
+      unit: [ 0 ]
+    ways:
+      - { group: 1, index: 0..9, select: 40..51 & 0x0, rams: [[7, 2]] }
+      - { group: 1, index: 10..19, select: 40..51 & 0x0, rams: [[7, 3]] }
+      - { group: 1, index: 20..29, select: 40..51 & 0x0, rams: [[7, 4]] }
+      - { group: 1, index: 30..39, select: 40..51 & 0x0, rams: [[7, 5]] }
+    input_xbar:
+      exact group 1: { 0: t_igr_rate, 32: t_igr_log_dt }
+      hash 2:
+        0..7: random(t_igr_rate, t_igr_log_dt(10..15)) ^ t_igr_log_dt(0..7)
+        8..9: random(t_igr_rate, t_igr_log_dt(10..15)) ^ t_igr_log_dt(8..9)
+        11..18: random(t_igr_rate, t_igr_log_dt(10..15)) ^ t_igr_log_dt(0..7)
+        19: random(t_igr_rate, t_igr_log_dt(10..15)) ^ t_igr_log_dt(8)
+        10: random(t_igr_rate, t_igr_log_dt(10..15)) ^ t_igr_log_dt(9)
+        22..29: random(t_igr_rate, t_igr_log_dt(10..15)) ^ t_igr_log_dt(0..7)
+        20..21: random(t_igr_rate, t_igr_log_dt(10..15)) ^ t_igr_log_dt(8..9)
+        33..39: random(t_igr_rate, t_igr_log_dt(10..15)) ^ t_igr_log_dt(0..6)
+        30: random(t_igr_rate, t_igr_log_dt(10..15)) ^ t_igr_log_dt(7)
+        31..32: random(t_igr_rate, t_igr_log_dt(10..15)) ^ t_igr_log_dt(8..9)
+      hash group 1:
+        table: [2]
+        seed: 0xb10574f017
+    format: { immediate(0): 0..31, version(0): 112..115, match(0): [ 66..71, 32..63 ] }
+    match: [ t_igr_log_dt(10..15), t_igr_rate(0..7), t_igr_rate(8..15), t_igr_rate(16..23), t_igr_rate(24..31) ]
+    match_group_map: [ [ 0 ] ]
+    hit: [  tbl_Bottlenecked_Rate69 ]
+    miss:  tbl_Bottlenecked_Rate69
+    action_bus: { 100..103 : immediate(0..31) }
+    instruction: t_igr_tiCalc_dt_x_rate($DEFAULT, $DEFAULT)
+    actions:
+      Ingress.t_igr.aiCalc_dt_x_rate(0, 2):
+      - p4_param_order: { Calc_dt_x_rate: 32, Calc_dt_x_rate_B: 32 }
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true }
+      - handle: 0x20000010
+      - next_table: 0
+      - { Calc_dt_x_rate_B: immediate(0..31) }
+      - set t_igr_dt_x_rate_B, Calc_dt_x_rate_B
+    default_action: Ingress.t_igr.aiCalc_dt_x_rate
+    default_action_parameters:
+      Calc_dt_x_rate: "0x1"
+      Calc_dt_x_rate_B: "0x1"
+  ternary_match tbl_Bottlenecked_Rate69 2:
+    p4: { name: tbl_Bottlenecked_Rate69, hidden: true }
+    hit: [  tbl_t_igr_test_rate ]
+    miss:  tbl_t_igr_test_rate
+    indirect: tbl_Bottlenecked_Rate69$tind
+  ternary_indirect tbl_Bottlenecked_Rate69$tind:
+    row: 0
+    bus: 0
+    format: { action: 0..0 }
+    instruction: tbl_Bottlenecked_Rate69$tind(action, $DEFAULT)
+    actions:
+      Bottlenecked_Rate69(0, 3):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true, is_constant: true }
+      - handle: 0x20000034
+      - next_table: 0
+      - minu W3, W2, W3
+    default_action: Bottlenecked_Rate69
+  hash_action tbl_t_igr_test_rate 3:
+    p4: { name: tbl_t_igr_test_rate, hidden: true }
+    row: 0
+    result_bus: 1
+    hash_dist:
+      0: { hash: 0, mask: 0x7ff, shift: 5 }
+    input_xbar:
+      exact group 0: { 0: md.fid }
+      hash 0:
+        0..10: md.fid
+      hash group 0:
+        table: [0]
+        seed: 0x0
+    gateway:
+      name: tbl_t_igr_test_rate-gateway
+      row: 0
+      bus: 0
+      unit: 1
+      0x0:  tbl_t_igr_aiCalc_pktlen_minus_dt_x_rate
+      miss:  tbl_t_igr_aiCalc_pktlen_minus_dt_x_rate
+      condition: 
+        expression: "true(always hit)"
+        true:  tbl_t_igr_aiCalc_pktlen_minus_dt_x_rate
+        false:  tbl_t_igr_aiCalc_pktlen_minus_dt_x_rate
+    next: []
+    stateful: tbl_t_igr_test_rate$salu.Ingress.t_igr.ri_lograte(hash_dist 0, $DEFAULT, $DEFAULT)
+    instruction: tbl_t_igr_test_rate($DEFAULT, $DEFAULT)
+    actions:
+      Ingress.t_igr.test_rate(0, 0):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true, is_constant: true }
+      - handle: 0x2000000f
+      - next_table: 0
+      - tbl_t_igr_test_rate$salu.Ingress.t_igr.ri_lograte(t_igr_ra_lograte, $hash_dist)
+    default_action: Ingress.t_igr.test_rate
+  stateful tbl_t_igr_test_rate$salu.Ingress.t_igr.ri_lograte:
+    p4: { name: Ingress.t_igr.ri_lograte, size: 2048 }
+    row: 11
+    logical_bus: S
+    column: [ 0, 1 ]
+    maprams: [ 0, 1 ]
+    home_row: 11
+    input_xbar:
+      exact group 1: { 64: t_igr_rate }
+    data_bytemask: 15
+    format: { lo: 32 }
+    actions:
+      t_igr_ra_lograte:
+      - alu_a lo, phv_lo
+stage 5 ingress:
+  dependency: match
+  ternary_match tbl_t_igr_aiCalc_pktlen_minus_dt_x_rate 0:
+    p4: { name: tbl_t_igr_aiCalc_pktlen_minus_dt_x_rate, hidden: true }
+    hit: [  tbl_t_igr_test_dt_x_rate ]
+    miss:  tbl_t_igr_test_dt_x_rate
+    indirect: tbl_t_igr_aiCalc_pktlen_minus_dt_x_rate$tind
+  ternary_indirect tbl_t_igr_aiCalc_pktlen_minus_dt_x_rate$tind:
+    row: 0
+    bus: 0
+    format: { action: 0..0 }
+    instruction: tbl_t_igr_aiCalc_pktlen_minus_dt_x_rate$tind(action, $DEFAULT)
+    actions:
+      Ingress.t_igr.aiCalc_pktlen_minus_dt_x_rate(0, 1):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true, is_constant: true }
+      - handle: 0x20000014
+      - next_table: 0
+      - set t_igr_RC_nag, 0
+      - sub W11, W6, W10
+    default_action: Ingress.t_igr.aiCalc_pktlen_minus_dt_x_rate
+  hash_action tbl_t_igr_test_dt_x_rate 1:
+    p4: { name: tbl_t_igr_test_dt_x_rate, hidden: true }
+    row: 0
+    result_bus: 0
+    hash_dist:
+      0: { hash: 0, mask: 0x7ff, shift: 5 }
+    input_xbar:
+      exact group 0: { 0: md.fid }
+      hash 0:
+        0..10: md.fid
+      hash group 0:
+        table: [0]
+        seed: 0x0
+    gateway:
+      name: tbl_t_igr_test_dt_x_rate-gateway
+      row: 0
+      bus: 0
+      unit: 0
+      0x0:  tbl_Bottlenecked_Rate70
+      miss:  tbl_Bottlenecked_Rate70
+      condition: 
+        expression: "true(always hit)"
+        true:  tbl_Bottlenecked_Rate70
+        false:  tbl_Bottlenecked_Rate70
+    next: []
+    stateful: tbl_t_igr_test_dt_x_rate$salu.Ingress.t_igr.ri_dt_x_rate(hash_dist 0, $DEFAULT, $DEFAULT)
+    instruction: tbl_t_igr_test_dt_x_rate($DEFAULT, $DEFAULT)
+    actions:
+      Ingress.t_igr.test_dt_x_rate(0, 0):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true, is_constant: true }
+      - handle: 0x20000011
+      - next_table: 0
+      - tbl_t_igr_test_dt_x_rate$salu.Ingress.t_igr.ri_dt_x_rate(t_igr_ra_dt_x_rate, $hash_dist)
+    default_action: Ingress.t_igr.test_dt_x_rate
+  stateful tbl_t_igr_test_dt_x_rate$salu.Ingress.t_igr.ri_dt_x_rate:
+    p4: { name: Ingress.t_igr.ri_dt_x_rate, size: 2048 }
+    row: 15
+    logical_bus: S
+    column: [ 0, 1 ]
+    maprams: [ 0, 1 ]
+    home_row: 15
+    input_xbar:
+      exact group 0: { 64: t_igr_dt_x_rate_B }
+    data_bytemask: 15
+    format: { lo: 32 }
+    actions:
+      t_igr_ra_dt_x_rate:
+      - alu_a lo, phv_lo
+  ternary_match tbl_Bottlenecked_Rate70 2:
+    p4: { name: tbl_Bottlenecked_Rate70, hidden: true }
+    hit: [  tbl_t_igr_aiSetRC ]
+    miss:  tbl_t_igr_aiSetRC
+    indirect: tbl_Bottlenecked_Rate70$tind
+  ternary_indirect tbl_Bottlenecked_Rate70$tind:
+    row: 0
+    bus: 1
+    format: { action: 0..0 }
+    instruction: tbl_Bottlenecked_Rate70$tind(action, $DEFAULT)
+    actions:
+      Bottlenecked_Rate70(0, 2):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true, is_constant: true }
+      - handle: 0x20000035
+      - next_table: 0
+      - shru md.measured_rate, md.measured_rate, 8
+    default_action: Bottlenecked_Rate70
+stage 6 ingress:
+  dependency: match
+  hash_action tbl_t_igr_aiSetRC 0:
+    p4: { name: tbl_t_igr_aiSetRC, hidden: true }
+    row: 0
+    result_bus: 0
+    hash_dist:
+      0: { hash: 0, mask: 0x7ff, shift: 5 }
+    input_xbar:
+      exact group 0: { 0: md.fid }
+      hash 0:
+        0..10: md.fid
+      hash group 0:
+        table: [0]
+        seed: 0x0
+    gateway:
+      name: tbl_t_igr_aiSetRC-gateway
+      row: 0
+      bus: 0
+      unit: 0
+      0x0:  tbl_Bottlenecked_Rate73
+      miss:  tbl_Bottlenecked_Rate73
+      condition: 
+        expression: "true(always hit)"
+        true:  tbl_Bottlenecked_Rate73
+        false:  tbl_Bottlenecked_Rate73
+    next: []
+    action_bus: { 96..99 : tbl_t_igr_aiSetRC$salu.Ingress.t_igr.riRC(0..31) }
+    stateful: tbl_t_igr_aiSetRC$salu.Ingress.t_igr.riRC(hash_dist 0, $DEFAULT, $DEFAULT)
+    instruction: tbl_t_igr_aiSetRC($DEFAULT, $DEFAULT)
+    actions:
+      Ingress.t_igr.aiSetRC(0, 1):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true, is_constant: true }
+      - handle: 0x20000015
+      - next_table: 0
+      - set W7(0..31), tbl_t_igr_aiSetRC$salu.Ingress.t_igr.riRC
+      - tbl_t_igr_aiSetRC$salu.Ingress.t_igr.riRC(t_igr_raSetRC, $hash_dist)
+    default_action: Ingress.t_igr.aiSetRC
+  stateful tbl_t_igr_aiSetRC$salu.Ingress.t_igr.riRC:
+    p4: { name: Ingress.t_igr.riRC, size: 2048 }
+    row: 15
+    logical_bus: S
+    column: [ 0, 1 ]
+    maprams: [ 0, 1 ]
+    home_row: 15
+    input_xbar:
+      exact group 0: { 64: t_igr_pktlen_minus_dt_x_rate, 96: t_igr_dt_x_rate_B }
+    data_bytemask: 255
+    format: { lo: 32 }
+    actions:
+      t_igr_raSetRC:
+      - add hi, lo, phv_lo
+      - grt.u lo, lo, -5000000
+      - sub cmplo, lo, lo, phv_hi
+      - add !cmplo, lo, lo, phv_lo
+      - output alu_hi
+  hash_action tbl_Bottlenecked_Rate73 1:
+    p4: { name: tbl_Bottlenecked_Rate73, hidden: true }
+    row: 0
+    result_bus: 1
+    hash_dist:
+      0: { hash: 0, mask: 0x7ff, shift: 5 }
+    input_xbar:
+      exact group 0: { 0: md.fid }
+      hash 0:
+        0..10: md.fid
+      hash group 0:
+        table: [0]
+        seed: 0x0
+    gateway:
+      name: tbl_Bottlenecked_Rate73-gateway
+      row: 0
+      bus: 0
+      unit: 1
+      0x0:  t_igr_tiRC_nag
+      miss:  t_igr_tiRC_nag
+      condition: 
+        expression: "true(always hit)"
+        true:  t_igr_tiRC_nag
+        false:  t_igr_tiRC_nag
+    next: []
+    stateful: tbl_Bottlenecked_Rate73$salu.Ingress.bottlenecked_rate.bottleneckedRate(hash_dist 0, $DEFAULT, $DEFAULT)
+    instruction: tbl_Bottlenecked_Rate73($DEFAULT, $DEFAULT)
+    actions:
+      Bottlenecked_Rate73(0, 0):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true, is_constant: true }
+      - handle: 0x20000036
+      - next_table: 0
+      - tbl_Bottlenecked_Rate73$salu.Ingress.bottlenecked_rate.bottleneckedRate(bottlenecked_rate_raSetbottleneckedRate, $hash_dist)
+    default_action: Bottlenecked_Rate73
+  stateful tbl_Bottlenecked_Rate73$salu.Ingress.bottlenecked_rate.bottleneckedRate:
+    p4: { name: Ingress.bottlenecked_rate.bottleneckedRate, size: 2048 }
+    row: 11
+    logical_bus: S
+    column: [ 0, 1 ]
+    maprams: [ 0, 1 ]
+    home_row: 11
+    input_xbar:
+      exact group 1: { 64: md.measured_rate }
+    data_bytemask: 15
+    format: { lo: 32 }
+    actions:
+      bottlenecked_rate_raSetbottleneckedRate:
+      - alu_a lo, phv_lo
+stage 7 ingress:
+  dependency: match
+  ternary_match t_igr_tiRC_nag 0:
+    p4: { name: Ingress.t_igr.tiRC_nag, size: 512 }
+    p4_param_order: 
+      md.RC: { type: ternary, size: 32, full_size: 32 }
+    row: 0
+    bus: 0
+    column: 0
+    input_xbar:
+      ternary group 0: { 0: md.RC }
+    match:
+    - { group: 0, byte_config: 3, dirtcam: 0x55 }
+    hit: [  tbl_t_igr_aiCal_RC_minus_threshold ]
+    miss:  tbl_t_igr_aiCal_RC_minus_threshold
+    context_json:
+      static_entries:
+      - priority: 0
+        match_key_fields_values:
+        - field_name: md.RC
+          value: "0x80000000"
+          mask: "0x80000000"
+        action_handle: 0x20000016
+        is_default_entry: false
+        action_parameters_values: []
+      - priority: 1
+        match_key_fields_values:
+        - field_name: md.RC
+          value: "0x0"
+          mask: "0x80000000"
+        action_handle: 0x20000017
+        is_default_entry: false
+        action_parameters_values: []
+      - priority: 2
+        match_key_fields_values:
+        - field_name: md.RC
+          value: "0x0"
+          mask: "0xFFFFFFFF"
+        action_handle: 0x20000016
+        is_default_entry: false
+        action_parameters_values: []
+
+    indirect: t_igr_tiRC_nag$tind
+  ternary_indirect t_igr_tiRC_nag$tind:
+    row: 0
+    bus: 0
+    column: 2
+    input_xbar:
+      ternary group 0: { 0: md.RC }
+    format: { action: 0..0 }
+    instruction: t_igr_tiRC_nag$tind(action, $DEFAULT)
+    actions:
+      Ingress.t_igr.aiRC_neg(0, 1):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true }
+      - handle: 0x20000016
+      - next_table: 0
+      - set t_igr_RC_nag, 1
+      - set md.RC, 0
+      Ingress.t_igr.aiRC_pos(1, 0):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true }
+      - handle: 0x20000017
+      - next_table: 0
+      NoAction(-1, 2):
+      - hit_allowed: { allowed: false, reason: user_indicated_default_only }
+      - default_only_action: { allowed: true }
+      - handle: 0x20000018
+      - next_table: 0
+    default_only_action: NoAction
+stage 8 ingress:
+  dependency: match
+  ternary_match tbl_t_igr_aiCal_RC_minus_threshold 0:
+    p4: { name: tbl_t_igr_aiCal_RC_minus_threshold, hidden: true }
+    hit: [  tbl_t_igr_aiCalc_gapRC ]
+    miss:  tbl_t_igr_aiCalc_gapRC
+    indirect: tbl_t_igr_aiCal_RC_minus_threshold$tind
+  ternary_indirect tbl_t_igr_aiCal_RC_minus_threshold$tind:
+    row: 1
+    bus: 0
+    format: { action: 0..0 }
+    instruction: tbl_t_igr_aiCal_RC_minus_threshold$tind(action, $DEFAULT)
+    actions:
+      Ingress.t_igr.aiCal_RC_minus_threshold(0, 1):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true, is_constant: true }
+      - handle: 0x20000023
+      - next_table: 0
+      - set t_igr_tcp_drop_flag, 0
+      - set t_igr_ecn_flag, 0
+      - set t_igr_drop_flag, 0
+      - set ig_intr_md_for_dprsr.drop_ctl, 0
+      - ssubu W9, W7, W8
+    default_action: Ingress.t_igr.aiCal_RC_minus_threshold
+  hash_action tbl_t_igr_aiCalc_gapRC 1:
+    p4: { name: tbl_t_igr_aiCalc_gapRC, hidden: true }
+    row: 0
+    result_bus: 0
+    hash_dist:
+      0: { hash: 0, mask: 0x7ff, shift: 5 }
+    input_xbar:
+      exact group 0: { 0: md.fid }
+      hash 0:
+        0..10: md.fid
+      hash group 0:
+        table: [0]
+        seed: 0x0
+    gateway:
+      name: cond-18
+      input_xbar:
+        exact group 1: { 0: t_igr_dt_ms }
+      row: 0
+      bus: 0
+      unit: 0
+      payload_row: 0
+      payload_unit: 0
+      payload: 0x3001
+      format: { action: 0..0, meter_addr: 1..11, meter_pfe: 12..12, meter_type: 13..15 }
+      match: { 0: t_igr_dt_ms(0..7), 8: t_igr_dt_ms(8..15), 16: t_igr_dt_ms(16..23), 24: t_igr_dt_ms(24..31) }
+      0x00000000:
+        run_table : true
+      miss:
+        next:  tbl_t_igr_aiSetBottleneck
+      condition: 
+        expression: "(t_igr_dt_ms != 0)"
+        true:  tbl_t_igr_aiSetBottleneck
+        false:  tbl_t_igr_aiSetBottleneck
+    next:  tbl_t_igr_aiSetBottleneck
+    action_bus: { 96..99 : tbl_t_igr_aiCalc_gapRC$salu.Ingress.t_igr.ri_gapRC(0..31) }
+    stateful: tbl_t_igr_aiCalc_gapRC$salu.Ingress.t_igr.ri_gapRC(hash_dist 0, meter_pfe, meter_type)
+    instruction: tbl_t_igr_aiCalc_gapRC(action, $DEFAULT)
+    actions:
+      Ingress.t_igr.aiCalc_gapRC(1, 2):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true, is_constant: true }
+      - handle: 0x2000001c
+      - next_table: 0
+      - set W4(0..31), tbl_t_igr_aiCalc_gapRC$salu.Ingress.t_igr.ri_gapRC
+      - tbl_t_igr_aiCalc_gapRC$salu.Ingress.t_igr.ri_gapRC(t_igr_ra_gapRC, $hash_dist)
+    default_action: Ingress.t_igr.aiCalc_gapRC
+  stateful tbl_t_igr_aiCalc_gapRC$salu.Ingress.t_igr.ri_gapRC:
+    p4: { name: Ingress.t_igr.ri_gapRC, size: 2048 }
+    row: 15
+    logical_bus: S
+    column: [ 0, 1 ]
+    maprams: [ 0, 1 ]
+    home_row: 15
+    input_xbar:
+      exact group 0: { 64: md.RC }
+    data_bytemask: 15
+    format: { lo: 32 }
+    actions:
+      t_igr_ra_gapRC:
+      - ssubu hi, phv_lo, lo
+      - alu_a lo, phv_lo
+      - output alu_hi
+  hash_action tbl_t_igr_aiSetBottleneck 2:
+    p4: { name: tbl_t_igr_aiSetBottleneck, hidden: true }
+    row: 0
+    result_bus: 1
+    hash_dist:
+      0: { hash: 0, mask: 0x7ff, shift: 5 }
+    input_xbar:
+      exact group 0: { 0: md.fid }
+      hash 0:
+        0..10: md.fid
+      hash group 0:
+        table: [0]
+        seed: 0x0
+    gateway:
+      name: cond-20
+      input_xbar:
+        exact group 0: { 96: t_igr_RC_nag }
+      row: 0
+      bus: 1
+      unit: 1
+      payload_row: 0
+      payload_unit: 1
+      payload: 0x3001
+      format: { action: 0..0, meter_addr: 1..11, meter_pfe: 12..12, meter_type: 13..15 }
+      match: { 0: t_igr_RC_nag }
+      0x1:
+        next:  tbl_t_igr_aiCalc_gap_minus_tolerance
+      miss:
+        run_table : true
+      condition: 
+        expression: "(t_igr_RC_nag == 1)"
+        true:  tbl_t_igr_aiCalc_gap_minus_tolerance
+        false:  tbl_t_igr_aiCalc_gap_minus_tolerance
+    next:  tbl_t_igr_aiCalc_gap_minus_tolerance
+    stateful: tbl_t_igr_aiSetBottleneck$salu.Ingress.t_igr.bottleneckF(hash_dist 0, meter_pfe, meter_type)
+    instruction: tbl_t_igr_aiSetBottleneck(action, $DEFAULT)
+    actions:
+      Ingress.t_igr.aiSetBottleneck(1, 0):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true, is_constant: true }
+      - handle: 0x20000029
+      - next_table: 0
+      - tbl_t_igr_aiSetBottleneck$salu.Ingress.t_igr.bottleneckF(t_igr_raSetBottleneckF, $hash_dist)
+    default_action: Ingress.t_igr.aiSetBottleneck
+  stateful tbl_t_igr_aiSetBottleneck$salu.Ingress.t_igr.bottleneckF:
+    p4: { name: Ingress.t_igr.bottleneckF, size: 2048 }
+    row: 11
+    logical_bus: S
+    column: [ 0, 1 ]
+    maprams: [ 0, 1 ]
+    home_row: 11
+    format: { lo: 32 }
+    actions:
+      t_igr_raSetBottleneckF:
+      - alu_a lo, 1
+stage 9 ingress:
+  dependency: match
+  ternary_match tbl_t_igr_aiCalc_gap_minus_tolerance 0:
+    p4: { name: tbl_t_igr_aiCalc_gap_minus_tolerance, hidden: true }
+    hit: [  t_igr_tiGapRC_pos ]
+    miss:  t_igr_tiGapRC_pos
+    indirect: tbl_t_igr_aiCalc_gap_minus_tolerance$tind
+  ternary_indirect tbl_t_igr_aiCalc_gap_minus_tolerance$tind:
+    row: 1
+    bus: 0
+    format: { action: 0..0 }
+    instruction: tbl_t_igr_aiCalc_gap_minus_tolerance$tind(action, $DEFAULT)
+    actions:
+      Ingress.t_igr.aiCalc_gap_minus_tolerance(0, 1):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true, is_constant: true }
+      - handle: 0x2000001d
+      - next_table: 0
+      - ssubu W6, W4, W5
+    default_action: Ingress.t_igr.aiCalc_gap_minus_tolerance
+  ternary_match t_igr_tiGapRC_pos 1:
+    p4: { name: Ingress.t_igr.tiGapRC_pos, size: 512 }
+    p4_param_order: 
+      t_igr_gapRC: { type: ternary, size: 32, full_size: 32, key_name: "gapRC" }
+    row: 0
+    bus: 0
+    column: 0
+    input_xbar:
+      ternary group 0: { 0: t_igr_gapRC }
+    match:
+    - { group: 0, byte_config: 3, dirtcam: 0x55 }
+    hit: [  tbl_t_igr_aiSetecnflag ]
+    miss:  tbl_t_igr_aiSetecnflag
+    context_json:
+      static_entries:
+      - priority: 0
+        match_key_fields_values:
+        - field_name: gapRC
+          value: "0x80000000"
+          mask: "0x80000000"
+        action_handle: 0x2000001e
+        is_default_entry: false
+        action_parameters_values: []
+      - priority: 1
+        match_key_fields_values:
+        - field_name: gapRC
+          value: "0x0"
+          mask: "0x80000000"
+        action_handle: 0x2000001f
+        is_default_entry: false
+        action_parameters_values: []
+      - priority: 2
+        match_key_fields_values:
+        - field_name: gapRC
+          value: "0x0"
+          mask: "0xFFFFFFFF"
+        action_handle: 0x2000001e
+        is_default_entry: false
+        action_parameters_values: []
+
+    indirect: t_igr_tiGapRC_pos$tind
+  ternary_indirect t_igr_tiGapRC_pos$tind:
+    row: 0
+    bus: 0
+    column: 2
+    input_xbar:
+      ternary group 0: { 0: t_igr_gapRC }
+    format: { action: 0..0 }
+    instruction: t_igr_tiGapRC_pos$tind(action, $DEFAULT)
+    actions:
+      Ingress.t_igr.aiGapRC_neg(0, 2):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true }
+      - handle: 0x2000001e
+      - next_table: 0
+      - set t_igr_gapRC, 0
+      Ingress.t_igr.aiGapRC_pos(1, 0):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true }
+      - handle: 0x2000001f
+      - next_table: 0
+      NoAction(-1, 3):
+      - hit_allowed: { allowed: false, reason: user_indicated_default_only }
+      - default_only_action: { allowed: true }
+      - handle: 0x20000020
+      - next_table: 0
+    default_only_action: NoAction
+  hash_action tbl_t_igr_aiSetecnflag 2:
+    p4: { name: tbl_t_igr_aiSetecnflag, hidden: true }
+    row: 0
+    result_bus: 0
+    hash_dist:
+      0: { hash: 0, mask: 0x7ff, shift: 5 }
+    input_xbar:
+      exact group 0: { 0: md.fid }
+      hash 0:
+        0..10: md.fid
+      hash group 0:
+        table: [0]
+        seed: 0x0
+    gateway:
+      name: cond-19
+      input_xbar:
+        exact group 0: { 80: t_igr_RC_minus_threshold(16..31), 96: t_igr_RC_minus_threshold(0..15) }
+      row: 0
+      bus: 0
+      unit: 0
+      payload_row: 0
+      payload_unit: 0
+      payload: 0x3001
+      format: { action: 0..0, meter_addr: 1..11, meter_pfe: 12..12, meter_type: 13..15 }
+      match: { 0: t_igr_RC_minus_threshold(0..7), 8: t_igr_RC_minus_threshold(8..15), 16: t_igr_RC_minus_threshold(16..23), 24: t_igr_RC_minus_threshold(24..31) }
+      0x00000000:
+        run_table : true
+      miss:
+        next:  tbl_t_igr_aiSetdropflag
+      condition: 
+        expression: "(t_igr_RC_minus_threshold != 0)"
+        true:  tbl_t_igr_aiSetdropflag
+        false:  tbl_t_igr_aiSetnoecnflag
+    next:  tbl_t_igr_aiSetnoecnflag
+    action_bus: { 32..33 : tbl_t_igr_aiSetnoecnflag$salu.Ingress.t_igr.count_til_ecn(0..15) }
+    stateful: tbl_t_igr_aiSetnoecnflag$salu.Ingress.t_igr.count_til_ecn(hash_dist 0, meter_pfe, meter_type)
+    instruction: tbl_t_igr_aiSetecnflag(action, $DEFAULT)
+    actions:
+      Ingress.t_igr.aiSetecnflag(1, 4):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true, is_constant: true }
+      - handle: 0x20000028
+      - next_table: 0
+      - set H6(0..7), tbl_t_igr_aiSetnoecnflag$salu.Ingress.t_igr.count_til_ecn
+      - tbl_t_igr_aiSetnoecnflag$salu.Ingress.t_igr.count_til_ecn(t_igr_flag_ecn, $hash_dist)
+    default_action: Ingress.t_igr.aiSetecnflag
+  hash_action tbl_t_igr_aiSetnoecnflag 3:
+    p4: { name: tbl_t_igr_aiSetnoecnflag, hidden: true }
+    row: 1
+    result_bus: 1
+    hash_dist:
+      0: { hash: 0, mask: 0x7ff, shift: 5 }
+    input_xbar:
+      exact group 0: { 0: md.fid }
+      hash 0:
+        0..10: md.fid
+      hash group 0:
+        table: [0]
+        seed: 0x0
+    gateway:
+      name: tbl_t_igr_aiSetnoecnflag-gateway
+      row: 2
+      bus: 0
+      unit: 1
+      0x0:  tbl_t_igr_aiSetnodropflag
+      miss:  tbl_t_igr_aiSetnodropflag
+      condition: 
+        expression: "true(always hit)"
+        true:  tbl_t_igr_aiSetnodropflag
+        false:  tbl_t_igr_aiSetnodropflag
+    next: []
+    action_bus: { 32..33 : tbl_t_igr_aiSetnoecnflag$salu.Ingress.t_igr.count_til_ecn(0..15) }
+    stateful: tbl_t_igr_aiSetnoecnflag$salu.Ingress.t_igr.count_til_ecn(hash_dist 0, $DEFAULT, $DEFAULT)
+    instruction: tbl_t_igr_aiSetnoecnflag($DEFAULT, $DEFAULT)
+    actions:
+      Ingress.t_igr.aiSetnoecnflag(0, 6):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true, is_constant: true }
+      - handle: 0x20000025
+      - next_table: 0
+      - set H6(0..7), tbl_t_igr_aiSetnoecnflag$salu.Ingress.t_igr.count_til_ecn
+      - tbl_t_igr_aiSetnoecnflag$salu.Ingress.t_igr.count_til_ecn(t_igr_flag_noecn, $hash_dist)
+    default_action: Ingress.t_igr.aiSetnoecnflag
+  stateful tbl_t_igr_aiSetnoecnflag$salu.Ingress.t_igr.count_til_ecn:
+    p4: { name: Ingress.t_igr.count_til_ecn, size: 2048 }
+    row: 11
+    logical_bus: S
+    column: [ 0, 1 ]
+    maprams: [ 0, 1 ]
+    home_row: 11
+    input_xbar:
+      exact group 0: { 64: hdr.ip.total_len }
+    data_bytemask: 3
+    format: { lo: 32 }
+    actions:
+      t_igr_flag_ecn:
+      - lss.u lo, lo, -phv_lo(0..15)
+      - alu_a cmplo, lo, 100000
+      - alu_a cmplo, hi, 1
+      - sub !cmplo, lo, lo, phv_lo(0..15)
+      - output cmplo, alu_hi
+      t_igr_flag_noecn:
+      - lss.u lo, lo, -phv_lo(0..15)
+      - alu_a cmplo, lo, 0
+      - sub !cmplo, lo, lo, phv_lo(0..15)
+  hash_action tbl_t_igr_aiSetnodropflag 4:
+    p4: { name: tbl_t_igr_aiSetnodropflag, hidden: true }
+    row: 1
+    result_bus: 0
+    hash_dist:
+      0: { hash: 0, mask: 0x7ff, shift: 5 }
+    input_xbar:
+      exact group 0: { 0: md.fid }
+      hash 0:
+        0..10: md.fid
+      hash group 0:
+        table: [0]
+        seed: 0x0
+    gateway:
+      name: tbl_t_igr_aiSetnodropflag-gateway
+      row: 2
+      bus: 0
+      unit: 0
+      0x0:  cond-21
+      miss:  cond-21
+      condition: 
+        expression: "true(always hit)"
+        true:  cond-21
+        false:  cond-21
+    next: []
+    action_bus: { 0 : tbl_t_igr_aiSetdropflag$salu.Ingress.t_igr.count_til_drop(0..7) }
+    stateful: tbl_t_igr_aiSetdropflag$salu.Ingress.t_igr.count_til_drop(hash_dist 0, $DEFAULT, $DEFAULT)
+    instruction: tbl_t_igr_aiSetnodropflag($DEFAULT, $DEFAULT)
+    actions:
+      Ingress.t_igr.aiSetnodropflag(0, 5):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true, is_constant: true }
+      - handle: 0x20000024
+      - next_table: 0
+      - set B3(4..4), tbl_t_igr_aiSetdropflag$salu.Ingress.t_igr.count_til_drop(0..0)
+      - tbl_t_igr_aiSetdropflag$salu.Ingress.t_igr.count_til_drop(t_igr_periodic_nodrop, $hash_dist)
+    default_action: Ingress.t_igr.aiSetnodropflag
+  hash_action tbl_t_igr_aiSetdropflag 5:
+    p4: { name: tbl_t_igr_aiSetdropflag, hidden: true }
+    row: 0
+    result_bus: 1
+    hash_dist:
+      0: { hash: 0, mask: 0x7ff, shift: 5 }
+    input_xbar:
+      exact group 0: { 0: md.fid }
+      hash 0:
+        0..10: md.fid
+      hash group 0:
+        table: [0]
+        seed: 0x0
+    gateway:
+      name: tbl_t_igr_aiSetdropflag-gateway
+      row: 1
+      bus: 0
+      unit: 1
+      0x0:  tbl_ingress79
+      miss:  tbl_ingress79
+      condition: 
+        expression: "true(always hit)"
+        true:  tbl_ingress79
+        false:  tbl_ingress79
+    next: []
+    action_bus: { 0 : tbl_t_igr_aiSetdropflag$salu.Ingress.t_igr.count_til_drop(0..7) }
+    stateful: tbl_t_igr_aiSetdropflag$salu.Ingress.t_igr.count_til_drop(hash_dist 0, $DEFAULT, $DEFAULT)
+    instruction: tbl_t_igr_aiSetdropflag($DEFAULT, $DEFAULT)
+    actions:
+      Ingress.t_igr.aiSetdropflag(0, 7):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true, is_constant: true }
+      - handle: 0x20000027
+      - next_table: 0
+      - set B3(4..4), tbl_t_igr_aiSetdropflag$salu.Ingress.t_igr.count_til_drop(0..0)
+      - tbl_t_igr_aiSetdropflag$salu.Ingress.t_igr.count_til_drop(t_igr_periodic_drop, $hash_dist)
+    default_action: Ingress.t_igr.aiSetdropflag
+  stateful tbl_t_igr_aiSetdropflag$salu.Ingress.t_igr.count_til_drop:
+    p4: { name: Ingress.t_igr.count_til_drop, size: 2048 }
+    row: 15
+    logical_bus: S
+    column: [ 0, 1 ]
+    maprams: [ 0, 1 ]
+    home_row: 15
+    input_xbar:
+      exact group 1: { 64: hdr.ip.total_len }
+    data_bytemask: 3
+    format: { lo: 32 }
+    actions:
+      t_igr_periodic_drop:
+      - lss.u lo, lo, -phv_lo(0..15)
+      - alu_a cmplo, lo, 150000
+      - alu_a cmplo, hi, 1
+      - sub !cmplo, lo, lo, phv_lo(0..15)
+      - output cmplo, alu_hi
+      t_igr_periodic_nodrop:
+      - lss.u lo, lo, -phv_lo(0..15)
+      - alu_a cmplo, lo, 0
+      - sub !cmplo, lo, lo, phv_lo(0..15)
+  ternary_match tbl_ingress79 6:
+    p4: { name: tbl_ingress79, hidden: true }
+    hit: [  cond-21 ]
+    miss:  cond-21
+    indirect: tbl_ingress79$tind
+  ternary_indirect tbl_ingress79$tind:
+    row: 0
+    bus: 1
+    format: { action: 0..0 }
+    instruction: tbl_ingress79$tind(action, $DEFAULT)
+    actions:
+      ingress79(0, 8):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true, is_constant: true }
+      - handle: 0x20000026
+      - next_table: 0
+      - set t_igr_drop_flag, 1
+    default_action: ingress79
+  gateway cond-21 7:
+    name: cond-21
+    input_xbar:
+      exact group 0: { 114: hdr.tcp.$valid }
+    row: 0
+    bus: 1
+    unit: 1
+    match: { 2: hdr.tcp.$valid }
+    0x1:
+      next:  tbl_ingress98
+    miss:
+      next:  cond-26
+    condition: 
+      expression: "(hdr.tcp.$valid == 1)"
+      true:  tbl_ingress98
+      false:  cond-26
+  gateway cond-26 8:
+    name: cond-26
+    input_xbar:
+      exact group 0: { 114: hdr.tcp.$valid }
+    row: 1
+    bus: 0
+    unit: 0
+    match: { 2: hdr.tcp.$valid }
+    0x1:
+      next:  tbl_t_igr_test_gapRC
+    miss:
+      next:  tbl_ingress112
+    condition: 
+      expression: "(hdr.tcp.$valid == 1)"
+      true:  tbl_t_igr_test_gapRC
+      false:  tbl_ingress112
+stage 10 ingress:
+  dependency: match
+  ternary_match tbl_ingress98 3:
+    p4: { name: tbl_ingress98, hidden: true }
+    gateway:
+      name: cond-22
+      input_xbar:
+        exact group 0: { 76: t_igr_tcp_drop_flag }
+      row: 2
+      bus: 0
+      unit: 0
+      match: { 4: t_igr_tcp_drop_flag }
+      0x1:
+        run_table: true
+      miss:
+        next:  cond-23
+      condition: 
+        expression: "(t_igr_tcp_drop_flag != 0)"
+        true:  tbl_ingress98
+        false:  cond-23
+    hit: [  tbl_t_igr_test_gapRC ]
+    miss:  tbl_t_igr_test_gapRC
+    indirect: tbl_ingress98$tind
+  ternary_indirect tbl_ingress98$tind:
+    row: 1
+    bus: 1
+    format: { action: 0..0 }
+    instruction: tbl_ingress98$tind(action, $DEFAULT)
+    actions:
+      ingress98(1, 4):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true, is_constant: true }
+      - handle: 0x2000002a
+      - next_table: 0
+      - set ig_intr_md_for_dprsr.drop_ctl, 1
+    default_action: ingress98
+  gateway cond-23 4:
+    name: cond-23
+    input_xbar:
+      exact group 0: { 8: t_igr_burst(8..31), 32: t_igr_burst(0..7) }
+    row: 1
+    bus: 1
+    unit: 1
+    match: { 0: t_igr_burst(0..7), 8: t_igr_burst(8..15), 16: t_igr_burst(16..23), 24: t_igr_burst(24..31) }
+    0x00000000:
+      next:  tbl_ingress102
+    miss:
+      next:  tbl_ingress100
+    condition: 
+      expression: "(t_igr_burst != 0 && t_igr_gapRC != 0 && t_igr_RC_nag == 0)"
+      true:  tbl_ingress100
+      false:  tbl_ingress102
+  ternary_match tbl_ingress102 6:
+    p4: { name: tbl_ingress102, hidden: true }
+    gateway:
+      name: cond-24
+      input_xbar:
+        exact group 0: { 88: hdr.ip.ecn, 96: t_igr_ecn_flag }
+      row: 0
+      bus: 1
+      unit: 1
+      match: { 8: hdr.ip.ecn, 0: t_igr_ecn_flag }
+      0x0**:
+        next:  tbl_ingress105
+      0b**00000000:
+        next:  tbl_ingress105
+      miss:
+        run_table: true
+      condition: 
+        expression: "(hdr.ip.ecn != 0 && t_igr_ecn_flag != 0)"
+        true:  tbl_ingress102
+        false:  tbl_ingress105
+    hit: [  tbl_t_igr_test_gapRC ]
+    miss:  tbl_t_igr_test_gapRC
+    indirect: tbl_ingress102$tind
+  ternary_indirect tbl_ingress102$tind:
+    row: 0
+    bus: 1
+    format: { action: 0..0 }
+    instruction: tbl_ingress102$tind(action, $DEFAULT)
+    actions:
+      ingress102(1, 3):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true, is_constant: true }
+      - handle: 0x2000002c
+      - next_table: 0
+      - set hdr.ip.ecn, 3
+    default_action: ingress102
+  ternary_match tbl_ingress105 7:
+    p4: { name: tbl_ingress105, hidden: true }
+    gateway:
+      name: cond-25
+      input_xbar:
+        exact group 0: { 96: t_igr_ecn_flag }
+      row: 0
+      bus: 0
+      unit: 0
+      match: { 0: t_igr_ecn_flag }
+      0x00:
+        next:  tbl_t_igr_test_gapRC
+      miss:
+        run_table: true
+      condition: 
+        expression: "(t_igr_ecn_flag != 0)"
+        true:  tbl_ingress105
+        false:  tbl_t_igr_test_gapRC
+    hit: [  tbl_t_igr_test_gapRC ]
+    miss:  tbl_t_igr_test_gapRC
+    indirect: tbl_ingress105$tind
+  ternary_indirect tbl_ingress105$tind:
+    row: 0
+    bus: 0
+    format: { action: 0..0 }
+    instruction: tbl_ingress105$tind(action, $DEFAULT)
+    actions:
+      ingress105(1, 8):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true, is_constant: true }
+      - handle: 0x2000002b
+      - next_table: 0
+      - set ig_intr_md_for_dprsr.drop_ctl, 1
+    default_action: ingress105
+  ternary_match tbl_ingress100 5:
+    p4: { name: tbl_ingress100, hidden: true }
+    gateway:
+      name: cond-23$split
+      input_xbar:
+        exact group 0: { 40: t_igr_gapRC(8..31), 64: t_igr_gapRC(0..7), 80: t_igr_RC_nag }
+        hash 0:
+        hash 1:
+          44: t_igr_RC_nag
+        hash group 0:
+          table: [0, 1]
+          seed: 0x0
+      row: 1
+      bus: 0
+      unit: 0
+      match: { 0: t_igr_gapRC(0..7), 8: t_igr_gapRC(8..15), 16: t_igr_gapRC(16..23), 24: t_igr_gapRC(24..31), 36: t_igr_RC_nag }
+      0b*****00000000000000000000000000000000:
+        next:  tbl_ingress102
+      0x1*********:
+        next:  tbl_ingress102
+      miss:
+        run_table: true
+      condition: 
+        expression: "(t_igr_burst != 0 && t_igr_gapRC != 0 && t_igr_RC_nag == 0)"
+        true:  tbl_ingress100
+        false:  tbl_ingress102
+    hit: [  tbl_t_igr_test_gapRC ]
+    miss:  tbl_t_igr_test_gapRC
+    indirect: tbl_ingress100$tind
+  ternary_indirect tbl_ingress100$tind:
+    row: 1
+    bus: 0
+    format: { action: 0..0 }
+    instruction: tbl_ingress100$tind(action, $DEFAULT)
+    actions:
+      ingress100(1, 6):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true, is_constant: true }
+      - handle: 0x2000002d
+      - next_table: 0
+      - set ig_intr_md_for_dprsr.drop_ctl, 1
+    default_action: ingress100
+  ternary_match tbl_ingress112 0:
+    p4: { name: tbl_ingress112, hidden: true }
+    gateway:
+      name: cond-27
+      input_xbar:
+        exact group 0: { 0: t_igr_drop_flag }
+      row: 3
+      bus: 1
+      unit: 1
+      match: { 0: t_igr_drop_flag }
+      0x1:
+        run_table: true
+      miss:
+        next:  cond-28
+      condition: 
+        expression: "(t_igr_drop_flag != 0)"
+        true:  tbl_ingress112
+        false:  cond-28
+    hit: [  tbl_t_igr_test_gapRC ]
+    miss:  tbl_t_igr_test_gapRC
+    indirect: tbl_ingress112$tind
+  ternary_indirect tbl_ingress112$tind:
+    row: 2
+    bus: 1
+    format: { action: 0..0 }
+    instruction: tbl_ingress112$tind(action, $DEFAULT)
+    actions:
+      ingress112(1, 1):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true, is_constant: true }
+      - handle: 0x2000002e
+      - next_table: 0
+      - set ig_intr_md_for_dprsr.drop_ctl, 1
+    default_action: ingress112
+  gateway cond-28 1:
+    name: cond-28
+    input_xbar:
+      exact group 0: { 8: t_igr_burst(8..31), 32: t_igr_burst(0..7) }
+    row: 3
+    bus: 0
+    unit: 0
+    match: { 0: t_igr_burst(0..7), 8: t_igr_burst(8..15), 16: t_igr_burst(16..23), 24: t_igr_burst(24..31) }
+    0x00000000:
+      next:  tbl_t_igr_test_gapRC
+    miss:
+      next:  tbl_ingress114
+    condition: 
+      expression: "(t_igr_burst != 0 && t_igr_gapRC != 0 && t_igr_RC_nag != 0)"
+      true:  tbl_ingress114
+      false:  tbl_t_igr_test_gapRC
+  ternary_match tbl_ingress114 2:
+    p4: { name: tbl_ingress114, hidden: true }
+    gateway:
+      name: cond-28$split
+      input_xbar:
+        exact group 0: { 40: t_igr_gapRC(8..31), 64: t_igr_gapRC(0..7), 80: t_igr_RC_nag }
+        hash 0:
+        hash 1:
+          40: t_igr_RC_nag
+        hash group 0:
+          table: [0, 1]
+          seed: 0x0
+      row: 2
+      bus: 1
+      unit: 1
+      match: { 0: t_igr_gapRC(0..7), 8: t_igr_gapRC(8..15), 16: t_igr_gapRC(16..23), 24: t_igr_gapRC(24..31), 32: t_igr_RC_nag }
+      0b*00000000000000000000000000000000:
+        next:  tbl_t_igr_test_gapRC
+      0x0********:
+        next:  tbl_t_igr_test_gapRC
+      miss:
+        run_table: true
+      condition: 
+        expression: "(t_igr_burst != 0 && t_igr_gapRC != 0 && t_igr_RC_nag != 0)"
+        true:  tbl_ingress114
+        false:  tbl_t_igr_test_gapRC
+    hit: [  tbl_t_igr_test_gapRC ]
+    miss:  tbl_t_igr_test_gapRC
+    indirect: tbl_ingress114$tind
+  ternary_indirect tbl_ingress114$tind:
+    row: 2
+    bus: 0
+    format: { action: 0..0 }
+    instruction: tbl_ingress114$tind(action, $DEFAULT)
+    actions:
+      ingress114(1, 2):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true, is_constant: true }
+      - handle: 0x2000002f
+      - next_table: 0
+      - set ig_intr_md_for_dprsr.drop_ctl, 1
+    default_action: ingress114
+  hash_action tbl_t_igr_test_gapRC 8:
+    p4: { name: tbl_t_igr_test_gapRC, hidden: true }
+    row: 0
+    result_bus: 0
+    hash_dist:
+      0: { hash: 1, mask: 0x7ff, shift: 5 }
+    input_xbar:
+      exact group 1: { 0: md.fid }
+      hash 2:
+        0..10: md.fid
+      hash group 1:
+        table: [2]
+        seed: 0x0
+    gateway:
+      name: tbl_t_igr_test_gapRC-gateway
+      row: 4
+      bus: 0
+      unit: 0
+      0x0:  tbl_t_igr_test_burstdrop
+      miss:  tbl_t_igr_test_burstdrop
+      condition: 
+        expression: "true(always hit)"
+        true:  tbl_t_igr_test_burstdrop
+        false:  tbl_t_igr_test_burstdrop
+    next: []
+    stateful: tbl_t_igr_test_gapRC$salu.Ingress.t_igr.ritestgapRC(hash_dist 0, $DEFAULT, $DEFAULT)
+    instruction: tbl_t_igr_test_gapRC($DEFAULT, $DEFAULT)
+    actions:
+      Ingress.t_igr.test_gapRC(0, 0):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true, is_constant: true }
+      - handle: 0x20000022
+      - next_table: 0
+      - tbl_t_igr_test_gapRC$salu.Ingress.t_igr.ritestgapRC(t_igr_ratestgapRC, $hash_dist)
+    default_action: Ingress.t_igr.test_gapRC
+  stateful tbl_t_igr_test_gapRC$salu.Ingress.t_igr.ritestgapRC:
+    p4: { name: Ingress.t_igr.ritestgapRC, size: 2048 }
+    row: 15
+    logical_bus: S
+    column: [ 0, 1 ]
+    maprams: [ 0, 1 ]
+    home_row: 15
+    input_xbar:
+      exact group 1: { 64: t_igr_gapRC }
+    data_bytemask: 15
+    format: { lo: 32 }
+    actions:
+      t_igr_ratestgapRC:
+      - neq lo, phv_lo
+      - alu_a cmplo, lo, phv_lo
+  hash_action tbl_t_igr_test_burstdrop 9:
+    p4: { name: tbl_t_igr_test_burstdrop, hidden: true }
+    row: 0
+    result_bus: 1
+    hash_dist:
+      0: { hash: 1, mask: 0x7ff, shift: 5 }
+    input_xbar:
+      exact group 1: { 0: md.fid }
+      hash 2:
+        0..10: md.fid
+      hash group 1:
+        table: [2]
+        seed: 0x0
+    gateway:
+      name: tbl_t_igr_test_burstdrop-gateway
+      row: 4
+      bus: 0
+      unit: 1
+      0x0:  END
+      miss:  END
+      condition: 
+        expression: "true(always hit)"
+        true:  END
+        false:  END
+    next: []
+    stateful: tbl_t_igr_test_burstdrop$salu.Ingress.t_igr.ritestburstdrop(hash_dist 0, $DEFAULT, $DEFAULT)
+    instruction: tbl_t_igr_test_burstdrop($DEFAULT, $DEFAULT)
+    actions:
+      Ingress.t_igr.test_burstdrop(0, 0):
+      - hit_allowed: { allowed: true }
+      - default_action: { allowed: true, is_constant: true }
+      - handle: 0x20000021
+      - next_table: 0
+      - tbl_t_igr_test_burstdrop$salu.Ingress.t_igr.ritestburstdrop(t_igr_ratestburstdrop, $hash_dist)
+    default_action: Ingress.t_igr.test_burstdrop
+  stateful tbl_t_igr_test_burstdrop$salu.Ingress.t_igr.ritestburstdrop:
+    p4: { name: Ingress.t_igr.ritestburstdrop, size: 2048 }
+    row: 11
+    logical_bus: S
+    column: [ 0, 1 ]
+    maprams: [ 0, 1 ]
+    home_row: 11
+    input_xbar:
+      exact group 2: { 64: t_igr_burst }
+    data_bytemask: 15
+    format: { lo: 32 }
+    actions:
+      t_igr_ratestburstdrop:
+      - neq lo, phv_lo
+      - alu_a cmplo, lo, phv_lo
+
+
+primitives: "fsmmf.prim.json"
+dynhash: "fsmmf.dynhash.json"

@@ -1,0 +1,2456 @@
+{
+  "namespace" : "pd_fsmmf",
+  "p4_name" : "pd_fsmmf",
+  "structs" : [
+    { "name" : "p4_pd_fsmmf_IngressParser__PORT_METADATA_match_spec_t",
+      "fields" : [
+        { "name" : "ig_intr_md_ingress_port",
+          "type" : "i16",
+          "required" : true,
+          "pointer" : false,
+          "custom" : false,
+          "width" : null,
+          "default" : 0
+        }
+      ]
+    },
+    { "name" : "p4_pd_fsmmf_Ingress_t_igr_tiForward_match_spec_t",
+      "fields" : [
+        { "name" : "hdr_ethernet_dst_addr",
+          "type" : "stream<6>",
+          "required" : true,
+          "pointer" : false,
+          "custom" : false,
+          "width" : null,
+          "default" : 0
+        }
+      ]
+    },
+    { "name" : "p4_pd_fsmmf_Ingress_t_igr_tiRate_match_spec_t",
+      "fields" : [
+        { "name" : "table_key",
+          "type" : "i32",
+          "required" : true,
+          "pointer" : false,
+          "custom" : false,
+          "width" : null,
+          "default" : 0
+        }
+      ]
+    },
+    { "name" : "p4_pd_fsmmf_Ingress_t_igr_tiCalc_dt_x_rate_match_spec_t",
+      "fields" : [
+        { "name" : "log_dt",
+          "type" : "i16",
+          "required" : true,
+          "pointer" : false,
+          "custom" : false,
+          "width" : null,
+          "default" : 0
+        },
+        { "name" : "rate",
+          "type" : "i32",
+          "required" : true,
+          "pointer" : false,
+          "custom" : false,
+          "width" : null,
+          "default" : 0
+        }
+      ]
+    },
+    { "name" : "p4_pd_fsmmf_Ingress_t_igr_tiRC_nag_match_spec_t",
+      "fields" : [
+        { "name" : "md_RC",
+          "type" : "i32",
+          "required" : true,
+          "pointer" : false,
+          "custom" : false,
+          "width" : null,
+          "default" : 0
+        },
+        { "name" : "md_RC_mask",
+          "type" : "i32",
+          "required" : true,
+          "pointer" : false,
+          "custom" : false,
+          "width" : null,
+          "default" : 0
+        }
+      ]
+    },
+    { "name" : "p4_pd_fsmmf_Ingress_t_igr_tiGapRC_pos_match_spec_t",
+      "fields" : [
+        { "name" : "gapRC",
+          "type" : "i32",
+          "required" : true,
+          "pointer" : false,
+          "custom" : false,
+          "width" : null,
+          "default" : 0
+        },
+        { "name" : "gapRC_mask",
+          "type" : "i32",
+          "required" : true,
+          "pointer" : false,
+          "custom" : false,
+          "width" : null,
+          "default" : 0
+        }
+      ]
+    },
+    { "name" : "p4_pd_fsmmf_set_port_metadata_action_spec_t",
+      "fields" : [
+        {
+          "name" : "action_ig_intr_md",
+          "type" : "stream<8>",
+          "required" : true,
+          "pointer" : false,
+          "custom" : false,
+          "width" : null,
+          "default" : 0
+        }
+      ]
+    },
+    { "name" : "p4_pd_fsmmf_Ingress_t_igr_aiSetEgress_action_spec_t",
+      "fields" : [
+        {
+          "name" : "action_egr_port",
+          "type" : "i16",
+          "required" : true,
+          "pointer" : false,
+          "custom" : false,
+          "width" : null,
+          "default" : 0
+        }
+      ]
+    },
+    { "name" : "p4_pd_fsmmf_Ingress_t_igr_aiRate_action_spec_t",
+      "fields" : [
+        {
+          "name" : "action_Allocate_rate",
+          "type" : "i32",
+          "required" : true,
+          "pointer" : false,
+          "custom" : false,
+          "width" : null,
+          "default" : 0
+        }
+      ]
+    },
+    { "name" : "p4_pd_fsmmf_Ingress_t_igr_aiCalc_dt_x_rate_action_spec_t",
+      "fields" : [
+        {
+          "name" : "action_Calc_dt_x_rate",
+          "type" : "i32",
+          "required" : true,
+          "pointer" : false,
+          "custom" : false,
+          "width" : null,
+          "default" : 0
+        },
+        {
+          "name" : "action_Calc_dt_x_rate_B",
+          "type" : "i32",
+          "required" : true,
+          "pointer" : false,
+          "custom" : false,
+          "width" : null,
+          "default" : 0
+        }
+      ]
+    },
+    { "name" : "p4_pd_fsmmf_action_specs_t",
+      "fields" : [
+        {
+          "name" : "name",
+          "type" : "enum p4_pd_fsmmf_action_names_t",
+          "required" : false,
+          "pointer" : false,
+          "custom" : false,
+          "width" : null,
+          "default" : 0
+        },
+        {
+          "name" : "u",
+          "type" : "union",
+          "required" : false,
+          "pointer" : false,
+          "custom" : false,
+          "width" : null,
+          "default" : 0,
+          "relation_data" : {
+            "union" : [
+              "name",
+              [
+                "p4_pd_fsmmf_set_port_metadata_action_spec_t",
+                "p4_pd_fsmmf_Ingress_t_igr_aiSetEgress_action_spec_t",
+                null,
+                "p4_pd_fsmmf_Ingress_t_igr_aiRate_action_spec_t",
+                "p4_pd_fsmmf_Ingress_t_igr_aiCalc_dt_x_rate_action_spec_t",
+                null,
+                null,
+                null,
+                null,
+                null
+              ],
+              [
+                "p4_pd_fsmmf_set_port_metadata",
+                "p4_pd_fsmmf_Ingress_t_igr_aiSetEgress",
+                null,
+                "p4_pd_fsmmf_Ingress_t_igr_aiRate",
+                "p4_pd_fsmmf_Ingress_t_igr_aiCalc_dt_x_rate",
+                null,
+                null,
+                null,
+                null,
+                null
+              ]
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name" : "p4_pd_idle_time_params_t",
+      "fields" : [
+        {
+          "name" : "mode",
+          "type" : "enum p4_pd_idle_time_mode_e",
+          "required" : true,
+          "pointer" : false,
+          "custom" : false,
+          "width" : null,
+          "default" : 0
+        },
+        {
+          "name" : "params",
+          "type" : "inline_params_struct",
+          "required" : true,
+          "pointer" : false,
+          "custom" : false,
+          "width" : null,
+          "default" : null
+        }
+      ]
+    },
+    {
+      "name" : "inline_params_struct",
+      "fields" : [
+        {
+          "name" : "notify",
+          "type" : "inline_notify_struct",
+          "required" : true,
+          "pointer" : false,
+          "custom" : false,
+          "width" : null,
+          "default" : null
+        }
+      ]
+    },
+    {
+      "name" : "inline_notify_struct",
+      "fields" : [
+        {
+          "name" : "ttl_query_interval",
+          "type" : "i32",
+          "required" : true,
+          "pointer" : false,
+          "custom" : false,
+          "width" : null,
+          "default" : null
+        },
+        {
+          "name" : "max_ttl",
+          "type" : "i32",
+          "required" : true,
+          "pointer" : false,
+          "custom" : false,
+          "width" : null,
+          "default" : null
+        },
+        {
+          "name" : "min_ttl",
+          "type" : "i32",
+          "required" : true,
+          "pointer" : false,
+          "custom" : false,
+          "width" : null,
+          "default" : null
+        },
+        {
+          "name" : "callback_fn",
+          "type" : "null",
+          "required" : false,
+          "pointer" : false,
+          "custom" : false,
+          "width" : null,
+          "default" : "NOT SUPPORTED"
+        },
+        {
+          "name" : "cookie",
+          "type" : "null",
+          "required" : false,
+          "pointer" : false,
+          "custom" : false,
+          "width" : null,
+          "default" : "NOT SUPPORTED"
+        }
+      ]
+    },
+    {
+      "name" : "p4_pd_dev_target_t",
+      "fields" : [
+        {
+          "name" : "device_id",
+          "type" : "i32",
+          "required" : false,
+          "pointer" : false,
+          "custom" : false,
+          "width" : null,
+          "default" : 0
+        },
+        {
+          "name" : "dev_pipe_id",
+          "type" : "i16",
+          "required" : false,
+          "pointer" : false,
+          "custom" : false,
+          "width" : null,
+          "default" : 65535
+        }
+      ]
+    },
+    {
+      "name" : "p4_pd_lpf_spec_t",
+      "fields" : [
+        {
+          "name" : "gain_decay_separate_time_constant",
+          "type" : "bool",
+          "required" : true,
+          "pointer" : false,
+          "custom" : false,
+          "width" : null,
+          "default" : null
+        },
+        {
+          "name" : "gain_time_constant",
+          "type" : "float",
+          "required" : true,
+          "pointer" : false,
+          "custom" : false,
+          "width" : null,
+          "default" : null
+        },
+        {
+          "name" : "decay_time_constant",
+          "type" : "float",
+          "required" : true,
+          "pointer" : false,
+          "custom" : false,
+          "width" : null,
+          "default" : null
+        },
+        {
+          "name" : "time_constant",
+          "type" : "float",
+          "required" : true,
+          "pointer" : false,
+          "custom" : false,
+          "width" : null,
+          "default" : null
+        },
+        {
+          "name" : "output_scale_down_factor",
+          "type" : "i32",
+          "required" : true,
+          "pointer" : false,
+          "custom" : false,
+          "width" : null,
+          "default" : null
+        },
+        {
+          "name" : "lpf_type",
+          "type" : "enum p4_pd_lpf_type_t",
+          "required" : true,
+          "pointer" : false,
+          "custom" : false,
+          "width" : null,
+          "default" : null
+        }
+      ]
+    },
+    {
+      "name" : "p4_pd_wred_spec_t",
+      "fields" : [
+        {
+          "name" : "time_constant",
+          "type" : "float",
+          "required" : true,
+          "pointer" : false,
+          "custom" : false,
+          "width" : null,
+          "default" : null
+        },
+        {
+          "name" : "red_min_threshold",
+          "type" : "i32",
+          "required" : true,
+          "pointer" : false,
+          "custom" : false,
+          "width" : null,
+          "default" : null
+        },
+        {
+          "name" : "red_max_threshold",
+          "type" : "i32",
+          "required" : true,
+          "pointer" : false,
+          "custom" : false,
+          "width" : null,
+          "default" : null
+        },
+        {
+          "name" : "max_probability",
+          "type" : "float",
+          "required" : true,
+          "pointer" : false,
+          "custom" : false,
+          "width" : null,
+          "default" : null
+        }
+      ]
+    },
+    {
+      "name" : "p4_pd_packets_meter_spec_t",
+      "fields" : [
+        {
+          "name" : "cir_pps",
+          "type" : "i32",
+          "required" : true,
+          "pointer" : false,
+          "custom" : false,
+          "width" : null,
+          "default" : null
+        },
+        {
+          "name" : "cburst_pkts",
+          "type" : "i32",
+          "required" : true,
+          "pointer" : false,
+          "custom" : false,
+          "width" : null,
+          "default" : null
+        },
+        {
+          "name" : "pir_pps",
+          "type" : "i32",
+          "required" : true,
+          "pointer" : false,
+          "custom" : false,
+          "width" : null,
+          "default" : null
+        },
+        {
+          "name" : "pburst_pkts",
+          "type" : "i32",
+          "required" : true,
+          "pointer" : false,
+          "custom" : false,
+          "width" : null,
+          "default" : null
+        },
+        {
+          "name" : "meter_type",
+          "type" : "enum p4_pd_meter_type_t",
+          "required" : true,
+          "pointer" : false,
+          "custom" : false,
+          "width" : null,
+          "default" : null
+        }
+      ]
+    },
+    {
+      "name" : "p4_pd_counter_value_t",
+      "fields" : [
+        {
+          "name" : "packets",
+          "type" : "i64",
+          "required" : true,
+          "pointer" : false,
+          "custom" : false,
+          "width" : null,
+          "default" : null
+        },
+        {
+          "name" : "bytes",
+          "type" : "i64",
+          "required" : true,
+          "pointer" : false,
+          "custom" : false,
+          "width" : null,
+          "default" : null
+        }
+      ]
+    },
+    {
+      "name" : "p4_pd_dev_parser_target_t",
+      "fields" : [
+        {
+          "name" : "device_id",
+          "type" : "i32",
+          "required" : true,
+          "pointer" : false,
+          "custom" : false,
+          "width" : null,
+          "default" : null
+        },
+        {
+          "name" : "dev_pipe_id",
+          "type" : "i16",
+          "required" : true,
+          "pointer" : false,
+          "custom" : false,
+          "width" : null,
+          "default" : null
+        },
+        {
+          "name" : "parser_id",
+          "type" : "i16",
+          "required" : true,
+          "pointer" : false,
+          "custom" : false,
+          "width" : null,
+          "default" : null
+        }
+      ]
+    },
+    {
+      "name" : "p4_pd_bytes_meter_spec_t",
+      "fields" : [
+        {
+          "name" : "cir_kbps",
+          "type" : "i32",
+          "required" : true,
+          "pointer" : false,
+          "custom" : false,
+          "width" : null,
+          "default" : null
+        },
+        {
+          "name" : "cburst_kbits",
+          "type" : "i32",
+          "required" : true,
+          "pointer" : false,
+          "custom" : false,
+          "width" : null,
+          "default" : null
+        },
+        {
+          "name" : "pir_kbps",
+          "type" : "i32",
+          "required" : true,
+          "pointer" : false,
+          "custom" : false,
+          "width" : null,
+          "default" : null
+        },
+        {
+          "name" : "pburst_kbits",
+          "type" : "i32",
+          "required" : true,
+          "pointer" : false,
+          "custom" : false,
+          "width" : null,
+          "default" : null
+        },
+        {
+          "name" : "meter_type",
+          "type" : "enum p4_pd_meter_type_t",
+          "required" : true,
+          "pointer" : false,
+          "custom" : false,
+          "width" : null,
+          "default" : null
+        }
+      ]
+    }
+  ],
+  "enums" : [
+    {"name" : "p4_pd_fsmmf_action_names_t"},
+    {"name" : "p4_pd_grp_mbr_state_e"},
+    {"name" : "p4_pd_idle_time_mode_e"},
+    {"name" : "p4_pd_meter_type_t"},
+    {"name" : "p4_pd_pvs_prop_type_t"},
+    {"name" : "p4_pd_lpf_type_t"}
+  ],
+  "typedefs" : [
+    {"name" : "p4_pd_status_t", "type" : "i32"},
+    {"name" : "p4_pd_sess_hdl_t", "type" : "i32"},
+    {"name" : "p4_pd_entry_hdl_t", "type" : "i32"},
+    {"name" : "p4_pd_mbr_hdl_t", "type" : "i32"},
+    {"name" : "p4_pd_grp_hdl_t", "type" : "i32"},
+    {"name" : "p4_pd_pvs_hdl_t", "type" : "i32"},
+    {"name" : "p4_pd_pvs_prop_args_t", "type" : "i32"}
+  ],
+  "function_prefix" : "p4_pd_fsmmf_",
+  "tables" : [
+    "IngressParser__PORT_METADATA",
+    "Ingress_t_igr_tiForward",
+    "Ingress_t_igr_tiRate",
+    "Ingress_t_igr_tiCalc_dt_x_rate",
+    "Ingress_t_igr_tiRC_nag",
+    "Ingress_t_igr_tiGapRC_pos"
+  ],
+  "action_profiles" : [
+  ],
+  "services" : [
+    {
+      "name" : "pd",
+      "functions" : [
+        [
+          "p4_pd_fsmmf-IngressParser__PORT_METADATA-match_spec_to_entry_hdl",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["match_spec", "p4_pd_fsmmf_IngressParser__PORT_METADATA_match_spec_t", true, true, false, null, null, false],
+            ["entry_hdl", "p4_pd_entry_hdl_t", false, true, false, null, 0, true]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-Ingress_t_igr_tiForward-match_spec_to_entry_hdl",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["match_spec", "p4_pd_fsmmf_Ingress_t_igr_tiForward_match_spec_t", true, true, false, null, null, false],
+            ["entry_hdl", "p4_pd_entry_hdl_t", false, true, false, null, 0, true]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-Ingress_t_igr_tiRate-match_spec_to_entry_hdl",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["match_spec", "p4_pd_fsmmf_Ingress_t_igr_tiRate_match_spec_t", true, true, false, null, null, false],
+            ["entry_hdl", "p4_pd_entry_hdl_t", false, true, false, null, 0, true]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-Ingress_t_igr_tiCalc_dt_x_rate-match_spec_to_entry_hdl",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["match_spec", "p4_pd_fsmmf_Ingress_t_igr_tiCalc_dt_x_rate_match_spec_t", true, true, false, null, null, false],
+            ["entry_hdl", "p4_pd_entry_hdl_t", false, true, false, null, 0, true]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-Ingress_t_igr_tiRC_nag-match_spec_to_entry_hdl",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["match_spec", "p4_pd_fsmmf_Ingress_t_igr_tiRC_nag_match_spec_t", true, true, false, null, null, false],
+            ["priority", "i32", true, false, false, null, null, false],
+            ["entry_hdl", "p4_pd_entry_hdl_t", false, true, false, null, 0, true]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-Ingress_t_igr_tiGapRC_pos-match_spec_to_entry_hdl",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["match_spec", "p4_pd_fsmmf_Ingress_t_igr_tiGapRC_pos_match_spec_t", true, true, false, null, null, false],
+            ["priority", "i32", true, false, false, null, null, false],
+            ["entry_hdl", "p4_pd_entry_hdl_t", false, true, false, null, 0, true]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-IngressParser__PORT_METADATA-table_add_with-set_port_metadata",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["match_spec", "p4_pd_fsmmf_IngressParser__PORT_METADATA_match_spec_t", true, true, false, null, null, false],
+            ["action_spec", "p4_pd_fsmmf_set_port_metadata_action_spec_t", true, true, false, null, null, false],
+            ["entry_hdl", "p4_pd_entry_hdl_t", false, true, false, null, 0, true]
+          ],
+          "p4_pd_status_t",
+          ["p4_pd_fsmmf-IngressParser__PORT_METADATA-add_entry-set_port_metadata"]
+        ],
+        [
+          "p4_pd_fsmmf-Ingress_t_igr_tiForward-table_add_with-Ingress_t_igr_aiSetEgress",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["match_spec", "p4_pd_fsmmf_Ingress_t_igr_tiForward_match_spec_t", true, true, false, null, null, false],
+            ["action_spec", "p4_pd_fsmmf_Ingress_t_igr_aiSetEgress_action_spec_t", true, true, false, null, null, false],
+            ["entry_hdl", "p4_pd_entry_hdl_t", false, true, false, null, 0, true]
+          ],
+          "p4_pd_status_t",
+          ["p4_pd_fsmmf-Ingress_t_igr_tiForward-add_entry-Ingress_t_igr_aiSetEgress"]
+        ],
+        [
+          "p4_pd_fsmmf-Ingress_t_igr_tiForward-table_add_with-Ingress_t_igr_aiNoop",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["match_spec", "p4_pd_fsmmf_Ingress_t_igr_tiForward_match_spec_t", true, true, false, null, null, false],
+            ["entry_hdl", "p4_pd_entry_hdl_t", false, true, false, null, 0, true]
+          ],
+          "p4_pd_status_t",
+          ["p4_pd_fsmmf-Ingress_t_igr_tiForward-add_entry-Ingress_t_igr_aiNoop"]
+        ],
+        [
+          "p4_pd_fsmmf-Ingress_t_igr_tiRate-table_add_with-Ingress_t_igr_aiRate",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["match_spec", "p4_pd_fsmmf_Ingress_t_igr_tiRate_match_spec_t", true, true, false, null, null, false],
+            ["action_spec", "p4_pd_fsmmf_Ingress_t_igr_aiRate_action_spec_t", true, true, false, null, null, false],
+            ["entry_hdl", "p4_pd_entry_hdl_t", false, true, false, null, 0, true]
+          ],
+          "p4_pd_status_t",
+          ["p4_pd_fsmmf-Ingress_t_igr_tiRate-add_entry-Ingress_t_igr_aiRate"]
+        ],
+        [
+          "p4_pd_fsmmf-Ingress_t_igr_tiCalc_dt_x_rate-table_add_with-Ingress_t_igr_aiCalc_dt_x_rate",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["match_spec", "p4_pd_fsmmf_Ingress_t_igr_tiCalc_dt_x_rate_match_spec_t", true, true, false, null, null, false],
+            ["action_spec", "p4_pd_fsmmf_Ingress_t_igr_aiCalc_dt_x_rate_action_spec_t", true, true, false, null, null, false],
+            ["entry_hdl", "p4_pd_entry_hdl_t", false, true, false, null, 0, true]
+          ],
+          "p4_pd_status_t",
+          ["p4_pd_fsmmf-Ingress_t_igr_tiCalc_dt_x_rate-add_entry-Ingress_t_igr_aiCalc_dt_x_rate"]
+        ],
+        [
+          "p4_pd_fsmmf-Ingress_t_igr_tiRC_nag-table_add_with-NoAction",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["match_spec", "p4_pd_fsmmf_Ingress_t_igr_tiRC_nag_match_spec_t", true, true, false, null, null, false],
+            ["priority", "i32", true, false, false, null, null, false],
+            ["entry_hdl", "p4_pd_entry_hdl_t", false, true, false, null, 0, true]
+          ],
+          "p4_pd_status_t",
+          ["p4_pd_fsmmf-Ingress_t_igr_tiRC_nag-add_entry-NoAction"]
+        ],
+        [
+          "p4_pd_fsmmf-Ingress_t_igr_tiRC_nag-table_add_with-Ingress_t_igr_aiRC_neg",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["match_spec", "p4_pd_fsmmf_Ingress_t_igr_tiRC_nag_match_spec_t", true, true, false, null, null, false],
+            ["priority", "i32", true, false, false, null, null, false],
+            ["entry_hdl", "p4_pd_entry_hdl_t", false, true, false, null, 0, true]
+          ],
+          "p4_pd_status_t",
+          ["p4_pd_fsmmf-Ingress_t_igr_tiRC_nag-add_entry-Ingress_t_igr_aiRC_neg"]
+        ],
+        [
+          "p4_pd_fsmmf-Ingress_t_igr_tiRC_nag-table_add_with-Ingress_t_igr_aiRC_pos",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["match_spec", "p4_pd_fsmmf_Ingress_t_igr_tiRC_nag_match_spec_t", true, true, false, null, null, false],
+            ["priority", "i32", true, false, false, null, null, false],
+            ["entry_hdl", "p4_pd_entry_hdl_t", false, true, false, null, 0, true]
+          ],
+          "p4_pd_status_t",
+          ["p4_pd_fsmmf-Ingress_t_igr_tiRC_nag-add_entry-Ingress_t_igr_aiRC_pos"]
+        ],
+        [
+          "p4_pd_fsmmf-Ingress_t_igr_tiGapRC_pos-table_add_with-NoAction",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["match_spec", "p4_pd_fsmmf_Ingress_t_igr_tiGapRC_pos_match_spec_t", true, true, false, null, null, false],
+            ["priority", "i32", true, false, false, null, null, false],
+            ["entry_hdl", "p4_pd_entry_hdl_t", false, true, false, null, 0, true]
+          ],
+          "p4_pd_status_t",
+          ["p4_pd_fsmmf-Ingress_t_igr_tiGapRC_pos-add_entry-NoAction"]
+        ],
+        [
+          "p4_pd_fsmmf-Ingress_t_igr_tiGapRC_pos-table_add_with-Ingress_t_igr_aiGapRC_neg",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["match_spec", "p4_pd_fsmmf_Ingress_t_igr_tiGapRC_pos_match_spec_t", true, true, false, null, null, false],
+            ["priority", "i32", true, false, false, null, null, false],
+            ["entry_hdl", "p4_pd_entry_hdl_t", false, true, false, null, 0, true]
+          ],
+          "p4_pd_status_t",
+          ["p4_pd_fsmmf-Ingress_t_igr_tiGapRC_pos-add_entry-Ingress_t_igr_aiGapRC_neg"]
+        ],
+        [
+          "p4_pd_fsmmf-Ingress_t_igr_tiGapRC_pos-table_add_with-Ingress_t_igr_aiGapRC_pos",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["match_spec", "p4_pd_fsmmf_Ingress_t_igr_tiGapRC_pos_match_spec_t", true, true, false, null, null, false],
+            ["priority", "i32", true, false, false, null, null, false],
+            ["entry_hdl", "p4_pd_entry_hdl_t", false, true, false, null, 0, true]
+          ],
+          "p4_pd_status_t",
+          ["p4_pd_fsmmf-Ingress_t_igr_tiGapRC_pos-add_entry-Ingress_t_igr_aiGapRC_pos"]
+        ],
+        [
+          "p4_pd_fsmmf-IngressParser__PORT_METADATA-table_delete",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_id", "byte", false, false, false, null, 0, false],
+            ["entry_hdl", "p4_pd_entry_hdl_t", true, false, false, null, null, false]
+          ],
+          "p4_pd_status_t",
+          ["p4_pd_fsmmf-IngressParser__PORT_METADATA-del_entry"]
+        ],
+        [
+          "p4_pd_fsmmf-IngressParser__PORT_METADATA-table_delete-by_match_spec",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["match_spec", "p4_pd_fsmmf_IngressParser__PORT_METADATA_match_spec_t", true, true, false, null, null, false]
+          ],
+          "p4_pd_status_t",
+          ["p4_pd_fsmmf-IngressParser__PORT_METADATA-del_entry-by_match_spec"]
+        ],
+        [
+          "p4_pd_fsmmf-Ingress_t_igr_tiForward-table_delete",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_id", "byte", false, false, false, null, 0, false],
+            ["entry_hdl", "p4_pd_entry_hdl_t", true, false, false, null, null, false]
+          ],
+          "p4_pd_status_t",
+          ["p4_pd_fsmmf-Ingress_t_igr_tiForward-del_entry"]
+        ],
+        [
+          "p4_pd_fsmmf-Ingress_t_igr_tiForward-table_delete-by_match_spec",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["match_spec", "p4_pd_fsmmf_Ingress_t_igr_tiForward_match_spec_t", true, true, false, null, null, false]
+          ],
+          "p4_pd_status_t",
+          ["p4_pd_fsmmf-Ingress_t_igr_tiForward-del_entry-by_match_spec"]
+        ],
+        [
+          "p4_pd_fsmmf-Ingress_t_igr_tiRate-table_delete",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_id", "byte", false, false, false, null, 0, false],
+            ["entry_hdl", "p4_pd_entry_hdl_t", true, false, false, null, null, false]
+          ],
+          "p4_pd_status_t",
+          ["p4_pd_fsmmf-Ingress_t_igr_tiRate-del_entry"]
+        ],
+        [
+          "p4_pd_fsmmf-Ingress_t_igr_tiRate-table_delete-by_match_spec",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["match_spec", "p4_pd_fsmmf_Ingress_t_igr_tiRate_match_spec_t", true, true, false, null, null, false]
+          ],
+          "p4_pd_status_t",
+          ["p4_pd_fsmmf-Ingress_t_igr_tiRate-del_entry-by_match_spec"]
+        ],
+        [
+          "p4_pd_fsmmf-Ingress_t_igr_tiCalc_dt_x_rate-table_delete",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_id", "byte", false, false, false, null, 0, false],
+            ["entry_hdl", "p4_pd_entry_hdl_t", true, false, false, null, null, false]
+          ],
+          "p4_pd_status_t",
+          ["p4_pd_fsmmf-Ingress_t_igr_tiCalc_dt_x_rate-del_entry"]
+        ],
+        [
+          "p4_pd_fsmmf-Ingress_t_igr_tiCalc_dt_x_rate-table_delete-by_match_spec",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["match_spec", "p4_pd_fsmmf_Ingress_t_igr_tiCalc_dt_x_rate_match_spec_t", true, true, false, null, null, false]
+          ],
+          "p4_pd_status_t",
+          ["p4_pd_fsmmf-Ingress_t_igr_tiCalc_dt_x_rate-del_entry-by_match_spec"]
+        ],
+        [
+          "p4_pd_fsmmf-Ingress_t_igr_tiRC_nag-table_delete",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_id", "byte", false, false, false, null, 0, false],
+            ["entry_hdl", "p4_pd_entry_hdl_t", true, false, false, null, null, false]
+          ],
+          "p4_pd_status_t",
+          ["p4_pd_fsmmf-Ingress_t_igr_tiRC_nag-del_entry"]
+        ],
+        [
+          "p4_pd_fsmmf-Ingress_t_igr_tiRC_nag-table_delete-by_match_spec",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["match_spec", "p4_pd_fsmmf_Ingress_t_igr_tiRC_nag_match_spec_t", true, true, false, null, null, false],
+            ["priority", "i32", true, false, false, null, null, false]
+          ],
+          "p4_pd_status_t",
+          ["p4_pd_fsmmf-Ingress_t_igr_tiRC_nag-del_entry-by_match_spec"]
+        ],
+        [
+          "p4_pd_fsmmf-Ingress_t_igr_tiGapRC_pos-table_delete",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_id", "byte", false, false, false, null, 0, false],
+            ["entry_hdl", "p4_pd_entry_hdl_t", true, false, false, null, null, false]
+          ],
+          "p4_pd_status_t",
+          ["p4_pd_fsmmf-Ingress_t_igr_tiGapRC_pos-del_entry"]
+        ],
+        [
+          "p4_pd_fsmmf-Ingress_t_igr_tiGapRC_pos-table_delete-by_match_spec",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["match_spec", "p4_pd_fsmmf_Ingress_t_igr_tiGapRC_pos_match_spec_t", true, true, false, null, null, false],
+            ["priority", "i32", true, false, false, null, null, false]
+          ],
+          "p4_pd_status_t",
+          ["p4_pd_fsmmf-Ingress_t_igr_tiGapRC_pos-del_entry-by_match_spec"]
+        ],
+        [
+          "p4_pd_fsmmf-IngressParser__PORT_METADATA-table_get_default_entry_handle",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["pd_dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["entry_handle", "p4_pd_entry_hdl_t", false, true, false, null, 0, true]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-IngressParser__PORT_METADATA-table_get_default_entry",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["pd_dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["read_from_hw", "bool", false, false, false, null, false, false],
+            ["action_spec", "p4_pd_fsmmf_action_specs_t", false, true, false, null, 0, true]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-Ingress_t_igr_tiForward-table_get_default_entry_handle",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["pd_dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["entry_handle", "p4_pd_entry_hdl_t", false, true, false, null, 0, true]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-Ingress_t_igr_tiForward-table_get_default_entry",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["pd_dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["read_from_hw", "bool", false, false, false, null, false, false],
+            ["action_spec", "p4_pd_fsmmf_action_specs_t", false, true, false, null, 0, true]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-Ingress_t_igr_tiRate-table_get_default_entry_handle",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["pd_dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["entry_handle", "p4_pd_entry_hdl_t", false, true, false, null, 0, true]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-Ingress_t_igr_tiRate-table_get_default_entry",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["pd_dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["read_from_hw", "bool", false, false, false, null, false, false],
+            ["action_spec", "p4_pd_fsmmf_action_specs_t", false, true, false, null, 0, true]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-Ingress_t_igr_tiCalc_dt_x_rate-table_get_default_entry_handle",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["pd_dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["entry_handle", "p4_pd_entry_hdl_t", false, true, false, null, 0, true]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-Ingress_t_igr_tiCalc_dt_x_rate-table_get_default_entry",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["pd_dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["read_from_hw", "bool", false, false, false, null, false, false],
+            ["action_spec", "p4_pd_fsmmf_action_specs_t", false, true, false, null, 0, true]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-Ingress_t_igr_tiRC_nag-table_get_default_entry_handle",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["pd_dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["entry_handle", "p4_pd_entry_hdl_t", false, true, false, null, 0, true]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-Ingress_t_igr_tiRC_nag-table_get_default_entry",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["pd_dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["read_from_hw", "bool", false, false, false, null, false, false],
+            ["action_spec", "p4_pd_fsmmf_action_specs_t", false, true, false, null, 0, true]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-Ingress_t_igr_tiGapRC_pos-table_get_default_entry_handle",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["pd_dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["entry_handle", "p4_pd_entry_hdl_t", false, true, false, null, 0, true]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-Ingress_t_igr_tiGapRC_pos-table_get_default_entry",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["pd_dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["read_from_hw", "bool", false, false, false, null, false, false],
+            ["action_spec", "p4_pd_fsmmf_action_specs_t", false, true, false, null, 0, true]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-IngressParser__PORT_METADATA-table_reset_default_entry",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["pd_dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-Ingress_t_igr_tiForward-table_reset_default_entry",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["pd_dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-Ingress_t_igr_tiRate-table_reset_default_entry",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["pd_dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-Ingress_t_igr_tiCalc_dt_x_rate-table_reset_default_entry",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["pd_dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-Ingress_t_igr_tiRC_nag-table_reset_default_entry",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["pd_dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-Ingress_t_igr_tiGapRC_pos-table_reset_default_entry",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["pd_dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-IngressParser__PORT_METADATA-table_modify_with-set_port_metadata",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_id", "byte", false, false, false, null, 0, false],
+            ["entry_hdl", "p4_pd_entry_hdl_t", true, false, false, null, null, false],
+            ["action_spec", "p4_pd_fsmmf_set_port_metadata_action_spec_t", true, true, false, null, null, false]
+          ],
+          "p4_pd_status_t",
+          ["p4_pd_fsmmf-IngressParser__PORT_METADATA-mod_entry-set_port_metadata"]
+        ],
+        [
+          "p4_pd_fsmmf-IngressParser__PORT_METADATA-table_modify_with-set_port_metadata-by_match_spec",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["match_spec", "p4_pd_fsmmf_IngressParser__PORT_METADATA_match_spec_t", true, true, false, null, null, false],
+            ["action_spec", "p4_pd_fsmmf_set_port_metadata_action_spec_t", true, true, false, null, null, false]
+          ],
+          "p4_pd_status_t",
+          ["p4_pd_fsmmf-IngressParser__PORT_METADATA-mod_entry-set_port_metadata-by_match_spec"]
+        ],
+        [
+          "p4_pd_fsmmf-Ingress_t_igr_tiForward-table_modify_with-Ingress_t_igr_aiSetEgress",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_id", "byte", false, false, false, null, 0, false],
+            ["entry_hdl", "p4_pd_entry_hdl_t", true, false, false, null, null, false],
+            ["action_spec", "p4_pd_fsmmf_Ingress_t_igr_aiSetEgress_action_spec_t", true, true, false, null, null, false]
+          ],
+          "p4_pd_status_t",
+          ["p4_pd_fsmmf-Ingress_t_igr_tiForward-mod_entry-Ingress_t_igr_aiSetEgress"]
+        ],
+        [
+          "p4_pd_fsmmf-Ingress_t_igr_tiForward-table_modify_with-Ingress_t_igr_aiSetEgress-by_match_spec",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["match_spec", "p4_pd_fsmmf_Ingress_t_igr_tiForward_match_spec_t", true, true, false, null, null, false],
+            ["action_spec", "p4_pd_fsmmf_Ingress_t_igr_aiSetEgress_action_spec_t", true, true, false, null, null, false]
+          ],
+          "p4_pd_status_t",
+          ["p4_pd_fsmmf-Ingress_t_igr_tiForward-mod_entry-Ingress_t_igr_aiSetEgress-by_match_spec"]
+        ],
+        [
+          "p4_pd_fsmmf-Ingress_t_igr_tiForward-table_modify_with-Ingress_t_igr_aiNoop",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_id", "byte", false, false, false, null, 0, false],
+            ["entry_hdl", "p4_pd_entry_hdl_t", true, false, false, null, null, false]
+          ],
+          "p4_pd_status_t",
+          ["p4_pd_fsmmf-Ingress_t_igr_tiForward-mod_entry-Ingress_t_igr_aiNoop"]
+        ],
+        [
+          "p4_pd_fsmmf-Ingress_t_igr_tiForward-table_modify_with-Ingress_t_igr_aiNoop-by_match_spec",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["match_spec", "p4_pd_fsmmf_Ingress_t_igr_tiForward_match_spec_t", true, true, false, null, null, false]
+          ],
+          "p4_pd_status_t",
+          ["p4_pd_fsmmf-Ingress_t_igr_tiForward-mod_entry-Ingress_t_igr_aiNoop-by_match_spec"]
+        ],
+        [
+          "p4_pd_fsmmf-Ingress_t_igr_tiRate-table_modify_with-Ingress_t_igr_aiRate",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_id", "byte", false, false, false, null, 0, false],
+            ["entry_hdl", "p4_pd_entry_hdl_t", true, false, false, null, null, false],
+            ["action_spec", "p4_pd_fsmmf_Ingress_t_igr_aiRate_action_spec_t", true, true, false, null, null, false]
+          ],
+          "p4_pd_status_t",
+          ["p4_pd_fsmmf-Ingress_t_igr_tiRate-mod_entry-Ingress_t_igr_aiRate"]
+        ],
+        [
+          "p4_pd_fsmmf-Ingress_t_igr_tiRate-table_modify_with-Ingress_t_igr_aiRate-by_match_spec",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["match_spec", "p4_pd_fsmmf_Ingress_t_igr_tiRate_match_spec_t", true, true, false, null, null, false],
+            ["action_spec", "p4_pd_fsmmf_Ingress_t_igr_aiRate_action_spec_t", true, true, false, null, null, false]
+          ],
+          "p4_pd_status_t",
+          ["p4_pd_fsmmf-Ingress_t_igr_tiRate-mod_entry-Ingress_t_igr_aiRate-by_match_spec"]
+        ],
+        [
+          "p4_pd_fsmmf-Ingress_t_igr_tiCalc_dt_x_rate-table_modify_with-Ingress_t_igr_aiCalc_dt_x_rate",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_id", "byte", false, false, false, null, 0, false],
+            ["entry_hdl", "p4_pd_entry_hdl_t", true, false, false, null, null, false],
+            ["action_spec", "p4_pd_fsmmf_Ingress_t_igr_aiCalc_dt_x_rate_action_spec_t", true, true, false, null, null, false]
+          ],
+          "p4_pd_status_t",
+          ["p4_pd_fsmmf-Ingress_t_igr_tiCalc_dt_x_rate-mod_entry-Ingress_t_igr_aiCalc_dt_x_rate"]
+        ],
+        [
+          "p4_pd_fsmmf-Ingress_t_igr_tiCalc_dt_x_rate-table_modify_with-Ingress_t_igr_aiCalc_dt_x_rate-by_match_spec",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["match_spec", "p4_pd_fsmmf_Ingress_t_igr_tiCalc_dt_x_rate_match_spec_t", true, true, false, null, null, false],
+            ["action_spec", "p4_pd_fsmmf_Ingress_t_igr_aiCalc_dt_x_rate_action_spec_t", true, true, false, null, null, false]
+          ],
+          "p4_pd_status_t",
+          ["p4_pd_fsmmf-Ingress_t_igr_tiCalc_dt_x_rate-mod_entry-Ingress_t_igr_aiCalc_dt_x_rate-by_match_spec"]
+        ],
+        [
+          "p4_pd_fsmmf-Ingress_t_igr_tiRC_nag-table_modify_with-NoAction",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_id", "byte", false, false, false, null, 0, false],
+            ["entry_hdl", "p4_pd_entry_hdl_t", true, false, false, null, null, false]
+          ],
+          "p4_pd_status_t",
+          ["p4_pd_fsmmf-Ingress_t_igr_tiRC_nag-mod_entry-NoAction"]
+        ],
+        [
+          "p4_pd_fsmmf-Ingress_t_igr_tiRC_nag-table_modify_with-NoAction-by_match_spec",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["match_spec", "p4_pd_fsmmf_Ingress_t_igr_tiRC_nag_match_spec_t", true, true, false, null, null, false],
+            ["priority", "i32", true, false, false, null, null, false]
+          ],
+          "p4_pd_status_t",
+          ["p4_pd_fsmmf-Ingress_t_igr_tiRC_nag-mod_entry-NoAction-by_match_spec"]
+        ],
+        [
+          "p4_pd_fsmmf-Ingress_t_igr_tiRC_nag-table_modify_with-Ingress_t_igr_aiRC_neg",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_id", "byte", false, false, false, null, 0, false],
+            ["entry_hdl", "p4_pd_entry_hdl_t", true, false, false, null, null, false]
+          ],
+          "p4_pd_status_t",
+          ["p4_pd_fsmmf-Ingress_t_igr_tiRC_nag-mod_entry-Ingress_t_igr_aiRC_neg"]
+        ],
+        [
+          "p4_pd_fsmmf-Ingress_t_igr_tiRC_nag-table_modify_with-Ingress_t_igr_aiRC_neg-by_match_spec",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["match_spec", "p4_pd_fsmmf_Ingress_t_igr_tiRC_nag_match_spec_t", true, true, false, null, null, false],
+            ["priority", "i32", true, false, false, null, null, false]
+          ],
+          "p4_pd_status_t",
+          ["p4_pd_fsmmf-Ingress_t_igr_tiRC_nag-mod_entry-Ingress_t_igr_aiRC_neg-by_match_spec"]
+        ],
+        [
+          "p4_pd_fsmmf-Ingress_t_igr_tiRC_nag-table_modify_with-Ingress_t_igr_aiRC_pos",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_id", "byte", false, false, false, null, 0, false],
+            ["entry_hdl", "p4_pd_entry_hdl_t", true, false, false, null, null, false]
+          ],
+          "p4_pd_status_t",
+          ["p4_pd_fsmmf-Ingress_t_igr_tiRC_nag-mod_entry-Ingress_t_igr_aiRC_pos"]
+        ],
+        [
+          "p4_pd_fsmmf-Ingress_t_igr_tiRC_nag-table_modify_with-Ingress_t_igr_aiRC_pos-by_match_spec",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["match_spec", "p4_pd_fsmmf_Ingress_t_igr_tiRC_nag_match_spec_t", true, true, false, null, null, false],
+            ["priority", "i32", true, false, false, null, null, false]
+          ],
+          "p4_pd_status_t",
+          ["p4_pd_fsmmf-Ingress_t_igr_tiRC_nag-mod_entry-Ingress_t_igr_aiRC_pos-by_match_spec"]
+        ],
+        [
+          "p4_pd_fsmmf-Ingress_t_igr_tiGapRC_pos-table_modify_with-NoAction",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_id", "byte", false, false, false, null, 0, false],
+            ["entry_hdl", "p4_pd_entry_hdl_t", true, false, false, null, null, false]
+          ],
+          "p4_pd_status_t",
+          ["p4_pd_fsmmf-Ingress_t_igr_tiGapRC_pos-mod_entry-NoAction"]
+        ],
+        [
+          "p4_pd_fsmmf-Ingress_t_igr_tiGapRC_pos-table_modify_with-NoAction-by_match_spec",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["match_spec", "p4_pd_fsmmf_Ingress_t_igr_tiGapRC_pos_match_spec_t", true, true, false, null, null, false],
+            ["priority", "i32", true, false, false, null, null, false]
+          ],
+          "p4_pd_status_t",
+          ["p4_pd_fsmmf-Ingress_t_igr_tiGapRC_pos-mod_entry-NoAction-by_match_spec"]
+        ],
+        [
+          "p4_pd_fsmmf-Ingress_t_igr_tiGapRC_pos-table_modify_with-Ingress_t_igr_aiGapRC_neg",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_id", "byte", false, false, false, null, 0, false],
+            ["entry_hdl", "p4_pd_entry_hdl_t", true, false, false, null, null, false]
+          ],
+          "p4_pd_status_t",
+          ["p4_pd_fsmmf-Ingress_t_igr_tiGapRC_pos-mod_entry-Ingress_t_igr_aiGapRC_neg"]
+        ],
+        [
+          "p4_pd_fsmmf-Ingress_t_igr_tiGapRC_pos-table_modify_with-Ingress_t_igr_aiGapRC_neg-by_match_spec",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["match_spec", "p4_pd_fsmmf_Ingress_t_igr_tiGapRC_pos_match_spec_t", true, true, false, null, null, false],
+            ["priority", "i32", true, false, false, null, null, false]
+          ],
+          "p4_pd_status_t",
+          ["p4_pd_fsmmf-Ingress_t_igr_tiGapRC_pos-mod_entry-Ingress_t_igr_aiGapRC_neg-by_match_spec"]
+        ],
+        [
+          "p4_pd_fsmmf-Ingress_t_igr_tiGapRC_pos-table_modify_with-Ingress_t_igr_aiGapRC_pos",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_id", "byte", false, false, false, null, 0, false],
+            ["entry_hdl", "p4_pd_entry_hdl_t", true, false, false, null, null, false]
+          ],
+          "p4_pd_status_t",
+          ["p4_pd_fsmmf-Ingress_t_igr_tiGapRC_pos-mod_entry-Ingress_t_igr_aiGapRC_pos"]
+        ],
+        [
+          "p4_pd_fsmmf-Ingress_t_igr_tiGapRC_pos-table_modify_with-Ingress_t_igr_aiGapRC_pos-by_match_spec",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["match_spec", "p4_pd_fsmmf_Ingress_t_igr_tiGapRC_pos_match_spec_t", true, true, false, null, null, false],
+            ["priority", "i32", true, false, false, null, null, false]
+          ],
+          "p4_pd_status_t",
+          ["p4_pd_fsmmf-Ingress_t_igr_tiGapRC_pos-mod_entry-Ingress_t_igr_aiGapRC_pos-by_match_spec"]
+        ],
+        [
+          "p4_pd_fsmmf-Ingress_t_igr_tiForward-set_default_action-Ingress_t_igr_aiNoop",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["entry_hdl", "p4_pd_entry_hdl_t", false, true, false, null, 0, true]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-Ingress_t_igr_tiRate-set_default_action-Ingress_t_igr_aiRate",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["action_spec", "p4_pd_fsmmf_Ingress_t_igr_aiRate_action_spec_t", true, true, false, null, null, false],
+            ["entry_hdl", "p4_pd_entry_hdl_t", false, true, false, null, 0, true]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-Ingress_t_igr_tiCalc_dt_x_rate-set_default_action-Ingress_t_igr_aiCalc_dt_x_rate",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["action_spec", "p4_pd_fsmmf_Ingress_t_igr_aiCalc_dt_x_rate_action_spec_t", true, true, false, null, null, false],
+            ["entry_hdl", "p4_pd_entry_hdl_t", false, true, false, null, 0, true]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-Ingress_t_igr_tiRC_nag-set_default_action-NoAction",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["entry_hdl", "p4_pd_entry_hdl_t", false, true, false, null, 0, true]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-Ingress_t_igr_tiRC_nag-set_default_action-Ingress_t_igr_aiRC_neg",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["entry_hdl", "p4_pd_entry_hdl_t", false, true, false, null, 0, true]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-Ingress_t_igr_tiRC_nag-set_default_action-Ingress_t_igr_aiRC_pos",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["entry_hdl", "p4_pd_entry_hdl_t", false, true, false, null, 0, true]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-Ingress_t_igr_tiGapRC_pos-set_default_action-NoAction",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["entry_hdl", "p4_pd_entry_hdl_t", false, true, false, null, 0, true]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-Ingress_t_igr_tiGapRC_pos-set_default_action-Ingress_t_igr_aiGapRC_neg",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["entry_hdl", "p4_pd_entry_hdl_t", false, true, false, null, 0, true]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-Ingress_t_igr_tiGapRC_pos-set_default_action-Ingress_t_igr_aiGapRC_pos",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["entry_hdl", "p4_pd_entry_hdl_t", false, true, false, null, 0, true]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-lpf_set-Ingress_bottlenecked_rate_lpf_3",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["index", "int", true, false, false, null, null, false],
+            ["lpf_spec", "p4_pd_lpf_spec_t", true, true, false, null, null, false]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-lpf_read-Ingress_bottlenecked_rate_lpf_3",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["index", "int", true, false, false, null, null, false],
+            ["lpf_spec", "p4_pd_lpf_spec_t", false, true, false, null, 0, true]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-lpf_set-Ingress_bottlenecked_rate_lpf_2",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["index", "int", true, false, false, null, null, false],
+            ["lpf_spec", "p4_pd_lpf_spec_t", true, true, false, null, null, false]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-lpf_read-Ingress_bottlenecked_rate_lpf_2",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["index", "int", true, false, false, null, null, false],
+            ["lpf_spec", "p4_pd_lpf_spec_t", false, true, false, null, 0, true]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-lpf_set-Ingress_bottlenecked_rate_lpf_1",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["index", "int", true, false, false, null, null, false],
+            ["lpf_spec", "p4_pd_lpf_spec_t", true, true, false, null, null, false]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-lpf_read-Ingress_bottlenecked_rate_lpf_1",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["index", "int", true, false, false, null, null, false],
+            ["lpf_spec", "p4_pd_lpf_spec_t", false, true, false, null, 0, true]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-register_write-Ingress_t_igr_riTs",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["index", "i32", true, false, false, null, null, false],
+            ["register_value", "i32", true, true, false, null, null, false]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-register_read-Ingress_t_igr_riTs",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["index", "i32", true, false, false, null, null, false],
+            ["flags", "i32", false, false, false, null, 1, false],
+            ["register_value", "i32", false, true, false, null, 0, true, {"arr_sz" : [ 5, "value_count" ]}],
+            ["value_count", "i32", false, true, false, null, 48, true]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-register_reset_all-Ingress_t_igr_riTs",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-register_range_reset-Ingress_t_igr_riTs",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["index", "i32", true, false, false, null, null, false],
+            ["count", "i32", true, false, false, null, null, false]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-register_write_all-Ingress_t_igr_riTs",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["register_value", "i32", true, true, false, null, null, false]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-register_write-Ingress_t_igr_ridt",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["index", "i32", true, false, false, null, null, false],
+            ["register_value", "i32", true, true, false, null, null, false]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-register_read-Ingress_t_igr_ridt",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["index", "i32", true, false, false, null, null, false],
+            ["flags", "i32", false, false, false, null, 1, false],
+            ["register_value", "i32", false, true, false, null, 0, true, {"arr_sz" : [ 5, "value_count" ]}],
+            ["value_count", "i32", false, true, false, null, 48, true]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-register_reset_all-Ingress_t_igr_ridt",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-register_range_reset-Ingress_t_igr_ridt",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["index", "i32", true, false, false, null, null, false],
+            ["count", "i32", true, false, false, null, null, false]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-register_write_all-Ingress_t_igr_ridt",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["register_value", "i32", true, true, false, null, null, false]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-register_write-Ingress_t_igr_count_til_drop",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["index", "i32", true, false, false, null, null, false],
+            ["register_value", "i32", true, true, false, null, null, false]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-register_read-Ingress_t_igr_count_til_drop",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["index", "i32", true, false, false, null, null, false],
+            ["flags", "i32", false, false, false, null, 1, false],
+            ["register_value", "i32", false, true, false, null, 0, true, {"arr_sz" : [ 5, "value_count" ]}],
+            ["value_count", "i32", false, true, false, null, 48, true]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-register_reset_all-Ingress_t_igr_count_til_drop",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-register_range_reset-Ingress_t_igr_count_til_drop",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["index", "i32", true, false, false, null, null, false],
+            ["count", "i32", true, false, false, null, null, false]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-register_write_all-Ingress_t_igr_count_til_drop",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["register_value", "i32", true, true, false, null, null, false]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-register_write-Ingress_t_igr_riRC",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["index", "i32", true, false, false, null, null, false],
+            ["register_value", "i32", true, true, false, null, null, false]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-register_read-Ingress_t_igr_riRC",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["index", "i32", true, false, false, null, null, false],
+            ["flags", "i32", false, false, false, null, 1, false],
+            ["register_value", "i32", false, true, false, null, 0, true, {"arr_sz" : [ 5, "value_count" ]}],
+            ["value_count", "i32", false, true, false, null, 48, true]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-register_reset_all-Ingress_t_igr_riRC",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-register_range_reset-Ingress_t_igr_riRC",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["index", "i32", true, false, false, null, null, false],
+            ["count", "i32", true, false, false, null, null, false]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-register_write_all-Ingress_t_igr_riRC",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["register_value", "i32", true, true, false, null, null, false]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-register_write-Ingress_t_igr_ri_dt_x_rate",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["index", "i32", true, false, false, null, null, false],
+            ["register_value", "i32", true, true, false, null, null, false]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-register_read-Ingress_t_igr_ri_dt_x_rate",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["index", "i32", true, false, false, null, null, false],
+            ["flags", "i32", false, false, false, null, 1, false],
+            ["register_value", "i32", false, true, false, null, 0, true, {"arr_sz" : [ 5, "value_count" ]}],
+            ["value_count", "i32", false, true, false, null, 48, true]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-register_reset_all-Ingress_t_igr_ri_dt_x_rate",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-register_range_reset-Ingress_t_igr_ri_dt_x_rate",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["index", "i32", true, false, false, null, null, false],
+            ["count", "i32", true, false, false, null, null, false]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-register_write_all-Ingress_t_igr_ri_dt_x_rate",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["register_value", "i32", true, true, false, null, null, false]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-register_write-Ingress_t_igr_bottleneckF",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["index", "i32", true, false, false, null, null, false],
+            ["register_value", "i32", true, true, false, null, null, false]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-register_read-Ingress_t_igr_bottleneckF",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["index", "i32", true, false, false, null, null, false],
+            ["flags", "i32", false, false, false, null, 1, false],
+            ["register_value", "i32", false, true, false, null, 0, true, {"arr_sz" : [ 5, "value_count" ]}],
+            ["value_count", "i32", false, true, false, null, 48, true]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-register_reset_all-Ingress_t_igr_bottleneckF",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-register_range_reset-Ingress_t_igr_bottleneckF",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["index", "i32", true, false, false, null, null, false],
+            ["count", "i32", true, false, false, null, null, false]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-register_write_all-Ingress_t_igr_bottleneckF",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["register_value", "i32", true, true, false, null, null, false]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-register_write-Ingress_t_igr_ritestgapRC",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["index", "i32", true, false, false, null, null, false],
+            ["register_value", "i32", true, true, false, null, null, false]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-register_read-Ingress_t_igr_ritestgapRC",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["index", "i32", true, false, false, null, null, false],
+            ["flags", "i32", false, false, false, null, 1, false],
+            ["register_value", "i32", false, true, false, null, 0, true, {"arr_sz" : [ 5, "value_count" ]}],
+            ["value_count", "i32", false, true, false, null, 48, true]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-register_reset_all-Ingress_t_igr_ritestgapRC",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-register_range_reset-Ingress_t_igr_ritestgapRC",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["index", "i32", true, false, false, null, null, false],
+            ["count", "i32", true, false, false, null, null, false]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-register_write_all-Ingress_t_igr_ritestgapRC",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["register_value", "i32", true, true, false, null, null, false]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-register_write-Ingress_t_igr_ritestburstdrop",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["index", "i32", true, false, false, null, null, false],
+            ["register_value", "i32", true, true, false, null, null, false]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-register_read-Ingress_t_igr_ritestburstdrop",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["index", "i32", true, false, false, null, null, false],
+            ["flags", "i32", false, false, false, null, 1, false],
+            ["register_value", "i32", false, true, false, null, 0, true, {"arr_sz" : [ 5, "value_count" ]}],
+            ["value_count", "i32", false, true, false, null, 48, true]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-register_reset_all-Ingress_t_igr_ritestburstdrop",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-register_range_reset-Ingress_t_igr_ritestburstdrop",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["index", "i32", true, false, false, null, null, false],
+            ["count", "i32", true, false, false, null, null, false]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-register_write_all-Ingress_t_igr_ritestburstdrop",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["register_value", "i32", true, true, false, null, null, false]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-register_write-Ingress_t_igr_ri_gapRC",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["index", "i32", true, false, false, null, null, false],
+            ["register_value", "i32", true, true, false, null, null, false]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-register_read-Ingress_t_igr_ri_gapRC",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["index", "i32", true, false, false, null, null, false],
+            ["flags", "i32", false, false, false, null, 1, false],
+            ["register_value", "i32", false, true, false, null, 0, true, {"arr_sz" : [ 5, "value_count" ]}],
+            ["value_count", "i32", false, true, false, null, 48, true]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-register_reset_all-Ingress_t_igr_ri_gapRC",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-register_range_reset-Ingress_t_igr_ri_gapRC",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["index", "i32", true, false, false, null, null, false],
+            ["count", "i32", true, false, false, null, null, false]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-register_write_all-Ingress_t_igr_ri_gapRC",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["register_value", "i32", true, true, false, null, null, false]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-register_write-Ingress_bottlenecked_rate_bottleneckedRate",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["index", "i32", true, false, false, null, null, false],
+            ["register_value", "i32", true, true, false, null, null, false]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-register_read-Ingress_bottlenecked_rate_bottleneckedRate",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["index", "i32", true, false, false, null, null, false],
+            ["flags", "i32", false, false, false, null, 1, false],
+            ["register_value", "i32", false, true, false, null, 0, true, {"arr_sz" : [ 5, "value_count" ]}],
+            ["value_count", "i32", false, true, false, null, 48, true]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-register_reset_all-Ingress_bottlenecked_rate_bottleneckedRate",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-register_range_reset-Ingress_bottlenecked_rate_bottleneckedRate",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["index", "i32", true, false, false, null, null, false],
+            ["count", "i32", true, false, false, null, null, false]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-register_write_all-Ingress_bottlenecked_rate_bottleneckedRate",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["register_value", "i32", true, true, false, null, null, false]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-register_write-Ingress_t_igr_ri_ts_ms",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["index", "i32", true, false, false, null, null, false],
+            ["register_value", "i32", true, true, false, null, null, false]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-register_read-Ingress_t_igr_ri_ts_ms",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["index", "i32", true, false, false, null, null, false],
+            ["flags", "i32", false, false, false, null, 1, false],
+            ["register_value", "i32", false, true, false, null, 0, true, {"arr_sz" : [ 5, "value_count" ]}],
+            ["value_count", "i32", false, true, false, null, 48, true]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-register_reset_all-Ingress_t_igr_ri_ts_ms",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-register_range_reset-Ingress_t_igr_ri_ts_ms",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["index", "i32", true, false, false, null, null, false],
+            ["count", "i32", true, false, false, null, null, false]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-register_write_all-Ingress_t_igr_ri_ts_ms",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["register_value", "i32", true, true, false, null, null, false]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-register_write-Ingress_t_igr_riburstStage",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["index", "i32", true, false, false, null, null, false],
+            ["register_value", "i32", true, true, false, null, null, false]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-register_read-Ingress_t_igr_riburstStage",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["index", "i32", true, false, false, null, null, false],
+            ["flags", "i32", false, false, false, null, 1, false],
+            ["register_value", "i32", false, true, false, null, 0, true, {"arr_sz" : [ 5, "value_count" ]}],
+            ["value_count", "i32", false, true, false, null, 48, true]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-register_reset_all-Ingress_t_igr_riburstStage",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-register_range_reset-Ingress_t_igr_riburstStage",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["index", "i32", true, false, false, null, null, false],
+            ["count", "i32", true, false, false, null, null, false]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-register_write_all-Ingress_t_igr_riburstStage",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["register_value", "i32", true, true, false, null, null, false]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-register_write-Ingress_t_igr_fCount",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["index", "i32", true, false, false, null, null, false],
+            ["register_value", "i32", true, true, false, null, null, false]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-register_read-Ingress_t_igr_fCount",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["index", "i32", true, false, false, null, null, false],
+            ["flags", "i32", false, false, false, null, 1, false],
+            ["register_value", "i32", false, true, false, null, 0, true, {"arr_sz" : [ 5, "value_count" ]}],
+            ["value_count", "i32", false, true, false, null, 48, true]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-register_reset_all-Ingress_t_igr_fCount",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-register_range_reset-Ingress_t_igr_fCount",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["index", "i32", true, false, false, null, null, false],
+            ["count", "i32", true, false, false, null, null, false]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-register_write_all-Ingress_t_igr_fCount",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["register_value", "i32", true, true, false, null, null, false]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-register_write-Ingress_t_igr_count_til_ecn",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["index", "i32", true, false, false, null, null, false],
+            ["register_value", "i32", true, true, false, null, null, false]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-register_read-Ingress_t_igr_count_til_ecn",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["index", "i32", true, false, false, null, null, false],
+            ["flags", "i32", false, false, false, null, 1, false],
+            ["register_value", "i32", false, true, false, null, 0, true, {"arr_sz" : [ 5, "value_count" ]}],
+            ["value_count", "i32", false, true, false, null, 48, true]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-register_reset_all-Ingress_t_igr_count_til_ecn",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-register_range_reset-Ingress_t_igr_count_til_ecn",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["index", "i32", true, false, false, null, null, false],
+            ["count", "i32", true, false, false, null, null, false]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-register_write_all-Ingress_t_igr_count_til_ecn",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["register_value", "i32", true, true, false, null, null, false]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-register_write-Ingress_t_igr_ri_lograte",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["index", "i32", true, false, false, null, null, false],
+            ["register_value", "i32", true, true, false, null, null, false]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-register_read-Ingress_t_igr_ri_lograte",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["index", "i32", true, false, false, null, null, false],
+            ["flags", "i32", false, false, false, null, 1, false],
+            ["register_value", "i32", false, true, false, null, 0, true, {"arr_sz" : [ 5, "value_count" ]}],
+            ["value_count", "i32", false, true, false, null, 48, true]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-register_reset_all-Ingress_t_igr_ri_lograte",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-register_range_reset-Ingress_t_igr_ri_lograte",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["index", "i32", true, false, false, null, null, false],
+            ["count", "i32", true, false, false, null, null, false]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-register_write_all-Ingress_t_igr_ri_lograte",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["register_value", "i32", true, true, false, null, null, false]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-IngressParser__PORT_METADATA-get_entry_count",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["count", "i32", false, true, false, null, 0, true]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-Ingress_t_igr_tiForward-get_entry_count",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["count", "i32", false, true, false, null, 0, true]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-Ingress_t_igr_tiRate-get_entry_count",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["count", "i32", false, true, false, null, 0, true]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-Ingress_t_igr_tiCalc_dt_x_rate-get_entry_count",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["count", "i32", false, true, false, null, 0, true]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-Ingress_t_igr_tiRC_nag-get_entry_count",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["count", "i32", false, true, false, null, 0, true]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-Ingress_t_igr_tiGapRC_pos-get_entry_count",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["count", "i32", false, true, false, null, 0, true]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-IngressParser__PORT_METADATA-get_first_entry_handle",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["index", "int", false, true, false, null, 0, true]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-IngressParser__PORT_METADATA-get_next_entry_handles",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["entry_handle", "p4_pd_entry_hdl_t", true, false, false, null, null, false],
+            ["n", "int", false, false, false, null, 1, false],
+            ["next_entry_handles", "int", false, true, false, null, 0, true, {"arr_sz" : [ 3, "n" ]}]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-IngressParser__PORT_METADATA-get_entry",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_id", "byte", false, false, false, null, 0, false],
+            ["entry_hdl", "p4_pd_entry_hdl_t", true, false, false, null, null, false],
+            ["read_from_hw", "bool", false, false, false, null, false, false],
+            ["match_spec", "p4_pd_fsmmf_IngressParser__PORT_METADATA_match_spec_t", false, true, false, null, 0, true],
+            ["action_spec", "p4_pd_fsmmf_action_specs_t", false, true, false, null, 0, true]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-Ingress_t_igr_tiForward-get_first_entry_handle",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["index", "int", false, true, false, null, 0, true]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-Ingress_t_igr_tiForward-get_next_entry_handles",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["entry_handle", "p4_pd_entry_hdl_t", true, false, false, null, null, false],
+            ["n", "int", false, false, false, null, 1, false],
+            ["next_entry_handles", "int", false, true, false, null, 0, true, {"arr_sz" : [ 3, "n" ]}]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-Ingress_t_igr_tiForward-get_entry",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_id", "byte", false, false, false, null, 0, false],
+            ["entry_hdl", "p4_pd_entry_hdl_t", true, false, false, null, null, false],
+            ["read_from_hw", "bool", false, false, false, null, false, false],
+            ["match_spec", "p4_pd_fsmmf_Ingress_t_igr_tiForward_match_spec_t", false, true, false, null, 0, true],
+            ["action_spec", "p4_pd_fsmmf_action_specs_t", false, true, false, null, 0, true]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-Ingress_t_igr_tiRate-get_first_entry_handle",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["index", "int", false, true, false, null, 0, true]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-Ingress_t_igr_tiRate-get_next_entry_handles",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["entry_handle", "p4_pd_entry_hdl_t", true, false, false, null, null, false],
+            ["n", "int", false, false, false, null, 1, false],
+            ["next_entry_handles", "int", false, true, false, null, 0, true, {"arr_sz" : [ 3, "n" ]}]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-Ingress_t_igr_tiRate-get_entry",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_id", "byte", false, false, false, null, 0, false],
+            ["entry_hdl", "p4_pd_entry_hdl_t", true, false, false, null, null, false],
+            ["read_from_hw", "bool", false, false, false, null, false, false],
+            ["match_spec", "p4_pd_fsmmf_Ingress_t_igr_tiRate_match_spec_t", false, true, false, null, 0, true],
+            ["action_spec", "p4_pd_fsmmf_action_specs_t", false, true, false, null, 0, true]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-Ingress_t_igr_tiCalc_dt_x_rate-get_first_entry_handle",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["index", "int", false, true, false, null, 0, true]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-Ingress_t_igr_tiCalc_dt_x_rate-get_next_entry_handles",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["entry_handle", "p4_pd_entry_hdl_t", true, false, false, null, null, false],
+            ["n", "int", false, false, false, null, 1, false],
+            ["next_entry_handles", "int", false, true, false, null, 0, true, {"arr_sz" : [ 3, "n" ]}]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-Ingress_t_igr_tiCalc_dt_x_rate-get_entry",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_id", "byte", false, false, false, null, 0, false],
+            ["entry_hdl", "p4_pd_entry_hdl_t", true, false, false, null, null, false],
+            ["read_from_hw", "bool", false, false, false, null, false, false],
+            ["match_spec", "p4_pd_fsmmf_Ingress_t_igr_tiCalc_dt_x_rate_match_spec_t", false, true, false, null, 0, true],
+            ["action_spec", "p4_pd_fsmmf_action_specs_t", false, true, false, null, 0, true]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-Ingress_t_igr_tiRC_nag-get_first_entry_handle",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["index", "int", false, true, false, null, 0, true]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-Ingress_t_igr_tiRC_nag-get_next_entry_handles",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["entry_handle", "p4_pd_entry_hdl_t", true, false, false, null, null, false],
+            ["n", "int", false, false, false, null, 1, false],
+            ["next_entry_handles", "int", false, true, false, null, 0, true, {"arr_sz" : [ 3, "n" ]}]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-Ingress_t_igr_tiRC_nag-get_entry",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_id", "byte", false, false, false, null, 0, false],
+            ["entry_hdl", "p4_pd_entry_hdl_t", true, false, false, null, null, false],
+            ["read_from_hw", "bool", false, false, false, null, false, false],
+            ["match_spec", "p4_pd_fsmmf_Ingress_t_igr_tiRC_nag_match_spec_t", false, true, false, null, 0, true],
+            ["priority", "i32", false, true, false, null, 0, true],
+            ["action_spec", "p4_pd_fsmmf_action_specs_t", false, true, false, null, 0, true]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-Ingress_t_igr_tiGapRC_pos-get_first_entry_handle",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["index", "int", false, true, false, null, 0, true]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-Ingress_t_igr_tiGapRC_pos-get_next_entry_handles",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_tgt", "p4_pd_dev_target_t", false, false, false, null, 0, false],
+            ["entry_handle", "p4_pd_entry_hdl_t", true, false, false, null, null, false],
+            ["n", "int", false, false, false, null, 1, false],
+            ["next_entry_handles", "int", false, true, false, null, 0, true, {"arr_sz" : [ 3, "n" ]}]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-Ingress_t_igr_tiGapRC_pos-get_entry",
+          [
+            ["sess_hdl", "p4_pd_sess_hdl_t", false, false, false, null, 1, false],
+            ["dev_id", "byte", false, false, false, null, 0, false],
+            ["entry_hdl", "p4_pd_entry_hdl_t", true, false, false, null, null, false],
+            ["read_from_hw", "bool", false, false, false, null, false, false],
+            ["match_spec", "p4_pd_fsmmf_Ingress_t_igr_tiGapRC_pos_match_spec_t", false, true, false, null, 0, true],
+            ["priority", "i32", false, true, false, null, 0, true],
+            ["action_spec", "p4_pd_fsmmf_action_specs_t", false, true, false, null, 0, true]
+          ],
+          "p4_pd_status_t"
+        ],
+        [
+          "p4_pd_fsmmf-init",
+          [],
+          null
+        ]
+      ]
+    }
+  ]
+}

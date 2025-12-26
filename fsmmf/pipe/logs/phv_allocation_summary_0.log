@@ -1,0 +1,486 @@
+PHV ALLOCATION SUCCESSFUL
+PHV Allocation
++-----------+-------+-----------------+----------------------------------------------------------------+
+|Container  |Gress  |Container Slice  |Field Slice                                                     |
++-----------+-------+-----------------+----------------------------------------------------------------+
+|B0         |I-HW   |[2:0]            |ingress::ig_intr_md_for_dprsr.mirror_type                       |
+|           |       |                 |                                                                |
+|B1         |I-HW   |                 |ingress::hdr.ip.protocol                                        |
+|           |       |                 |                                                                |
+|B2         |I-HW   |[1:0]            |ingress::hdr.ip.ecn                                             |
+|           |       |[7:2]            |ingress::hdr.ip.dscp                                            |
+|           |       |                 |                                                                |
+|B3         |I-HW   |[0]              |ingress::hdr.ethernet.$valid                                    |
+|           |       |[1]              |ingress::hdr.ip.$valid                                          |
+|           |       |[2]              |ingress::hdr.tcp.$valid                                         |
+|           |       |[3]              |ingress::hdr.udp.$valid                                         |
+|           |       |[4]              |ingress::t_igr_ifburstStage                                     |
+|           |       |[4]              |ingress::t_igr_tcp_drop_flag                                    |
+|           |       |                 |                                                                |
+|...        |       |                 |                                                                |
+|           |       |                 |                                                                |
+|B16        |E-HW   |[0]              |egress::hdr.min_parse_depth_padding_0.$stkvalid[0]              |
+|           |       |[1]              |egress::hdr.min_parse_depth_padding_0.$stkvalid[1]              |
+|           |       |[2]              |egress::hdr.min_parse_depth_padding_0.$stkvalid[2]              |
+|           |       |                 |                                                                |
+|B17        |E-HW   |[0]              |egress::hdr.ethernet.$valid                                     |
+|           |       |[1]              |egress::hdr.ip.$valid                                           |
+|           |       |[2]              |egress::hdr.tcp.$valid                                          |
+|           |       |[3]              |egress::hdr.udp.$valid                                          |
+|           |       |                 |                                                                |
+|...        |       |                 |                                                                |
+|           |       |                 |                                                                |
+|H0         |I-HW   |[8:0]            |ingress::ig_intr_md_for_tm.ucast_egress_port                    |
+|           |       |                 |                                                                |
+|H1         |I-HW   |                 |ingress::hdr.ip.total_len                                       |
+|           |       |                 |                                                                |
+|H2         |I-HW   |                 |ingress::$hash_field_argument0                                  |
+|           |       |[9:0]            |ingress::$tmp2                                                  |
+|           |       |                 |                                                                |
+|H3         |I-HW   |                 |ingress::hdr.ethernet.dst_addr[47:32]                           |
+|           |       |                 |                                                                |
+|H4         |I-HW   |[6:0]            |ingress::ig_intr_md.ingress_mac_tstamp[38:32]                   |
+|           |       |[11:7]           |ingress::ig_intr_md.ingress_mac_tstamp[43:39]                   |
+|           |       |[15:12]          |ingress::ig_intr_md.ingress_mac_tstamp[47:44]                   |
+|           |       |[0]              |ingress::t_igr_drop_flag                                        |
+|           |       |                 |                                                                |
+|H5         |I-HW   |[12:0]           |ingress::t_igr_table_key[31:19]                                 |
+|           |       |[0]              |ingress::t_igr_RC_nag                                           |
+|           |       |                 |                                                                |
+|H6         |I-HW   |                 |ingress::t_igr_log_dt                                           |
+|           |       |[7:0]            |ingress::t_igr_ecn_flag                                         |
+|           |       |                 |                                                                |
+|...        |       |                 |                                                                |
+|           |       |                 |                                                                |
+|H16        |E-HW   |[8:0]            |egress::eg_intr_md.egress_port                                  |
+|           |       |                 |                                                                |
+|...        |       |                 |                                                                |
+|           |       |                 |                                                                |
+|W0         |I-HW   |                 |ingress::bottlenecked_rate_cms_output_1                         |
+|           |       |                 |                                                                |
+|W1         |I-HW   |                 |ingress::bottlenecked_rate_cms_output_2                         |
+|           |       |                 |                                                                |
+|W2         |I-HW   |                 |ingress::bottlenecked_rate_cms_output_3                         |
+|           |       |                 |                                                                |
+|W3         |I-HW   |                 |ingress::md.measured_rate                                       |
+|           |       |                 |                                                                |
+|W4         |I-HW   |                 |ingress::t_igr_gapRC                                            |
+|           |       |                 |                                                                |
+|W5         |I-HW   |                 |const_to_phv_32w20000                                           |
+|           |       |                 |                                                                |
+|W6         |I-HW   |                 |ingress::t_igr_burst                                            |
+|           |       |                 |ingress::md.pktlen                                              |
+|           |       |                 |                                                                |
+|W7         |I-HW   |                 |ingress::md.RC                                                  |
+|           |       |                 |ingress::t_igr_ts                                               |
+|           |       |                 |                                                                |
+|W8         |I-HW   |                 |const_to_phv_32w5000000                                         |
+|           |       |                 |                                                                |
+|W9         |I-HW   |                 |ingress::t_igr_RC_minus_threshold                               |
+|           |       |                 |ingress::t_igr_dt                                               |
+|           |       |                 |                                                                |
+|W10        |I-HW   |                 |ingress::t_igr_dt_x_rate_B                                      |
+|           |       |[2:0]            |ingress::ig_intr_md_for_dprsr.drop_ctl                          |
+|           |       |                 |                                                                |
+|W11        |I-HW   |                 |ingress::t_igr_pktlen_minus_dt_x_rate                           |
+|           |       |                 |                                                                |
+|W12        |I-HW   |[15:0]           |ingress::hdr.udp.dst_port                                       |
+|           |       |[31:16]          |ingress::hdr.udp.src_port                                       |
+|           |       |[15:0]           |ingress::hdr.tcp.dst_port                                       |
+|           |       |[31:16]          |ingress::hdr.tcp.src_port                                       |
+|           |       |                 |                                                                |
+|W13        |I-HW   |[15:0]           |ingress::md.dport                                               |
+|           |       |[31:16]          |ingress::md.sport                                               |
+|           |       |                 |                                                                |
+|W14        |I-HW   |                 |ingress::hdr.ethernet.dst_addr[31:0]                            |
+|           |       |                 |                                                                |
+|W15        |I-HW   |                 |ingress::hdr.ip.dst_addr                                        |
+|           |       |                 |                                                                |
+|...        |       |                 |                                                                |
+|           |       |                 |                                                                |
+|W32        |I      |                 |ingress::hdr.ip.src_addr                                        |
+|           |       |                 |                                                                |
+|...        |       |                 |                                                                |
+|           |       |                 |                                                                |
+|W36        |I      |                 |ingress::t_igr_dt_ms                                            |
+|           |       |                 |                                                                |
+|W37        |I      |                 |ingress::t_igr_rate                                             |
+|           |       |                 |                                                                |
+|W38        |I      |                 |ingress::t_igr_ts_ms                                            |
+|           |       |                 |                                                                |
+|W39        |I      |[6:0]            |ingress::ig_intr_md.ingress_mac_tstamp[6:0]                     |
+|           |       |[11:7]           |ingress::ig_intr_md.ingress_mac_tstamp[11:7]                    |
+|           |       |[31:12]          |ingress::ig_intr_md.ingress_mac_tstamp[31:12]                   |
+|           |       |                 |                                                                |
+|W40        |I      |[10:0]           |ingress::md.fid                                                 |
+|           |       |[21:11]          |ingress::t_igr_table_key[10:0]                                  |
+|           |       |[29:22]          |ingress::t_igr_table_key[18:11]                                 |
+|           |       |                 |                                                                |
+|...        |       |                 |                                                                |
+|           |       |                 |                                                                |
+|TB0        |E      |                 |egress::hdr.min_parse_depth_padding_0[0].packet_payload[87:80]  |
+|           |       |                 |                                                                |
+|TH0        |E      |                 |egress::hdr.tcp.urgent_ptr                                      |
+|           |       |                 |egress::hdr.udp.dst_port                                        |
+|           |       |                 |                                                                |
+|TW0        |E      |[15:0]           |egress::hdr.ip.total_len                                        |
+|           |       |[17:16]          |egress::hdr.ip.ecn                                              |
+|           |       |[23:18]          |egress::hdr.ip.dscp                                             |
+|           |       |[27:24]          |egress::hdr.ip.ihl                                              |
+|           |       |[31:28]          |egress::hdr.ip.version                                          |
+|           |       |                 |                                                                |
+|TB1        |E      |                 |egress::hdr.min_parse_depth_padding_0[1].packet_payload[87:80]  |
+|           |       |                 |                                                                |
+|TH1        |E      |                 |egress::hdr.tcp.checksum                                        |
+|           |       |                 |egress::hdr.udp.src_port                                        |
+|           |       |                 |                                                                |
+|TW1        |E      |[15:0]           |egress::hdr.tcp.window                                          |
+|           |       |[23:16]          |egress::hdr.tcp.flags                                           |
+|           |       |[27:24]          |egress::hdr.tcp.res                                             |
+|           |       |[31:28]          |egress::hdr.tcp.data_offset                                     |
+|           |       |[15:0]           |egress::hdr.udp.checksum                                        |
+|           |       |[31:16]          |egress::hdr.udp.hdr_lenght                                      |
+|           |       |                 |                                                                |
+|TB2        |E      |                 |egress::hdr.min_parse_depth_padding_0[2].packet_payload[87:80]  |
+|           |       |                 |                                                                |
+|TH2        |E      |                 |egress::hdr.tcp.dst_port                                        |
+|           |       |                 |                                                                |
+|TW2        |E      |[15:0]           |egress::hdr.ip.hdr_checksum                                     |
+|           |       |[23:16]          |egress::hdr.ip.protocol                                         |
+|           |       |[31:24]          |egress::hdr.ip.ttl                                              |
+|           |       |                 |                                                                |
+|TB3        |E      |                 |egress::hdr.ip.dst_addr[7:0]                                    |
+|           |       |                 |                                                                |
+|TH3        |E      |                 |egress::hdr.tcp.src_port                                        |
+|           |       |                 |                                                                |
+|TW3        |E      |[12:0]           |egress::hdr.ip.frag_offset                                      |
+|           |       |[15:13]          |egress::hdr.ip.flags                                            |
+|           |       |[31:16]          |egress::hdr.ip.identification                                   |
+|           |       |                 |                                                                |
+|TH4        |E      |                 |egress::hdr.min_parse_depth_padding_0[0].packet_payload[15:0]   |
+|           |       |                 |                                                                |
+|TH5        |E      |                 |egress::hdr.min_parse_depth_padding_0[0].packet_payload[31:16]  |
+|           |       |                 |                                                                |
+|TB4        |I      |                 |ingress::hdr.ip.ttl                                             |
+|           |       |                 |                                                                |
+|TW4        |I      |[15:0]           |ingress::hdr.tcp.window                                         |
+|           |       |[23:16]          |ingress::hdr.tcp.flags                                          |
+|           |       |[27:24]          |ingress::hdr.tcp.res                                            |
+|           |       |[31:28]          |ingress::hdr.tcp.data_offset                                    |
+|           |       |[15:0]           |ingress::hdr.udp.checksum                                       |
+|           |       |[31:16]          |ingress::hdr.udp.hdr_lenght                                     |
+|           |       |                 |                                                                |
+|TB5        |I      |[3:0]            |ingress::hdr.ip.ihl                                             |
+|           |       |[7:4]            |ingress::hdr.ip.version                                         |
+|           |       |                 |                                                                |
+|TW5        |I      |[12:0]           |ingress::hdr.ip.frag_offset                                     |
+|           |       |[15:13]          |ingress::hdr.ip.flags                                           |
+|           |       |[31:16]          |ingress::hdr.ip.identification                                  |
+|           |       |                 |                                                                |
+|TB6        |I      |                 |ingress::hdr.ethernet.src_addr[39:32]                           |
+|           |       |                 |                                                                |
+|TH6        |I      |                 |ingress::hdr.ip.hdr_checksum                                    |
+|           |       |                 |                                                                |
+|TW6        |I      |[15:0]           |ingress::hdr.tcp.urgent_ptr                                     |
+|           |       |[31:16]          |ingress::hdr.tcp.checksum                                       |
+|           |       |                 |                                                                |
+|TB7        |I      |                 |ingress::hdr.ethernet.src_addr[47:40]                           |
+|           |       |                 |                                                                |
+|TH7        |I      |                 |ingress::hdr.tcp.ack_no[15:0]                                   |
+|           |       |                 |                                                                |
+|TW7        |I      |                 |ingress::hdr.ethernet.src_addr[31:0]                            |
+|           |       |                 |                                                                |
+|TH8        |I      |                 |ingress::hdr.tcp.ack_no[31:16]                                  |
+|           |       |                 |                                                                |
+|TH9        |I      |                 |ingress::hdr.tcp.seq_no[15:0]                                   |
+|           |       |                 |                                                                |
+|TH10       |I      |                 |ingress::hdr.tcp.seq_no[31:16]                                  |
+|           |       |                 |                                                                |
+|TH11       |I      |                 |ingress::hdr.ethernet.ether_type                                |
+|           |       |                 |                                                                |
+|TB8        |E      |                 |egress::hdr.ip.dst_addr[15:8]                                   |
+|           |       |                 |                                                                |
+|TW8        |E      |                 |egress::hdr.min_parse_depth_padding_0[0].packet_payload[63:32]  |
+|           |       |                 |                                                                |
+|TB9        |E      |                 |egress::hdr.ip.dst_addr[23:16]                                  |
+|           |       |                 |                                                                |
+|TW9        |E      |                 |egress::hdr.min_parse_depth_padding_0[1].packet_payload[31:0]   |
+|           |       |                 |                                                                |
+|TB10       |E      |                 |egress::hdr.ip.dst_addr[31:24]                                  |
+|           |       |                 |                                                                |
+|TW10       |E      |                 |egress::hdr.min_parse_depth_padding_0[1].packet_payload[63:32]  |
+|           |       |                 |                                                                |
+|...        |       |                 |                                                                |
+|           |       |                 |                                                                |
+|TW11       |E      |                 |egress::hdr.min_parse_depth_padding_0[2].packet_payload[31:0]   |
+|           |       |                 |                                                                |
+|TH12       |E      |                 |egress::hdr.min_parse_depth_padding_0[2].packet_payload[47:32]  |
+|           |       |                 |                                                                |
+|TH13       |E      |                 |egress::hdr.min_parse_depth_padding_0[2].packet_payload[63:48]  |
+|           |       |                 |                                                                |
+|TH14       |E      |                 |egress::hdr.ethernet.src_addr[15:0]                             |
+|           |       |                 |                                                                |
+|TH15       |E      |                 |egress::hdr.ethernet.src_addr[31:16]                            |
+|           |       |                 |                                                                |
+|TH16       |E      |                 |egress::hdr.ethernet.dst_addr[15:0]                             |
+|           |       |                 |                                                                |
+|TH17       |E      |                 |egress::hdr.ethernet.dst_addr[31:16]                            |
+|           |       |                 |                                                                |
+|...        |       |                 |                                                                |
+|           |       |                 |                                                                |
+|TW12       |E      |                 |egress::hdr.ip.src_addr                                         |
+|           |       |                 |                                                                |
+|...        |       |                 |                                                                |
+|           |       |                 |                                                                |
+|TW13       |E      |                 |egress::hdr.tcp.ack_no                                          |
+|           |       |                 |                                                                |
+|...        |       |                 |                                                                |
+|           |       |                 |                                                                |
+|TW14       |E      |                 |egress::hdr.tcp.seq_no                                          |
+|           |       |                 |                                                                |
+|...        |       |                 |                                                                |
+|           |       |                 |                                                                |
+|TH18       |E      |                 |egress::hdr.min_parse_depth_padding_0[0].packet_payload[79:64]  |
+|           |       |                 |                                                                |
+|TH19       |E      |                 |egress::hdr.min_parse_depth_padding_0[1].packet_payload[79:64]  |
+|           |       |                 |                                                                |
+|TH20       |E      |                 |egress::hdr.min_parse_depth_padding_0[2].packet_payload[79:64]  |
+|           |       |                 |                                                                |
+|TH21       |E      |                 |egress::hdr.ethernet.ether_type                                 |
+|           |       |                 |                                                                |
+|TH22       |E      |                 |egress::hdr.ethernet.src_addr[47:32]                            |
+|           |       |                 |                                                                |
+|TH23       |E      |                 |egress::hdr.ethernet.dst_addr[47:32]                            |
+|           |       |                 |                                                                |
+|...        |       |                 |                                                                |
+|           |       |                 |                                                                |
++-----------+-------+-----------------+----------------------------------------------------------------+
+
+
+POV Allocation (ingress):
++-----------+-----------------+------------------------------+
+|Container  |Container Slice  |Field Slice                   |
++-----------+-----------------+------------------------------+
+|B3         |[0]              |ingress::hdr.ethernet.$valid  |
+|           |[1]              |ingress::hdr.ip.$valid        |
+|           |[2]              |ingress::hdr.tcp.$valid       |
+|           |[3]              |ingress::hdr.udp.$valid       |
++-----------+-----------------+------------------------------+
+|           |Total Bits Used  |4 / 256 ( 1.56 %)             |
+|           |Pack Density     |4 / 8 (  50  %)               |
++-----------+-----------------+------------------------------+
+
+POV Allocation (egress):
++-----------+-----------------+----------------------------------------------------+
+|Container  |Container Slice  |Field Slice                                         |
++-----------+-----------------+----------------------------------------------------+
+|B16        |[0]              |egress::hdr.min_parse_depth_padding_0.$stkvalid[0]  |
+|           |[1]              |egress::hdr.min_parse_depth_padding_0.$stkvalid[1]  |
+|           |[2]              |egress::hdr.min_parse_depth_padding_0.$stkvalid[2]  |
++-----------+-----------------+----------------------------------------------------+
+|B17        |[0]              |egress::hdr.ethernet.$valid                         |
+|           |[1]              |egress::hdr.ip.$valid                               |
+|           |[2]              |egress::hdr.tcp.$valid                              |
+|           |[3]              |egress::hdr.udp.$valid                              |
++-----------+-----------------+----------------------------------------------------+
+|           |Total Bits Used  |7 / 256 ( 2.73 %)                                   |
+|           |Pack Density     |7 / 16 ( 43.8 %)                                    |
++-----------+-----------------+----------------------------------------------------+
+
++----------------------------------------------------------------+------------+-----------+----------------+-----------------+
+|Field Slice                                                     |Live Range  |Container  |Container Type  |Container Slice  |
++----------------------------------------------------------------+------------+-----------+----------------+-----------------+
+|ingress::ig_intr_md.ingress_mac_tstamp[38:32]                   |[-1r, 11w]  |H4         |H               |[6:0]            |
+|ingress::ig_intr_md.ingress_mac_tstamp[43:39]                   |[-1r, 11w]  |H4         |H               |[11:7]           |
+|ingress::ig_intr_md.ingress_mac_tstamp[47:44]                   |[-1r, 11w]  |H4         |H               |[15:12]          |
+|ingress::ig_intr_md.ingress_mac_tstamp[6:0]                     |[-1r, 11w]  |W39        |W               |[6:0]            |
+|ingress::ig_intr_md.ingress_mac_tstamp[11:7]                    |[-1r, 11w]  |W39        |W               |[11:7]           |
+|ingress::ig_intr_md.ingress_mac_tstamp[31:12]                   |[-1r, 11w]  |W39        |W               |[31:12]          |
+|ingress::hdr.ethernet.dst_addr[47:32]                           |[-1r, 11w]  |H3         |H               |                 |
+|ingress::hdr.ethernet.dst_addr[31:0]                            |[-1r, 11w]  |W14        |W               |                 |
+|ingress::hdr.ethernet.src_addr[39:32]                           |[-1r, 11w]  |TB6        |TB              |                 |
+|ingress::hdr.ethernet.src_addr[47:40]                           |[-1r, 11w]  |TB7        |TB              |                 |
+|ingress::hdr.ethernet.src_addr[31:0]                            |[-1r, 11w]  |TW7        |TW              |                 |
+|ingress::hdr.ethernet.ether_type                                |[-1r, 11w]  |TH11       |TH              |                 |
+|ingress::hdr.ip.version                                         |[-1r, 11w]  |TB5        |TB              |[7:4]            |
+|ingress::hdr.ip.ihl                                             |[-1r, 11w]  |TB5        |TB              |[3:0]            |
+|ingress::hdr.ip.dscp                                            |[-1r, 11w]  |B2         |B               |[7:2]            |
+|ingress::hdr.ip.ecn                                             |[-1r, 11w]  |B2         |B               |[1:0]            |
+|ingress::hdr.ip.total_len                                       |[-1r, 11w]  |H1         |H               |                 |
+|ingress::hdr.ip.identification                                  |[-1r, 11w]  |TW5        |TW              |[31:16]          |
+|ingress::hdr.ip.flags                                           |[-1r, 11w]  |TW5        |TW              |[15:13]          |
+|ingress::hdr.ip.frag_offset                                     |[-1r, 11w]  |TW5        |TW              |[12:0]           |
+|ingress::hdr.ip.ttl                                             |[-1r, 11w]  |TB4        |TB              |                 |
+|ingress::hdr.ip.protocol                                        |[-1r, 11w]  |B1         |B               |                 |
+|ingress::hdr.ip.hdr_checksum                                    |[-1r, 11w]  |TH6        |TH              |                 |
+|ingress::hdr.ip.src_addr                                        |[-1r, 11w]  |W32        |W               |                 |
+|ingress::hdr.ip.dst_addr                                        |[-1r, 11w]  |W15        |W               |                 |
+|ingress::hdr.tcp.src_port                                       |[-1r, 11w]  |W12        |W               |[31:16]          |
+|ingress::hdr.tcp.dst_port                                       |[-1r, 11w]  |W12        |W               |[15:0]           |
+|ingress::hdr.tcp.seq_no[15:0]                                   |[-1r, 11w]  |TH9        |TH              |                 |
+|ingress::hdr.tcp.seq_no[31:16]                                  |[-1r, 11w]  |TH10       |TH              |                 |
+|ingress::hdr.tcp.ack_no[15:0]                                   |[-1r, 11w]  |TH7        |TH              |                 |
+|ingress::hdr.tcp.ack_no[31:16]                                  |[-1r, 11w]  |TH8        |TH              |                 |
+|ingress::hdr.tcp.data_offset                                    |[-1r, 11w]  |TW4        |TW              |[31:28]          |
+|ingress::hdr.tcp.res                                            |[-1r, 11w]  |TW4        |TW              |[27:24]          |
+|ingress::hdr.tcp.flags                                          |[-1r, 11w]  |TW4        |TW              |[23:16]          |
+|ingress::hdr.tcp.window                                         |[-1r, 11w]  |TW4        |TW              |[15:0]           |
+|ingress::hdr.tcp.checksum                                       |[-1r, 11w]  |TW6        |TW              |[31:16]          |
+|ingress::hdr.tcp.urgent_ptr                                     |[-1r, 11w]  |TW6        |TW              |[15:0]           |
+|ingress::hdr.udp.src_port                                       |[-1r, 11w]  |W12        |W               |[31:16]          |
+|ingress::hdr.udp.dst_port                                       |[-1r, 11w]  |W12        |W               |[15:0]           |
+|ingress::hdr.udp.hdr_lenght                                     |[-1r, 11w]  |TW4        |TW              |[31:16]          |
+|ingress::hdr.udp.checksum                                       |[-1r, 11w]  |TW4        |TW              |[15:0]           |
+|const_to_phv_32w20000                                           |[-1r, 11w]  |W5         |W               |                 |
+|const_to_phv_32w5000000                                         |[-1r, 11w]  |W8         |W               |                 |
+|ingress::md.fid                                                 |[-1r, 11w]  |W40        |W               |[10:0]           |
+|ingress::md.measured_rate                                       |[-1r, 11w]  |W3         |W               |                 |
+|ingress::md.RC                                                  |[-1r, 11w]  |W7         |W               |                 |
+|ingress::md.pktlen                                              |[-1r, 11w]  |W6         |W               |                 |
+|ingress::md.sport                                               |[-1r, 11w]  |W13        |W               |[31:16]          |
+|ingress::md.dport                                               |[-1r, 11w]  |W13        |W               |[15:0]           |
+|ingress::ig_intr_md_for_tm.ucast_egress_port                    |[-1r, 11w]  |H0         |H               |[8:0]            |
+|ingress::t_igr_table_key[31:19]                                 |[-1r, 11w]  |H5         |H               |[12:0]           |
+|ingress::t_igr_table_key[10:0]                                  |[-1r, 11w]  |W40        |W               |[21:11]          |
+|ingress::t_igr_table_key[18:11]                                 |[-1r, 11w]  |W40        |W               |[29:22]          |
+|ingress::t_igr_ts                                               |[-1r, 11w]  |W7         |W               |                 |
+|ingress::t_igr_dt                                               |[-1r, 11w]  |W9         |W               |                 |
+|ingress::t_igr_log_dt                                           |[-1r, 11w]  |H6         |H               |                 |
+|ingress::t_igr_rate                                             |[-1r, 11w]  |W37        |W               |                 |
+|ingress::t_igr_dt_x_rate_B                                      |[-1r, 11w]  |W10        |W               |                 |
+|ingress::$hash_field_argument0                                  |[-1r, 11w]  |H2         |H               |                 |
+|ingress::t_igr_pktlen_minus_dt_x_rate                           |[-1r, 11w]  |W11        |W               |                 |
+|ingress::t_igr_RC_nag                                           |[-1r, 11w]  |H5         |H               |[0]              |
+|ingress::t_igr_ifburstStage                                     |[-1r, 11w]  |B3         |B               |[4]              |
+|ingress::t_igr_ts_ms                                            |[-1r, 11w]  |W38        |W               |                 |
+|ingress::t_igr_dt_ms                                            |[-1r, 11w]  |W36        |W               |                 |
+|ingress::t_igr_gapRC                                            |[-1r, 11w]  |W4         |W               |                 |
+|ingress::t_igr_burst                                            |[-1r, 11w]  |W6         |W               |                 |
+|ingress::t_igr_RC_minus_threshold                               |[-1r, 11w]  |W9         |W               |                 |
+|ingress::t_igr_tcp_drop_flag                                    |[-1r, 11w]  |B3         |B               |[4]              |
+|ingress::t_igr_ecn_flag                                         |[-1r, 11w]  |H6         |H               |[7:0]            |
+|ingress::t_igr_drop_flag                                        |[-1r, 11w]  |H4         |H               |[0]              |
+|ingress::ig_intr_md_for_dprsr.drop_ctl                          |[-1r, 11w]  |W10        |W               |[2:0]            |
+|ingress::ig_intr_md_for_dprsr.mirror_type                       |[-1r, 11w]  |B0         |B               |[2:0]            |
+|ingress::bottlenecked_rate_cms_output_1                         |[-1r, 11w]  |W0         |W               |                 |
+|ingress::bottlenecked_rate_cms_output_2                         |[-1r, 11w]  |W1         |W               |                 |
+|ingress::bottlenecked_rate_cms_output_3                         |[-1r, 11w]  |W2         |W               |                 |
+|ingress::$tmp2                                                  |[-1r, 11w]  |H2         |H               |[9:0]            |
+|egress::eg_intr_md.egress_port                                  |[-1r, 11w]  |H16        |H               |[8:0]            |
+|egress::hdr.min_parse_depth_padding_0[0].packet_payload[87:80]  |[-1r, 11w]  |TB0        |TB              |                 |
+|egress::hdr.min_parse_depth_padding_0[0].packet_payload[15:0]   |[-1r, 11w]  |TH4        |TH              |                 |
+|egress::hdr.min_parse_depth_padding_0[0].packet_payload[31:16]  |[-1r, 11w]  |TH5        |TH              |                 |
+|egress::hdr.min_parse_depth_padding_0[0].packet_payload[79:64]  |[-1r, 11w]  |TH18       |TH              |                 |
+|egress::hdr.min_parse_depth_padding_0[0].packet_payload[63:32]  |[-1r, 11w]  |TW8        |TW              |                 |
+|egress::hdr.min_parse_depth_padding_0[1].packet_payload[87:80]  |[-1r, 11w]  |TB1        |TB              |                 |
+|egress::hdr.min_parse_depth_padding_0[1].packet_payload[79:64]  |[-1r, 11w]  |TH19       |TH              |                 |
+|egress::hdr.min_parse_depth_padding_0[1].packet_payload[31:0]   |[-1r, 11w]  |TW9        |TW              |                 |
+|egress::hdr.min_parse_depth_padding_0[1].packet_payload[63:32]  |[-1r, 11w]  |TW10       |TW              |                 |
+|egress::hdr.min_parse_depth_padding_0[2].packet_payload[87:80]  |[-1r, 11w]  |TB2        |TB              |                 |
+|egress::hdr.min_parse_depth_padding_0[2].packet_payload[47:32]  |[-1r, 11w]  |TH12       |TH              |                 |
+|egress::hdr.min_parse_depth_padding_0[2].packet_payload[63:48]  |[-1r, 11w]  |TH13       |TH              |                 |
+|egress::hdr.min_parse_depth_padding_0[2].packet_payload[79:64]  |[-1r, 11w]  |TH20       |TH              |                 |
+|egress::hdr.min_parse_depth_padding_0[2].packet_payload[31:0]   |[-1r, 11w]  |TW11       |TW              |                 |
+|egress::hdr.ethernet.dst_addr[15:0]                             |[-1r, 11w]  |TH16       |TH              |                 |
+|egress::hdr.ethernet.dst_addr[31:16]                            |[-1r, 11w]  |TH17       |TH              |                 |
+|egress::hdr.ethernet.dst_addr[47:32]                            |[-1r, 11w]  |TH23       |TH              |                 |
+|egress::hdr.ethernet.src_addr[15:0]                             |[-1r, 11w]  |TH14       |TH              |                 |
+|egress::hdr.ethernet.src_addr[31:16]                            |[-1r, 11w]  |TH15       |TH              |                 |
+|egress::hdr.ethernet.src_addr[47:32]                            |[-1r, 11w]  |TH22       |TH              |                 |
+|egress::hdr.ethernet.ether_type                                 |[-1r, 11w]  |TH21       |TH              |                 |
+|egress::hdr.ip.version                                          |[-1r, 11w]  |TW0        |TW              |[31:28]          |
+|egress::hdr.ip.ihl                                              |[-1r, 11w]  |TW0        |TW              |[27:24]          |
+|egress::hdr.ip.dscp                                             |[-1r, 11w]  |TW0        |TW              |[23:18]          |
+|egress::hdr.ip.ecn                                              |[-1r, 11w]  |TW0        |TW              |[17:16]          |
+|egress::hdr.ip.total_len                                        |[-1r, 11w]  |TW0        |TW              |[15:0]           |
+|egress::hdr.ip.identification                                   |[-1r, 11w]  |TW3        |TW              |[31:16]          |
+|egress::hdr.ip.flags                                            |[-1r, 11w]  |TW3        |TW              |[15:13]          |
+|egress::hdr.ip.frag_offset                                      |[-1r, 11w]  |TW3        |TW              |[12:0]           |
+|egress::hdr.ip.ttl                                              |[-1r, 11w]  |TW2        |TW              |[31:24]          |
+|egress::hdr.ip.protocol                                         |[-1r, 11w]  |TW2        |TW              |[23:16]          |
+|egress::hdr.ip.hdr_checksum                                     |[-1r, 11w]  |TW2        |TW              |[15:0]           |
+|egress::hdr.ip.src_addr                                         |[-1r, 11w]  |TW12       |TW              |                 |
+|egress::hdr.ip.dst_addr[7:0]                                    |[-1r, 11w]  |TB3        |TB              |                 |
+|egress::hdr.ip.dst_addr[15:8]                                   |[-1r, 11w]  |TB8        |TB              |                 |
+|egress::hdr.ip.dst_addr[23:16]                                  |[-1r, 11w]  |TB9        |TB              |                 |
+|egress::hdr.ip.dst_addr[31:24]                                  |[-1r, 11w]  |TB10       |TB              |                 |
+|egress::hdr.tcp.src_port                                        |[-1r, 11w]  |TH3        |TH              |                 |
+|egress::hdr.tcp.dst_port                                        |[-1r, 11w]  |TH2        |TH              |                 |
+|egress::hdr.tcp.seq_no                                          |[-1r, 11w]  |TW14       |TW              |                 |
+|egress::hdr.tcp.ack_no                                          |[-1r, 11w]  |TW13       |TW              |                 |
+|egress::hdr.tcp.data_offset                                     |[-1r, 11w]  |TW1        |TW              |[31:28]          |
+|egress::hdr.tcp.res                                             |[-1r, 11w]  |TW1        |TW              |[27:24]          |
+|egress::hdr.tcp.flags                                           |[-1r, 11w]  |TW1        |TW              |[23:16]          |
+|egress::hdr.tcp.window                                          |[-1r, 11w]  |TW1        |TW              |[15:0]           |
+|egress::hdr.tcp.checksum                                        |[-1r, 11w]  |TH1        |TH              |                 |
+|egress::hdr.tcp.urgent_ptr                                      |[-1r, 11w]  |TH0        |TH              |                 |
+|egress::hdr.udp.src_port                                        |[-1r, 11w]  |TH1        |TH              |                 |
+|egress::hdr.udp.dst_port                                        |[-1r, 11w]  |TH0        |TH              |                 |
+|egress::hdr.udp.hdr_lenght                                      |[-1r, 11w]  |TW1        |TW              |[31:16]          |
+|egress::hdr.udp.checksum                                        |[-1r, 11w]  |TW1        |TW              |[15:0]           |
+|ingress::hdr.ethernet.$valid                                    |[-1r, 11w]  |B3         |B               |[0]              |
+|ingress::hdr.ip.$valid                                          |[-1r, 11w]  |B3         |B               |[1]              |
+|ingress::hdr.tcp.$valid                                         |[-1r, 11w]  |B3         |B               |[2]              |
+|ingress::hdr.udp.$valid                                         |[-1r, 11w]  |B3         |B               |[3]              |
+|egress::hdr.ethernet.$valid                                     |[-1r, 11w]  |B17        |B               |[0]              |
+|egress::hdr.ip.$valid                                           |[-1r, 11w]  |B17        |B               |[1]              |
+|egress::hdr.tcp.$valid                                          |[-1r, 11w]  |B17        |B               |[2]              |
+|egress::hdr.udp.$valid                                          |[-1r, 11w]  |B17        |B               |[3]              |
+|egress::hdr.min_parse_depth_padding_0.$stkvalid[0]              |[-1r, 11w]  |B16        |B               |[0]              |
+|egress::hdr.min_parse_depth_padding_0.$stkvalid[1]              |[-1r, 11w]  |B16        |B               |[1]              |
+|egress::hdr.min_parse_depth_padding_0.$stkvalid[2]              |[-1r, 11w]  |B16        |B               |[2]              |
++----------------------------------------------------------------+------------+-----------+----------------+-----------------+
+
+
+
+
+
+PHV Allocation State
+
+MAU Groups:
++-------------------+-----------------+---------------+----------------------+---------------------+----------------+---------------------------+--------------------------+----------------+
+|     MAU Group     | Containers Used |   Bits Used   | Bits Used on Ingress | Bits Used on Egress | Bits Allocated | Bits Allocated on Ingress | Bits Allocated on Egress | Available Bits |
++-------------------+-----------------+---------------+----------------------+---------------------+----------------+---------------------------+--------------------------+----------------+
+|       B0-15       |   4 (  25  %)   | 24 ( 18.8 %)  |     24 ( 18.8 %)     |     0 (   0  %)     |  25 ( 19.5 %)  |       25 ( 19.5 %)        |       0 (   0  %)        |      128       |
+|      B16-31       |   2 ( 12.5 %)   |  7 ( 5.47 %)  |     0 (   0  %)      |     7 ( 5.47 %)     |  7 ( 5.47 %)   |        0 (   0  %)        |       7 ( 5.47 %)        |      128       |
+|      B32-47       |   0 (   0  %)   |  0 (   0  %)  |     0 (   0  %)      |     0 (   0  %)     |  0 (   0  %)   |        0 (   0  %)        |       0 (   0  %)        |      128       |
+|      B48-63       |   0 (   0  %)   |  0 (   0  %)  |     0 (   0  %)      |     0 (   0  %)     |  0 (   0  %)   |        0 (   0  %)        |       0 (   0  %)        |      128       |
++-------------------+-----------------+---------------+----------------------+---------------------+----------------+---------------------------+--------------------------+----------------+
+|       H0-15       |   7 ( 43.8 %)   | 102 ( 39.8 %) |    102 ( 39.8 %)     |     0 (   0  %)     | 122 ( 47.7 %)  |       122 ( 47.7 %)       |       0 (   0  %)        |      256       |
+|      H16-31       |   1 ( 6.25 %)   |  9 ( 3.52 %)  |     0 (   0  %)      |     9 ( 3.52 %)     |  9 ( 3.52 %)   |        0 (   0  %)        |       9 ( 3.52 %)        |      256       |
+|      H32-47       |   0 (   0  %)   |  0 (   0  %)  |     0 (   0  %)      |     0 (   0  %)     |  0 (   0  %)   |        0 (   0  %)        |       0 (   0  %)        |      256       |
+|      H48-63       |   0 (   0  %)   |  0 (   0  %)  |     0 (   0  %)      |     0 (   0  %)     |  0 (   0  %)   |        0 (   0  %)        |       0 (   0  %)        |      256       |
+|      H64-79       |   0 (   0  %)   |  0 (   0  %)  |     0 (   0  %)      |     0 (   0  %)     |  0 (   0  %)   |        0 (   0  %)        |       0 (   0  %)        |      256       |
+|      H80-95       |   0 (   0  %)   |  0 (   0  %)  |     0 (   0  %)      |     0 (   0  %)     |  0 (   0  %)   |        0 (   0  %)        |       0 (   0  %)        |      256       |
++-------------------+-----------------+---------------+----------------------+---------------------+----------------+---------------------------+--------------------------+----------------+
+|       W0-15       |  16 (  100 %)   | 512 (  100 %) |    512 (  100 %)     |     0 (   0  %)     | 643 (  126 %)  |       643 (  126 %)       |       0 (   0  %)        |      512       |
+|      W16-31       |   0 (   0  %)   |  0 (   0  %)  |     0 (   0  %)      |     0 (   0  %)     |  0 (   0  %)   |        0 (   0  %)        |       0 (   0  %)        |      512       |
+|      W32-47       |   6 ( 37.5 %)   | 190 ( 37.1 %) |    190 ( 37.1 %)     |     0 (   0  %)     | 190 ( 37.1 %)  |       190 ( 37.1 %)       |       0 (   0  %)        |      512       |
+|      W48-63       |   0 (   0  %)   |  0 (   0  %)  |     0 (   0  %)      |     0 (   0  %)     |  0 (   0  %)   |        0 (   0  %)        |       0 (   0  %)        |      512       |
++-------------------+-----------------+---------------+----------------------+---------------------+----------------+---------------------------+--------------------------+----------------+
+|   Usage for 8b    |   6 ( 9.38 %)   | 31 ( 6.05 %)  |     24 ( 4.69 %)     |     7 ( 1.37 %)     |  32 ( 6.25 %)  |       25 ( 4.88 %)        |       7 ( 1.37 %)        |      512       |
+|   Usage for 16b   |   8 ( 8.33 %)   | 111 ( 7.23 %) |    102 ( 6.64 %)     |     9 ( 0.586%)     | 131 ( 8.53 %)  |       122 ( 7.94 %)       |       9 ( 0.586%)        |      1536      |
+|   Usage for 32b   |  22 ( 34.4 %)   | 702 ( 34.3 %) |    702 ( 34.3 %)     |     0 (   0  %)     | 833 ( 40.7 %)  |       833 ( 40.7 %)       |       0 (   0  %)        |      2048      |
++-------------------+-----------------+---------------+----------------------+---------------------+----------------+---------------------------+--------------------------+----------------+
+| Overall PHV Usage |  36 ( 16.1 %)   | 844 ( 20.6 %) |    828 ( 20.2 %)     |    16 ( 0.391%)     | 996 ( 24.3 %)  |       980 ( 23.9 %)       |       16 ( 0.391%)       |      4096      |
++-------------------+-----------------+---------------+----------------------+---------------------+----------------+---------------------------+--------------------------+----------------+
+
+
+Tagalong Collections:
++------------+-------+--------------------+---------------------+---------------------+---------------+----------------+
+|  Collection|  Gress|  8b Containers Used|  16b Containers Used|  32b Containers Used|      Bits Used|  Bits Allocated|
++------------+-------+--------------------+---------------------+---------------------+---------------+----------------+
+|           0|      E|         4 (  100 %)|          6 (  100 %)|          4 (  100 %)|  256 (  100 %)|   320 (  125 %)|
+|           1|      I|         4 (  100 %)|          6 (  100 %)|          4 (  100 %)|  256 (  100 %)|   288 (  112 %)|
+|           2|      E|         3 (  75  %)|          6 (  100 %)|          4 (  100 %)|  248 ( 96.9 %)|   248 ( 96.9 %)|
+|           3|      E|         0 (   0  %)|          6 (  100 %)|          3 (  75  %)|  192 (  75  %)|   192 (  75  %)|
+|           4|       |         0 (   0  %)|          0 (   0  %)|          0 (   0  %)|    0 (   0  %)|     0 (   0  %)|
+|           5|       |         0 (   0  %)|          0 (   0  %)|          0 (   0  %)|    0 (   0  %)|     0 (   0  %)|
+|           6|       |         0 (   0  %)|          0 (   0  %)|          0 (   0  %)|    0 (   0  %)|     0 (   0  %)|
+|           7|       |         0 (   0  %)|          0 (   0  %)|          0 (   0  %)|    0 (   0  %)|     0 (   0  %)|
++------------+-------+--------------------+---------------------+---------------------+---------------+----------------+
+|       Total|       |        11 ( 34.4 %)|         24 (  50  %)|         15 ( 46.9 %)|  952 ( 46.5 %)|  1048 ( 51.2 %)|
++------------+-------+--------------------+---------------------+---------------------+---------------+----------------+
+
+
+

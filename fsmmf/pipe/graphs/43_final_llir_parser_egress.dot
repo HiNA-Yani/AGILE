@@ -1,0 +1,81 @@
+digraph parser {
+size="8,5"
+subgraph cluster_0 {style=invis;
+State0xd891d20 [style=filled, fillcolor=lightskyblue1, shape=record, label="{\$entry_point:\l\l}"];
+Match0xb69c000 [style=filled, fillcolor=aliceblue, shape=record, label="{match const: *: \l\l}"];
+}
+subgraph cluster_1 {style=invis;
+State0xd891c30 [style=filled, fillcolor=lightskyblue1, shape=record, label="{start\.\$split_0:\l\l}"];
+Match0xb6e9c80 [style=filled, fillcolor=aliceblue, shape=record, label="{match const: *: \l\l}"];
+}
+subgraph cluster_2 {style=invis;
+State0xd891b40 [style=filled, fillcolor=lightskyblue1, shape=record, label="{start\.\$split_1:\l\l}"];
+Match0xb6e9960 [style=filled, fillcolor=aliceblue, shape=record, label="{match const: 0x0800: \l\l}"];
+Match0xb76d000 [style=filled, fillcolor=aliceblue, shape=record, label="{match const: 0x****: \l\l}"];
+}
+subgraph cluster_3 {style=invis;
+State0xd891a50 [style=filled, fillcolor=lightskyblue1, shape=record, label="{EthIpParser_parse_ip_0:\l\l}"];
+Match0xb6e9640 [style=filled, fillcolor=aliceblue, shape=record, label="{match const: *: \l\l}"];
+}
+subgraph cluster_4 {style=invis;
+State0xd8914b0 [style=filled, fillcolor=lightskyblue1, shape=record, label="{min_parse_depth_accept_initial:\l\l}"];
+Match0xb70dc80 [style=filled, fillcolor=aliceblue, shape=record, label="{match const: 0x0: \l\l}"];
+Match0xb8c0000 [style=filled, fillcolor=aliceblue, shape=record, label="{match const: 0b**: \l\l}"];
+}
+subgraph cluster_5 {style=invis;
+State0xd891960 [style=filled, fillcolor=lightskyblue1, shape=record, label="{EthIpParser_parse_ip_0\.\$split_0:\l\l}"];
+Match0xb6e9320 [style=filled, fillcolor=aliceblue, shape=record, label="{match const: 0x06: \l\l}"];
+Match0xb76d960 [style=filled, fillcolor=aliceblue, shape=record, label="{match const: 0x11: \l\l}"];
+Match0xb76d320 [style=filled, fillcolor=aliceblue, shape=record, label="{match const: 0x**: \l\l}"];
+}
+subgraph cluster_6 {style=invis;
+State0xd8915a0 [style=filled, fillcolor=lightskyblue1, shape=record, label="{EthIpParser_parse_tcp_0:\l\l}"];
+Match0xb6e9000 [style=filled, fillcolor=aliceblue, shape=record, label="{match const: *: \l\l}"];
+}
+subgraph cluster_7 {style=invis;
+State0xd93ac30 [style=filled, fillcolor=lightskyblue1, shape=record, label="{EthIpParser_parse_udp_0:\l\l}"];
+Match0xb76d640 [style=filled, fillcolor=aliceblue, shape=record, label="{match const: *: \l\l}"];
+}
+subgraph cluster_8 {style=invis;
+State0xd8911e0 [style=filled, fillcolor=lightskyblue1, shape=record, label="{min_parse_depth_accept_loop\.\$split_0:\l\l}"];
+Match0xb70d960 [style=filled, fillcolor=aliceblue, shape=record, label="{match const: 0x0: \l\l}"];
+Match0xb8c0960 [style=filled, fillcolor=aliceblue, shape=record, label="{match const: 0b**: \l\l}"];
+}
+subgraph cluster_9 {style=invis;
+State0xd93af00 [style=filled, fillcolor=lightskyblue1, shape=record, label="{min_parse_depth_accept_loop\.\$it1\.\$split_0:\l\l}"];
+Match0xb70d640 [style=filled, fillcolor=aliceblue, shape=record, label="{match const: 0x0: \l\l}"];
+Match0xb867320 [style=filled, fillcolor=aliceblue, shape=record, label="{match const: 0b**: \l\l}"];
+}
+State0xd891d20 -> Match0xb69c000
+Match0xb69c000 -> State0xd891c30
+State0xd891c30 -> Match0xb6e9c80
+Match0xb6e9c80 -> State0xd891b40
+State0xd891b40 -> Match0xb6e9960
+Match0xb6e9960 -> State0xd891a50
+State0xd891b40 -> Match0xb76d000
+Match0xb76d000 -> State0xd8914b0
+State0xd891a50 -> Match0xb6e9640
+Match0xb6e9640 -> State0xd891960
+State0xd8914b0 -> Match0xb70dc80
+Match0xb70dc80 -> State0xd8911e0
+State0xd8914b0 -> Match0xb8c0000
+Match0xb8c0000 -> egress_pipe
+State0xd891960 -> Match0xb6e9320
+Match0xb6e9320 -> State0xd8915a0
+State0xd891960 -> Match0xb76d960
+Match0xb76d960 -> State0xd93ac30
+State0xd891960 -> Match0xb76d320
+Match0xb76d320 -> State0xd8914b0
+State0xd8915a0 -> Match0xb6e9000
+Match0xb6e9000 -> State0xd8914b0
+State0xd93ac30 -> Match0xb76d640
+Match0xb76d640 -> State0xd8914b0
+State0xd8911e0 -> Match0xb70d960
+Match0xb70d960 -> State0xd93af00
+State0xd8911e0 -> Match0xb8c0960
+Match0xb8c0960 -> egress_pipe
+State0xd93af00 -> Match0xb70d640
+Match0xb70d640 -> egress_pipe
+State0xd93af00 -> Match0xb867320
+Match0xb867320 -> egress_pipe
+}

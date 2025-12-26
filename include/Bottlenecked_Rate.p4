@@ -69,7 +69,6 @@ control Bottlenecked_Rate(
         sketch_output = min<bit<32>>(sketch_output, cms_output_3_);
         sketch_output = sketch_output>>8; //B/128ns
 
-        // 存储速率值
         raSetbottleneckedRate.execute(fid);
 
     }

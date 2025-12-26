@@ -15,8 +15,23 @@ The system consists of:
 - A **P4-based data plane** for real-time rate estimation and fairness enforcement.
 - A **C++ control plane** for switch initialization and runtime management.
 - **Python and shell scripts** for configuration, automation, and experimentation.
-
 ---
+## Repository Structure
+AGILE/
+├── fsmmf/ # Compiled data-plane artifacts (generated after build)
+├── include/ # Data-plane header files
+├── libs/ # Supporting libraries
+├── pd/ # PD-related generated files
+├── README.md
+├── fsmmf.p4 # Main P4 data-plane program
+├── fsmmf.cpp # Control-plane implementation (C++)
+├── add_lpf_rules.py # Script to configure LPF rules in the data plane
+├── pd_helpers.hpp
+├── pd_helpers_gen.py
+├── build.sh # Build script (data plane + control plane)
+├── run.sh # Script to launch the switch
+├── controlplane.sh # Script to run control-plane logic
+└── bf_switchd # Switch daemon configuration
 
 
 

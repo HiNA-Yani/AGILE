@@ -27,4 +27,4 @@ After the switch is running, start the control plane:
 ./controlplane.sh
 ```
 ## Notes
-Some parameters may need adjustment depending on the experimental setup.
+Some parameters (e.g., LPF settings) may need adjustment depending on the experimental setup.

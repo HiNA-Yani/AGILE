@@ -42,21 +42,20 @@ control FSMMF_igr(
         tiCalc_dt_x_rate.apply();
         test_dt_x_rate();
 
-        //compute new RC and 更新RC值
+        //compute new RC 
         aiSetpktlen();
         // test_pktlen();
         aiCalc_pktlen_minus_dt_x_rate();
         aiSetRC();
         
-        //判断RC正负
         tiRC_nag.apply();
 
         // ******************** burst control ***************** //
         aiSetburstStage();
-        if (ifburstStage == 1) { //处于burst control阶段
+        if (ifburstStage == 1) { 
             aiCalcbursttolerance();
             aiTs_ms();
-            aiCalburst_t();//当前时间 ms
+            aiCalburst_t();
         }
         if ( dt_ms != 0) {
             aiCalc_gapRC();
@@ -69,12 +68,11 @@ control FSMMF_igr(
 
         // ******************** rate control ****************** //
         //Threshold < RC(t, f): drop
-        // 设置 drop 和 ecn flag
         // udp drop_flag
         bit<1> drop_flag = 0;
         md.bottlenecked_flag = 0;
-        aiCal_RC_minus_threshold(); //计算RC-threshold；
-        if (RC_minus_threshold != 0) { //RC是正数，且大于threshold
+        aiCal_RC_minus_threshold(); 
+        if (RC_minus_threshold != 0) {
             drop_flag = 0x1;
             aiSetdropflag();
             aiSetecnflag();
@@ -90,7 +88,6 @@ control FSMMF_igr(
         }
         
 
-        //设置丢包
         bool tcp_isValid=hdr.tcp.isValid();
         if (tcp_isValid) {
             if(tcp_drop_flag!=0){

@@ -23,7 +23,7 @@ To launch the switch with AGILE:
 
 ### Start the Control Plane
 After the switch is running, start the control plane:
-``bash
+```bash
 ./controlplane.sh
 ```
 ## Notes

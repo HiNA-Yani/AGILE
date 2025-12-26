@@ -18,14 +18,11 @@ def main():
 
 def commonStart():
     # bring up ports and add forwarding paths
-    m.port_up(144, "100G", "NONE") # cn9
-    m.port_up(156, "100G", "NONE") # cn10
-    m.port_up(128, "100G", "NONE") # bottleneck link side 220
-    # to cn9
+    m.port_up(144, "100G", "NONE") 
+    m.port_up(156, "100G", "NONE") 
+    m.port_up(128, "100G", "NONE") 
     add_path_through_bottleneck(0x1070fd69b290, 144)
-    # to cn11
     add_path_through_bottleneck(0x1070fd699470, 156)
-    # to cn1 and cn 3
     add_path_through_bottleneck(0x1070fdc40f08, 128)
     add_path_through_bottleneck(0xe8ebd3a72da2, 128)
 

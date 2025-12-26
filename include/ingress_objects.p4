@@ -109,7 +109,7 @@
         const default_action = aiRate(RATE_INI);
     }
     
-    // 计算dt*rate
+
     bit<32> dt_x_rate;
     bit<32> dt_x_rate_B;
     action aiCalc_dt_x_rate(bit<32> Calc_dt_x_rate, bit<32> Calc_dt_x_rate_B) {
@@ -157,7 +157,6 @@
         md.RC = raSetRC.execute(md.fid);
     }
 
-    // 检测RC正负
     bit<1> RC_nag = 0;
     action aiRC_neg() {
         RC_nag = 1;
@@ -194,13 +193,13 @@
             rv = mem;
         }
     };
-    action aiSetburstStage() { //在第一次达到threshold之前 -- burstcontrol阶段
+    action aiSetburstStage() { 
         ifburstStage = (bit<1>) raburstStage.execute(md.fid);
     }
     action aiCalcbursttolerance() {
         bursttolerance = rate << 3;
     }
-    action aiTs_ms() { //每毫秒计算RC到差值 -- 获取当前时间戳 ms
+    action aiTs_ms() { 
         ts_ms = identity_hasher2.get({ig_intr_md.ingress_mac_tstamp[43:12]});
     }
     Register<bit<32>, bit<11>>(2048, 0) ri_ts_ms;
@@ -210,7 +209,7 @@
             mem = ts_ms;
         }
     };
-    action aiCalburst_t() { //间隔时间是否达到2ms
+    action aiCalburst_t() { 
         dt_ms = ra_ts_ms.execute(md.fid);
     }
     Register<bit<32>, bit<11>>(2048, 0) ri_gapRC;
@@ -220,7 +219,7 @@
             mem = md.RC;
         }
     };
-    action aiCalc_gapRC() { //如果间隔时间达到2ms
+    action aiCalc_gapRC() { 
         gapRC = ra_gapRC.execute(md.fid);
     }
     action aiCalc_gap_minus_tolerance() {
@@ -249,7 +248,6 @@
 
 
     // ********************** rate control  ******************* //
-    // 计算 RC - threshold
     bit<32> RC_minus_threshold;
     action aiCal_RC_minus_threshold() {
         RC_minus_threshold = md.RC |-| THRESHOLD_INI;
@@ -318,8 +316,6 @@
 
 
     
-
-    // ************************* 判断是不是瓶颈流 ******************* //
     Register<bit<32>, bit<11>>(2048, 0) bottleneckF;
     RegisterAction<bit<32>, bit<11>, bit<32>>(bottleneckF) raSetBottleneckF = {
         void apply(inout bit<32> mem, out bit<32> rv) {

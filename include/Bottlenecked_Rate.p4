@@ -67,7 +67,7 @@ control Bottlenecked_Rate(
         // Get the minimum of all register contents
         sketch_output = min<bit<32>>(cms_output_1_, cms_output_2_);
         sketch_output = min<bit<32>>(sketch_output, cms_output_3_);
-        sketch_output = sketch_output>>8; //B/128ns
+        sketch_output = sketch_output>>8; 
 
         raSetbottleneckedRate.execute(fid);
 

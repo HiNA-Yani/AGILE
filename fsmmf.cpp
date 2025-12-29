@@ -268,7 +268,7 @@ void fsmmf_loop() {
       double bottleneckedrate_sum = 0.0;
 
       for (int i = 1; i < NUM_FID; i++) { 
-        if (rate[i] > 500  && pkt_count[i] != 0){
+        if (rate[i] > 0  && pkt_count[i] != 0){
           flowSet.insert(i);
           rate_Gbps[i] = rate[i] / 1500.0;
           flow_count += 1;

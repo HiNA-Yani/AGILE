@@ -13,7 +13,7 @@ AGILE is an in-network bandwidth allocation system that achieves **max-min fairn
 AGILE consists of two major components:
 
 - **Data plane (P4)**: Implements in-switch measurement and scheduling-related logic.
-- **Control plane (Python / C++)**: Configures switch tables/registers/meters via PD APIs and installs forwarding / scheduling rules at runtime.
+- **Control plane (Python / C++)**: Configures switch tables/registers and installs forwarding / scheduling rules at runtime.
 
 ---
 

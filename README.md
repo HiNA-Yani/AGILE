@@ -27,19 +27,19 @@ This repository contains both **data-plane** and **control-plane** implementatio
   The **data-plane P4 program** (P4_16).  
   It implements AGILE’s in-network bandwidth allocation logic and the required packet processing pipeline on Tofino switches.
 
-- `fsmmf.py` and `fsmmf.cpp`  
+- `fsmmf.py`, `add_lpf_rules.py` and `fsmmf.cpp`  
   The **control-plane implementations**.  
   They interact with the switch through the PD interface to:
   - install forwarding rules,
   - configure data-plane tables/actions,
-  - set registers/meters,
+  - set registers,
   - adjust runtime parameters (e.g., LPF-related settings),
   - manage AGILE runtime control logic.
 
 ### Directories
 
 - `include/`, `libs/`, `pd/`  
-  Helper libraries and **PD interface** related code (generated and/or used during build).  
+  Helper libraries and **PD interface** related code.  
   These interfaces are used by the control plane to program the compiled data plane.
 
 - `fsmmf/`  
@@ -48,7 +48,7 @@ This repository contains both **data-plane** and **control-plane** implementatio
   - pipeline/stage usage
   - table allocation
   - SRAM/TCAM usage
-  - register/meter allocation
+  - register allocation
 
 ### Scripts
 
@@ -60,7 +60,6 @@ This repository contains both **data-plane** and **control-plane** implementatio
 
 - `run.sh`  
   Launch the switch runtime (Tofino model or device runtime).  
-  After the switch starts and **gRPC becomes available**, it runs control-plane initialization to install runtime rules.
 
 - `controlplane.sh`  
   Starts the control plane to configure forwarding and AGILE-related rules.
@@ -82,7 +81,7 @@ To launch the switch with AGILE:
 ```
 
 ### Start the Control Plane
-After the switch is running, start the control plane:
+After the switch starts and **gRPC becomes available**, start the control plane:
 ```bash
 ./controlplane.sh
 ```

@@ -35,7 +35,7 @@ This repository contains both **data-plane** and **control-plane** implementatio
   3. **Compile the C++ control-plane implementation (`fsmmf.cpp`)**
 
 - `run.sh`  
-  Launch the switch runtime (Tofino model or device runtime).  
+  Launch the switch runtime.  
 
 - `controlplane.sh`  
   Starts the control plane to configure forwarding and AGILE-related rules.

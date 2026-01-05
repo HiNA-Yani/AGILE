@@ -20,7 +20,7 @@ This repository contains both **data-plane** and **control-plane** implementatio
 
 - `fsmmf.py`, `add_lpf_rules.py` and `fsmmf.cpp`  
   The **control-plane implementations**.  
-  They interact with the switch through the PD interface and bfruntime interface to:
+  TThey interact with the switch via the PD and/or bfrt (bfruntime) APIs to:
   - install forwarding rules,
   - configure data-plane tables/actions,
   - set registers,
@@ -31,7 +31,7 @@ This repository contains both **data-plane** and **control-plane** implementatio
 
 - `build.sh`  
   1. **Compile the data-plane P4 program (`fsmmf.p4`)**
-  2. **Generate PD interface helper files** for both data-plane and control-plane programming
+  2. **Generate PD interface helper files** for control-plane programming
   3. **Compile the C++ control-plane implementation (`fsmmf.cpp`)**
 
 - `run.sh`  

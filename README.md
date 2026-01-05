@@ -27,20 +27,6 @@ This repository contains both **data-plane** and **control-plane** implementatio
   - adjust runtime parameters (e.g., LPF-related settings),
   - manage AGILE runtime control logic.
 
-### Directories
-
-- `include/`, `libs/`, `pd/`  
-  Helper libraries and PD interface related code.  
-  These interfaces are used by the control plane to program the compiled data plane.
-
-- `fsmmf/`  
-  The output directory generated after compiling the data-plane program.  
-  It contains compiled artifacts and reports that help inspect **hardware resource consumption**, such as:
-  - pipeline/stage usage
-  - table allocation
-  - SRAM/TCAM usage
-  - register allocation
-
 ### Scripts
 
 - `build.sh`  
@@ -77,3 +63,5 @@ After the switch starts and **gRPC becomes available**, start the control plane:
 ```
 ## Notes
 Some parameters (e.g., LPF settings) may need adjustment depending on the experimental setup.
+
+Note: The internal development codename for the AGILE project is 'fsmmf'. All source files use the fsmmf prefix.

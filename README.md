@@ -30,7 +30,7 @@ This repository contains both **data-plane** and **control-plane** implementatio
 ### Directories
 
 - `include/`, `libs/`, `pd/`  
-  Helper libraries and **PD interface** related code.  
+  Helper libraries and PD interface related code.  
   These interfaces are used by the control plane to program the compiled data plane.
 
 - `fsmmf/`  
@@ -44,7 +44,6 @@ This repository contains both **data-plane** and **control-plane** implementatio
 ### Scripts
 
 - `build.sh`  
-  One-click build script. It performs:
   1. **Compile the data-plane P4 program (`fsmmf.p4`)**
   2. **Generate PD interface helper files** for both data-plane and control-plane programming
   3. **Compile the C++ control-plane implementation (`fsmmf.cpp`)**
